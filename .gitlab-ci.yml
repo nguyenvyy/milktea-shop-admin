@@ -11,7 +11,7 @@ stages:
   # - deploy
 
 build_job:
-  state: build
+  stage: build
   script: npm run build
 
 # install_job:
