@@ -1,6 +1,20 @@
-image: node:10.15.3
+image: rambabusaravanan/firebase
 
-test:
+before-script:
+  - npm i
+
+stages:
+  - test
+  # - build
+  # - deploy
+
+# build_job:
+#   state: build
+#   script: npm run build
+
+test_job:
+  state: test
   script: 
-    - npm i
     - npm test
+
+
