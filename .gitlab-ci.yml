@@ -1,7 +1,8 @@
 image: rambabusaravanan/firebase
 
-before_script:
-  - npm i
+default:
+  before_script:
+    - npm i
 
 stages:
   # - install
