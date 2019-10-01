@@ -5,8 +5,8 @@ default:
     - npm i
 
 stages:
-  - test
   - build
+  - test
   # - install
   # - deploy
 
