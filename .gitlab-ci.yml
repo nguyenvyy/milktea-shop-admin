@@ -1,8 +1,5 @@
-stages:
-  - build
-  - test
-  - deploy
+before_script:
+  - npm i
 
 test:
-  stage: test
   script: npm test
