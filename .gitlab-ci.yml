@@ -1,8 +1,8 @@
 image: rambabusaravanan/firebase
 
-default:
-  before_script:
-    - npm i
+# default:
+before_script:
+  - npm i
 
 stages:
   - build
