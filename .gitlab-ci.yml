@@ -12,12 +12,12 @@ stages:
 #   script: npm run build
 
 install_job:
-  state: install
+  stage: install
   script:
     - npm i
 
 test_job:
-  state: test
+  stage: test
   script: 
     - npm test
 
