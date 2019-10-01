@@ -5,4 +5,4 @@ stages:
 
 test:
   stage: test
-  script: make test
+  script: npm test
