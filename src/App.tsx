@@ -6,6 +6,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        Hải ăn cức
       </header>
     </div>
   );
