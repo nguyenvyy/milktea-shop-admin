@@ -1,9 +1,8 @@
 image: rambabusaravanan/firebase
 
-before-script:
-  - npm i
 
 stages:
+  - install
   - test
   # - build
   # - deploy
@@ -11,6 +10,11 @@ stages:
 # build_job:
 #   state: build
 #   script: npm run build
+
+install_job:
+  state: install
+  script:
+    - npm i
 
 test_job:
   state: test
