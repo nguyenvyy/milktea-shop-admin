@@ -5,8 +5,8 @@ before_script:
   - npm i
 
 stages:
-  - build
   - test
+  - build
   - deploy
   # - install
 
