@@ -1,8 +1,11 @@
 image: rambabusaravanan/firebase
-
+cache: &global_cache
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
 # default:
-before_script:
-  - npm i
+# before_script:
+#   - npm i
 
 stages:
   - build
@@ -13,7 +16,9 @@ stages:
 
 build_job:
   stage: build
-  script: npm run build
+  script: 
+    - npm i
+    - npm run build
 
 # install_job:
 #   stage: install
