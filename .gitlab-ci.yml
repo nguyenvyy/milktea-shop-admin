@@ -1,11 +1,11 @@
 image: rambabusaravanan/firebase
-cache: &global_cache
-    key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
-    paths:
-      - node_modules/
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - node_modules/
 # default:
-# before_script:
-#   - npm i
+before_script:
+  - npm i
 
 stages:
   - build
@@ -16,8 +16,7 @@ stages:
 
 build_job:
   stage: build
-  script: 
-    - npm i
+  script:
     - npm run build
 
 # install_job:
@@ -27,8 +26,7 @@ build_job:
 
 test_job:
   stage: test
-  script: 
-    - npm i
+  script:
     - npm test
 
 
@@ -42,7 +40,6 @@ deploy_job:
   only:
     - developer
   script:
-    - npm i
     - npm run build
     - firebase use oalmilktea --token 1//0gC-gxEefbI7ZCgYIARAAGBASNwF-L9Ir_Aio4tkbmnoq2RuhvbC5RlbILDU8clHhx4CuNUM5VOqeBNyo3fmTjp4Zo32W9C-T4Jk
     - firebase deploy --only hosting -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token 1//0gC-gxEefbI7ZCgYIARAAGBASNwF-L9Ir_Aio4tkbmnoq2RuhvbC5RlbILDU8clHhx4CuNUM5VOqeBNyo3fmTjp4Zo32W9C-T4Jk
