@@ -48,7 +48,8 @@ test_job2:
       - node_modules/
 test_job3:
   stage: test
-  only: master
+  only: 
+    - master
   script:
     - npm test
   cache: 
