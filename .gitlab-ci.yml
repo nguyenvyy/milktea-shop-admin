@@ -1,5 +1,4 @@
-image: node:10.15.3
-
+image: rambabusaravanan/firebase
 # default:
 # before_script:
 #   - npm i
@@ -37,7 +36,7 @@ test_job:
 
 
 deploy_job:
-  image: rambabusaravanan/firebase
+#   image: rambabusaravanan/firebase
   stage: deploy
   only:
     - developer
