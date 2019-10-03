@@ -27,7 +27,7 @@ build_job:
       - build/
 
 
-test_job:
+unit_test:
   stage: test
   script:
     - npm test
@@ -36,7 +36,7 @@ test_job:
     paths:
       - node_modules/
 
-test_job2:
+code_quality:
   stage: test
   script:
     - npm test
@@ -45,10 +45,8 @@ test_job2:
     paths:
       - node_modules/
 
-test_job3:
+performance:
   stage: test
-  only: 
-    - master
   script:
     - npm test
   cache: 
