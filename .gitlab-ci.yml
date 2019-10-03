@@ -45,6 +45,9 @@ performance:
 deploy_job:
   image: rambabusaravanan/firebase
   stage: deploy
+  environment:
+    name: oalmilktea
+    url: https://oalmilktea.web.app
   only:
     - developer
   script:
