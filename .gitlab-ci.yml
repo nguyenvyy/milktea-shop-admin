@@ -1,4 +1,5 @@
-image: rambabusaravanan/firebase
+image: node:latest
+
 # default:
 # before_script:
 #   - npm i
@@ -36,6 +37,7 @@ test_job:
 
 
 deploy_job:
+  image: rambabusaravanan/firebase
   stage: deploy
   only:
     - developer
