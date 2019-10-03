@@ -29,8 +29,9 @@ build_job:
 test_job:
   stage: test
   script:
-    - npm i
     - npm test
+  cache: 
+    key: build-cache
 
 
 
