@@ -38,7 +38,23 @@ test_job:
     key: install-cache
     paths:
       - node_modules/
-
+test_job2:
+  stage: test
+  script:
+    - npm test
+  cache: 
+    key: install-cache
+    paths:
+      - node_modules/
+test_job3:
+  stage: test
+  only: master
+  script:
+    - npm test
+  cache: 
+    key: install-cache
+    paths:
+      - node_modules/
 
 
 deploy_job:
