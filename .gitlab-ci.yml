@@ -28,7 +28,6 @@ build_job:
     paths:
       - build/
 
-
 unit_test:
   stage: test
   script:
@@ -36,21 +35,13 @@ unit_test:
 
 code_quality:
   stage: test
-  # script:
-  #   - npm test
-  # cache: 
-  #   key: install-cache
-  #   paths:
-  #     - node_modules/
+  script:
+     - npm test
 
 performance:
   stage: test
-  # script:
-  #   - npm test
-  # cache: 
-  #   key: install-cache
-  #   paths:
-  #     - node_modules/
+  script:
+     - npm test
 
 deploy_job:
   image: rambabusaravanan/firebase
