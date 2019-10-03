@@ -1,7 +1,7 @@
 image: node:10.15.3
 
 stages:
-  - install
+  - install_dependencies
   - build
   - test
   - deploy
@@ -10,8 +10,8 @@ cache:
   paths:
     - node_modules/
 
-install_job:
-  stage: install
+install_dependencies:
+  stage: install_dependencies
   script:
     - npm i
   only:
