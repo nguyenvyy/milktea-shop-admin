@@ -1,14 +1,10 @@
-image: rambabusaravanan/firebase
-# default:
-# before_script:
-#   - npm i
+image: node:10.15.3
 
 stages:
   - install
   - build
   - test
   - deploy
-  # - install
 
 install_job:
   stage: install
@@ -39,6 +35,7 @@ test_job:
     key: install-cache
     paths:
       - node_modules/
+
 test_job2:
   stage: test
   script:
@@ -47,6 +44,7 @@ test_job2:
     key: install-cache
     paths:
       - node_modules/
+
 test_job3:
   stage: test
   only: 
@@ -58,16 +56,15 @@ test_job3:
     paths:
       - node_modules/
 
-
 deploy_job:
-#   image: rambabusaravanan/firebase
+  image: rambabusaravanan/firebase
   stage: deploy
   only:
     - developer
   script:
     - firebase use oalmilktea --token 1//0gC-gxEefbI7ZCgYIARAAGBASNwF-L9Ir_Aio4tkbmnoq2RuhvbC5RlbILDU8clHhx4CuNUM5VOqeBNyo3fmTjp4Zo32W9C-T4Jk
     - firebase deploy --only hosting -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token 1//0gC-gxEefbI7ZCgYIARAAGBASNwF-L9Ir_Aio4tkbmnoq2RuhvbC5RlbILDU8clHhx4CuNUM5VOqeBNyo3fmTjp4Zo32W9C-T4Jk
-  when: manual
-  allow_failure: false
   cache: 
     key: build-cache
+    paths:
+      - build/
