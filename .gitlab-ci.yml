@@ -23,6 +23,7 @@ install_job:
 build_job:
   stage: build
   script:
+    - npm i 
     - npm run build
   cache:
     key: build-cache
@@ -70,5 +71,3 @@ deploy_job:
   allow_failure: false
   cache: 
     key: build-cache
-    paths:
-      - build/
