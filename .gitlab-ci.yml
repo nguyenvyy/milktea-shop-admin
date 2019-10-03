@@ -16,7 +16,7 @@ install_dependencies:
     - npm i
   only:
     changes:
-      - package-lock.json
+      - package.json
       
 
 build_job:
@@ -35,12 +35,12 @@ unit_test:
 code_quality:
   stage: test
   script:
-     - npm test
+    - npm test
 
 performance:
   stage: test
   script:
-     - npm test
+    - npm test
 
 deploy_job:
   image: rambabusaravanan/firebase
