@@ -6,20 +6,22 @@ stages:
   - test
   - deploy
 
+cache:
+  paths:
+    - node_modules/
+
 install_job:
   stage: install
   script:
     - npm i
-  cache:
-    key: install-cache
-    paths:
-      - node_modules/
+  # only:
+  #   changes:
+  #     - package-lock.json
       
 
 build_job:
   stage: build
   script:
-    - npm i 
     - npm run build
   cache:
     key: build-cache
@@ -31,28 +33,24 @@ unit_test:
   stage: test
   script:
     - npm test
-  cache: 
-    key: install-cache
-    paths:
-      - node_modules/
 
 code_quality:
   stage: test
-  script:
-    - npm test
-  cache: 
-    key: install-cache
-    paths:
-      - node_modules/
+  # script:
+  #   - npm test
+  # cache: 
+  #   key: install-cache
+  #   paths:
+  #     - node_modules/
 
 performance:
   stage: test
-  script:
-    - npm test
-  cache: 
-    key: install-cache
-    paths:
-      - node_modules/
+  # script:
+  #   - npm test
+  # cache: 
+  #   key: install-cache
+  #   paths:
+  #     - node_modules/
 
 deploy_job:
   image: rambabusaravanan/firebase
