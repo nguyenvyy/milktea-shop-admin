@@ -19,7 +19,7 @@ install_dependencies:
       - package.json
       
 
-build_job:
+build:
   stage: build
   script:
     - npm run build
@@ -42,7 +42,7 @@ performance:
   script:
     - npm test
 
-deploy as review app:
+deploy:
   image: rambabusaravanan/firebase
   stage: deploy
   environment:
