@@ -47,7 +47,7 @@ deploy as review app:
   stage: deploy
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: https://waza-membership.web.app
+    url: https://oalmilktea.web.app
   only:
     - developer
   script:
