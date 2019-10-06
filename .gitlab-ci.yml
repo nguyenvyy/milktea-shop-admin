@@ -32,24 +32,25 @@ unit_test:
   script:
     - npm test
 
-code_quality:
-  stage: test
-  script:
-    - npm test
+# code_quality:
+#   stage: test
+#   script:
+#     - npm test
 
-performance:
-  stage: test
-  script:
-    - npm test
+# performance:
+#   stage: test
+#   script:
+#     - npm test
 
 deploy as review app:
   image: rambabusaravanan/firebase
   stage: deploy
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: https://oalmilktea.web.app
+    url: https://admin-oalmilktea.web.app
   only:
     - developer
   script:
     - firebase use oalmilktea --token $FIREBASE_TOKEN
-    - firebase deploy --only hosting -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN
+    - firebase target:apply hosting admin  admin-oalmilktea
+    - firebase deploy --only hosting -m "Commit $CI_COMMIT_TITLE Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN

@@ -6,6 +6,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "target": "admin",
     "rewrites": [
       {
         "source": "**",
@@ -13,7 +14,7 @@
       }
     ],
     "headers": [
-      {"source": "/serviceWorker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
+      {"source": "/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
     ]
   }
 }
