@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "oalmilktea"
+  },
+  "targets": {
+    "oalmilktea": {
+      "hosting": {
+        "admin": [
+          "admin-oalmilktea"
+        ]
+      }
+    }
+  }
+}

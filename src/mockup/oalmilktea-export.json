@@ -1,0 +1,82 @@
+{
+  "reports": {
+    "dailyProductSalesReport": {
+      "uuid" : 1
+    },
+    "monthlyProductSalesReport": {
+      "uuid" : 1
+    },
+    "yearlyProductSalesReport": {
+      "uuid": 1
+    },
+    "dailyRevenueReport": {
+      "uuid" : 1
+    },
+    "monthlyRevenueReport": {
+      "uuid" : 1
+    },
+    "yearlyRevenueReport": {
+      "uuid": 1
+    }
+  },
+  "roles": {
+    "role-1": 1
+  },
+  "accounts": {
+    "acc-id": {
+      "userName": "xx",
+      "password": "xx"
+    }
+  },
+  "customers": {
+    "user-1": {
+      "name": 1
+    }
+  },
+  "employees": {
+    "employee-1": {
+      "name": 1
+    }
+  },
+  "product": {
+    "productList": {
+      "product-1": "product-1"
+    },
+    "productCategory": {
+      "category-1": 1
+    }
+  },
+  "order": {
+    "orderState": {
+      "uuid": {
+        "name": "Đã thanh toán"
+      }
+    },
+    "orderList": {
+      "uuid": {
+        "idCustomer": "123"
+      }
+    },
+    "orderDetail": {
+      "orderId": {
+        "uuid": {
+          "idProduct": "dwdw"
+        }
+      }
+    }
+  },
+  "disscounts": {
+    "name": "value"
+  },
+  "taxs": {
+    "name": "value"
+  },
+  "paymentMethods": {
+    "name": "value"
+  },
+  "carts": {
+    "cart-1": {
+      "customer-id": 1
+    }
+  }
+}
