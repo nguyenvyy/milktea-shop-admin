@@ -3,7 +3,7 @@ image: node:10.15.3
 stages:
   - install_dependencies
   - build
-  - test
+  # - test
   - deploy
 
 cache:
@@ -27,10 +27,10 @@ build:
     paths:
       - build/
 
-unit_test:
-  stage: test
-  script:
-    - npm test
+# unit_test:
+#   stage: test
+#   script:
+#     - npm test
 
 # code_quality:
 #   stage: test
