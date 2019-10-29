@@ -1,24 +1,4 @@
 {
-  "reports": {
-    "dailyProductSalesReport": {
-      "uuid" : 1
-    },
-    "monthlyProductSalesReport": {
-      "uuid" : 1
-    },
-    "yearlyProductSalesReport": {
-      "uuid": 1
-    },
-    "dailyRevenueReport": {
-      "uuid" : 1
-    },
-    "monthlyRevenueReport": {
-      "uuid" : 1
-    },
-    "yearlyRevenueReport": {
-      "uuid": 1
-    }
-  },
   "roles": {
     "role-1": 1
   },

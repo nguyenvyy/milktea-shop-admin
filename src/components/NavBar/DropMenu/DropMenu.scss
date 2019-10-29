@@ -1,0 +1,38 @@
+.drop-right-menu {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+    width: 200px;
+    top: 0;
+	right: -200px;
+	z-index: 10;
+	padding-left: 2px;
+
+}
+
+.drop-menu {
+    background: rgb(0, 12, 23);
+	border-radius: 2px;
+	list-style-type: none;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.drop-menu::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+.drop-menu::-webkit-scrollbar-track {
+	background: rgb(0, 12, 23);
+}
+
+/* Handle */
+.drop-menu::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+/* Handle on hover */
+.drop-menu::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}

@@ -1,0 +1,23 @@
+import React from 'react';
+import { Route } from 'react-router-dom';
+
+export const RouteWithSubRoutes = (
+    {
+        customRoute: CustomRoute,
+        component: Component,
+        path,
+        routes,
+        ...rest
+    }: any) => CustomRoute ? (
+        <CustomRoute
+            component={Component}
+            path={path}
+            routes={routes}
+            {...rest} />
+    ) : (
+            <Route
+                path={path}
+                {...rest}
+                render={routeProps => <Component {...routeProps} routes={routes}/>}
+            />
+        )
