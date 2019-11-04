@@ -1,4 +1,5 @@
 import { ProductCategoryActionTypes, REQUEST_PRODUCT_CATEGORY, RECEIVE_PRODUCT_CATEGORIES, STOP_REQUEST_PRODUCT_CATEGORY, ADD_PRODUCT_CATEGORY, EDIT_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY, ProductCategortyState } from "../actions/product-category/types"
+import { getProductCategoryIndexById } from "../selectors/product-category"
 
 const initState: ProductCategortyState = {
     items: [],
@@ -30,13 +31,26 @@ export const productCategoryReducer = (
                 isFeatching: state.isFeatching
             }
         case EDIT_PRODUCT_CATEGORY:
+            const index = getProductCategoryIndexById(state.items, action.payload.id)
+            let newItems = [...state.items]
+            newItems.splice(index, 1, action.payload)
             return {
-                ...state
+                ...state,
+                items: newItems
             }
-        case DELETE_PRODUCT_CATEGORY:
+        case DELETE_PRODUCT_CATEGORY: {
+            const index = getProductCategoryIndexById(state.items, action.payload)
+            let newItems = [...state.items]
+            let deletedCategory = {
+                ...state.items[index],
+                isDeleted: true
+            }
+            newItems.splice(index, 1, deletedCategory)
             return {
-                ...state
+                ...state,
+                items: newItems
             }
+        }
         default:
             return state
     }
