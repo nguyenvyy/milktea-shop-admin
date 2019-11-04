@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { message } from "antd";
+import { message, Divider, Button } from "antd";
 import { FirebaseServices } from '../../services/firebase';
-import { collections } from '../../constant/FirebaseEnum';
+import { collections, types_collection } from '../../constant/FirebaseEnum';
 
 
-const  Test: React.FC = () => {
+const Test: React.FC = () => {
     const selectRef: any = useRef(null)
     const addColecttion = (e: any): void => {
         if (e.keyCode === 13) {
@@ -103,8 +103,51 @@ const  Test: React.FC = () => {
         })
     }
 
+    const getADocument = () => {
+        var docRef = FirebaseServices.db.collection(collections.types).doc(types_collection.product_category+1);
+
+        docRef.get().then(function (doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
+    }
+
+    useEffect(() => {
+        let unsubscribe = FirebaseServices.db.collection(collections.types+123123)
+        .onSnapshot( function(doc) {
+            doc.forEach(e => {
+                console.log(`${e.id}: ${JSON.stringify(e.data())}`)
+            })
+        });
+        return () => {
+            unsubscribe()
+        }
+    }, [])
+
+    const query = () => {
+        let ref= FirebaseServices.db.collection(collections.types).where('status', '==', true).where('bu', '>', 1)
+        ref.get()
+        .then(function(querySnapshot) {
+            
+            console.log("Error getting documents: ", querySnapshot.docs);
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+            });
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+    }
+
     return (
-        <div className="Text" style={{height: '2000px'}}>
+        <div className="Text" style={{ height: '2000px' }}>
             <header className="App-header">
                 Hello World!
         </header>
@@ -119,6 +162,10 @@ const  Test: React.FC = () => {
             <button onClick={queryIndex}>query index</button>
             <button onClick={handleTransaction}>Transaction</button>
             <button onClick={handleDelete}>delete</button>
+            <Divider type="horizontal" />
+            <h1>Read</h1>
+            <Button onClick={getADocument}>Get 1</Button>
+            <Button onClick={query}>Arry</Button>
         </div>
     );
 }
