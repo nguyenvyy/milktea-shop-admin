@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom'
 
 import './Admin.scss'
 import { NavBar } from '../../components/NavBar/NavBar';
-import { Loading } from '../../components/comon/Loading/Loading';
+import { Loading } from '../../components/common/Loading/Loading';
 import { RouteWithSubRoutes } from '../../routes/RouteWithSubRoutes';
 
 const Admin = ({ routes = [] }) => {

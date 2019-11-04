@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.scss';
 import { configStore } from './redux/store';
-import { Loading } from './components/comon/Loading/Loading';
+import { Loading } from './components/common/Loading/Loading';
 import { RouteWithSubRoutes } from './routes/RouteWithSubRoutes';
 import { routes } from './config/route-config';
 
