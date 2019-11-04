@@ -1,6 +1,7 @@
 import { FirebaseServices } from "../../../services/firebase"
 import { collections, sub_collections, types_docs } from "../../../constant/FirebaseEnum"
 import { IProductCategory } from "../../../model/types/IProductCategory";
+import { undefinedError } from "../../../constant";
 
 
 export const getProductCategoriesAPI = async () => {
@@ -10,7 +11,7 @@ export const getProductCategoriesAPI = async () => {
         return querySnapshot.docs.map(doc => doc.data());
     }
     catch (error) {
-        return [error, 500]
+        return [error, undefinedError]
     }
 }
 
@@ -23,7 +24,7 @@ export const addProductCategoryAPI = async (category: IProductCategory) => {
         categoryDocsRef.set(newCategory)
         return newCategory
     } catch (error) {
-        return [error, 500]
+        return [error, undefinedError]
     }
 }
 
@@ -38,7 +39,7 @@ export const updateProductCategoryAPI  = async (category: IProductCategory) => {
         categoryDocsRef.update(categoryClone).then(res => console.log(res))
         return {...category, ...categoryClone}
     } catch (error) {
-        return [error, 500]
+        return [error, undefinedError]
     }
 }
 
@@ -50,6 +51,6 @@ export const deleteProductCategoryAPI  = async (id: string) => {
         categoryDocsRef.update({isDeleted: true})
         return id
     } catch (error) {
-        return [error, 500]
+        return [error, undefinedError]
     }
 }
