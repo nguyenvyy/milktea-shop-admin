@@ -8,7 +8,7 @@ export enum collections{
     types = 'types',
 }
 
-export enum types_collection {
+export enum types_docs {
     disscounts = 'disscounts',
     surcharges = 'surcharges',
     product_category = 'product_category',
@@ -17,4 +17,7 @@ export enum types_collection {
     vips = 'vips',
     order_state = 'order_state',
     payment_method = 'payment_method',
+}
+export enum sub_collections {
+    types = 'all'
 }
