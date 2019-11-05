@@ -43,11 +43,11 @@ export const productReducer = (
         case DELETE_PRODUCT: {
             const index = getProductIndexById(state.items, action.payload)
             let newItems = [...state.items]
-            let deletedCategory = {
+            let deletedProduct = {
                 ...state.items[index],
                 isDeleted: true
             }
-            newItems.splice(index, 1, deletedCategory)
+            newItems.splice(index, 1, deletedProduct)
             return {
                 ...state,
                 items: newItems

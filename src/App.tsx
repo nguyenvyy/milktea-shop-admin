@@ -6,7 +6,6 @@ import { configStore } from './redux/store';
 import { Loading } from './components/common/Loading/Loading';
 import { RouteWithSubRoutes } from './routes/RouteWithSubRoutes';
 import { routes } from './config/route-config';
-
 let store = configStore();
 
 const App: React.FC = () => {
