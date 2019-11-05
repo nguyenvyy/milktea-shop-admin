@@ -5,7 +5,7 @@ import {
     requestAddProductCategory,
     requestEditProductCategory,
     requestDeleteProductCategory
-} from "../actions/product-category/action";
+} from "../actions/product-category/actions";
 import { RootState } from "../reducers/root-reducer";
 const mapState = (state: RootState) => {
     return {

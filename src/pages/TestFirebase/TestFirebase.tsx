@@ -1,5 +1,5 @@
 import React, {  } from 'react';
-import { getProductCategoriesAPI } from '../../redux/actions/product-category/service';
+import { getProductCategoriesAPI } from '../../redux/actions/product-category/services';
 
 
 const Test: React.FC = () => {
