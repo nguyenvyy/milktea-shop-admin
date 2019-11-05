@@ -1,14 +1,14 @@
-import { ProductCategoryActionTypes, REQUEST_PRODUCT_CATEGORY, RECEIVE_PRODUCT_CATEGORIES, STOP_REQUEST_PRODUCT_CATEGORY, ADD_PRODUCT_CATEGORY, EDIT_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY, ProductCategortyState } from "../actions/product-category/types"
+import { ProductCategoryActionTypes, REQUEST_PRODUCT_CATEGORY, RECEIVE_PRODUCT_CATEGORIES, STOP_REQUEST_PRODUCT_CATEGORY, ADD_PRODUCT_CATEGORY, EDIT_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY, ProductCategoryState } from "../actions/product-category/types"
 import { getProductCategoryIndexById } from "../selectors/product-category"
 
-const initState: ProductCategortyState = {
+const initState: ProductCategoryState = {
     items: [],
     isFeatching: false,
 }
 
 export const productCategoryReducer = (
     state = initState,
-    action: ProductCategoryActionTypes): ProductCategortyState => {
+    action: ProductCategoryActionTypes): ProductCategoryState => {
     switch (action.type) {
         case REQUEST_PRODUCT_CATEGORY:
             return {
