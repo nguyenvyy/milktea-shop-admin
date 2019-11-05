@@ -2,9 +2,9 @@ export interface IProduct {
     id: string
     name: string
     price: number
-    productTypeId: string
-    lastUpdate: Date
+    categoryId: string
+    updateAt: Date
+    createAt: Date
     isDeleted: boolean
-    isSelling: boolean
     imgURL: string
 }
