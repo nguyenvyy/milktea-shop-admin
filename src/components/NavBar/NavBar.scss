@@ -1,0 +1,26 @@
+.nav-bar {
+	position: fixed;
+	background: #001529;
+	transition: all ease-in-out 200ms;
+	height: 100vh;
+	z-index: 10;
+	overflow: visible;
+}
+
+.nav-layout {
+	transition: all ease-in-out 200ms;
+}
+
+
+
+.nav-bar-trigger {
+	position: fixed;
+	bottom: 0;
+	z-index: 11;
+	height: 45px;
+	color: #fff;
+	background: #002140;
+	cursor: pointer;
+	transition: all ease-in-out 200ms;
+}
+
