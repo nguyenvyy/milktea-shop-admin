@@ -17,7 +17,6 @@ export const navItems = [
         to: '/a/test',
         CollapsedIcon: LetterIcon,
     },
-    ,
     {
         title: 'Type',
         shortHand: 'T',
@@ -31,29 +30,9 @@ export const navItems = [
                 to: '/a/type/disscounts'
             },
             {
-                title: 'Order State',
-                Component: MenuItem,
-                to: '/a/type/order-state'
-            },
-            {
-                title: 'Payment Method',
-                Component: MenuItem,
-                to: '/a/type/payment-method'
-            },
-            {
                 title: 'Product Category',
                 Component: MenuItem,
                 to: '/a/type/product-category'
-            },
-            {
-                title: 'Ratings',
-                Component: MenuItem,
-                to: '/a/type/ratings'
-            },
-            {
-                title: 'Roles',
-                Component: MenuItem,
-                to: '/a/type/roles'
             },
             {
                 title: 'Surcharges',

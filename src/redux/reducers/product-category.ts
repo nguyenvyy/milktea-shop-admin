@@ -27,12 +27,13 @@ export const productCategoryReducer = (
             }
         case ADD_PRODUCT_CATEGORY:
             return {
-                items: [...state.items, action.payload],
+                items: [action.payload, ...state.items],
                 isFeatching: state.isFeatching
             }
         case EDIT_PRODUCT_CATEGORY:
             const index = getProductCategoryIndexById(state.items, action.payload.id)
-            let newItems = [...state.items]
+            let newItems = state.items.slice()
+            // debugger
             newItems.splice(index, 1, action.payload)
             return {
                 ...state,

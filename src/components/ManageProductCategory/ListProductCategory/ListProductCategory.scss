@@ -1,0 +1,15 @@
+.list-product-category {
+	& .action {
+		&--active {
+			color: #52c41a;
+        }
+        &-delete{
+            color: #1890ff;
+            cursor: pointer;
+            &:hover {
+                color: #40a9ff;
+            }
+        }
+	}
+}
+

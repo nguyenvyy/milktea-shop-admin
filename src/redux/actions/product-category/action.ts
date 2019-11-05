@@ -2,7 +2,6 @@ import { AddProductCategoryAction, ADD_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY
 import { IProductCategory } from "../../../model/types/IProductCategory"
 import { getProductCategoriesAPI, addProductCategoryAPI, updateProductCategoryAPI, deleteProductCategoryAPI } from "./service"
 import { undefinedError, success } from "../../../constant"
-import { any } from "prop-types"
 
 export const addProductCategory = (category: IProductCategory): AddProductCategoryAction =>({
     type: ADD_PRODUCT_CATEGORY,
@@ -57,6 +56,8 @@ export const requestAddProductCategory = (category: IProductCategory) => (dispat
             return success
         })
 }
+
+export type RequestAddProductCategoryType = ReturnType<typeof requestAddProductCategory>
 
 export const requestEditProductCategory = (category: IProductCategory) => (dispatch: any) => {
     dispatch(requestProductCategory())

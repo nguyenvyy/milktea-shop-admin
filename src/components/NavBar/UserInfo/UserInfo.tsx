@@ -1,7 +1,9 @@
 import React, {memo} from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { Icon, Tooltip, message } from 'antd'
+// import { useDispatch } from 'react-redux'
+// import { useSelector } from 'react-redux'
+import { Icon, Tooltip, 
+    // message
+ } from 'antd'
 
 import './UserInfo.scss'
 // import { requestLogout } from '../../../redux/actions/auth-actions/actions'
@@ -42,7 +44,7 @@ export const UserInfo = memo(
                             </span>
                         </>
                     ) : (
-                            <Tooltip placement="right" title={'Logout! ' + 'username'}>
+                            <Tooltip placement="right" title={'Logout! username'}>
                                 <span onClick={handleLogout}> 
                                     <Icon style={{ fontSize: '20px' }} type="logout" />
                                 </span>

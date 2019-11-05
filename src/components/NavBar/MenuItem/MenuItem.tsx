@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, match } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './MenuItem.scss'
 import { LetterIcon } from '../LetterIcon/LetterIcon';
@@ -14,7 +14,7 @@ export const MenuItem = React.memo(
                     to={{
                         pathname: to
                     }}
-                    isActive={(match: match) => {
+                    isActive={match => {
                         if (match) {
                             setIsActive(true)
                             return true

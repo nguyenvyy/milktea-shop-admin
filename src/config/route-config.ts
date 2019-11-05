@@ -1,12 +1,14 @@
 import { lazy } from 'react'
 import { Redirect } from 'react-router-dom'
 import { PrivateRoute } from '../routes/PrivateRoute'
-import { exact } from 'prop-types'
+//path
+export const productCategoryPath = '/a/type/product-category'
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
 const Test = lazy(() => import('../pages/TestFirebase/TestFirebase'))
 const ProductPage = lazy(() => import('../pages/Product/Product'))
-const ProductCategoryPage = lazy(() => import('../pages/ProductCategory/ProductCategory'))
+const ProductCategoryContainer = lazy(() => import('../redux/container/ProductCategory'))
+
 export const routes = [
     {
         path: '/',
@@ -32,8 +34,8 @@ export const routes = [
                 exact: true
             },
             {
-                path: '/a/type/product-category',
-                component: ProductCategoryPage
+                path: productCategoryPath,
+                component: ProductCategoryContainer
             },
             {
                 path: '/a/test',

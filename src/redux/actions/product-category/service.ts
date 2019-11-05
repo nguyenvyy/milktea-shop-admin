@@ -7,8 +7,17 @@ import { undefinedError } from "../../../constant";
 export const getProductCategoriesAPI = async () => {
     const categoryCollectionRef = FirebaseServices.generalLV1SubCollectionRef(collections.types, types_docs.product_category, sub_collections.types)
     try {
-        const querySnapshot = await categoryCollectionRef.get();
-        return querySnapshot.docs.map(doc => doc.data());
+        const querySnapshot = await categoryCollectionRef.orderBy("createAt", "desc").get();
+        return querySnapshot.docs.map(doc => {
+            const category: IProductCategory = {
+                id: doc.data().id,
+                name: doc.data().name,
+                createAt: doc.data().createAt.toDate(),
+                updateAt: doc.data().updateAt.toDate(),
+                isDeleted: doc.data().isDeleted
+            }
+            return category
+        });
     }
     catch (error) {
         return [error, undefinedError]
@@ -36,7 +45,7 @@ export const updateProductCategoryAPI  = async (category: IProductCategory) => {
         const categoryClone: IProductCategory = {...category, updateAt: new Date()}
         delete categoryClone.createAt
         delete categoryClone.id
-        categoryDocsRef.update(categoryClone).then(res => console.log(res))
+        categoryDocsRef.update(categoryClone)
         return {...category, ...categoryClone}
     } catch (error) {
         return [error, undefinedError]
