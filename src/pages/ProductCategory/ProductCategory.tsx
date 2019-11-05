@@ -1,16 +1,12 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import './ProductCategory.scss'
 import { Header } from "../../components/common/Header/Header";
-// import { IProductCategory } from "../../model/types/IProductCategory";
-// import { undefinedError, ErrorType, SuccessType } from "../../constant";
 import { ProductCategoryPanel } from "../../components/ManageProductCategory/Panel/Panel";
 import { ListProductCategory } from "../../components/ManageProductCategory/ListProductCategory/ListProductCategory";
 import { productCategoryPath } from "../../config/route-config";
 import { AddProductCategory } from "../../components/ManageProductCategory/AddProductCategory/AddProductCategory";
 import { EditProductCategory } from "../../components/ManageProductCategory/EditProductCategory/EditProductCategory";
-import { ProductCategoryDetail } from "../../components/ManageProductCategory/ProductCategoryDetail/ProductCategoryDetail";
-import { IProductCategory } from "../../model/types/IProductCategory";
 import { Empty } from "antd";
 const ProductCategoryPage = ({
     categories,
