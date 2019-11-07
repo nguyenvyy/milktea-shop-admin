@@ -4,7 +4,7 @@ import "./EditProduct.scss";
 import { IProductCategory } from "../../../model/types/IProductCategory";
 import { IProduct } from "../../../model/types/IProduct";
 import { undefinedError, success } from "../../../constant";
-import { message, Form, Input, Select, Button } from "antd";
+import { message, Form, Input, Select, Button, Spin } from "antd";
 import { Header } from "../../common/Header/Header";
 export const EditProduct = ({
     categories,
@@ -76,38 +76,39 @@ export const EditProduct = ({
     }
     return (
         <div className="edit-product">
-        <Header className="edit-product__title" title="Edit product" />
-        <div className="edit-form">
-            <Form layout="vertical" labelCol={{ span: 4 }} wrapperCol={{ span: 20 }} >
-                <Form.Item label="Name:">
-                    <Input value={product.name} onChange={onChange} name="name" />
-                </Form.Item>
-                <Form.Item label="Price:">
-                    <Input type="number" value={product.price} onChange={onChange} name="price" />
-                </Form.Item>
-                <Form.Item label="Category:" wrapperCol={{ span: 8 }}>
-                    <Select
-                        value={product.categoryId}
-                        onChange={onChangeSelect}
-                        loading={categories.length > 0 ? false : true}
-                    >
-                        {categories.map((item: IProductCategory) => <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>)}
-                    </Select>
-                </Form.Item>
-                <Form.Item label="Image Url:" >
-                    <Input value={product.imgURL} onChange={onChange} name="imgURL" />
-                    <img onError={addDefaultSrc} className="edit-form__img" src={product.imgURL} alt="product" />
+            <Header className="edit-product__title" title="Edit product" />
+            <div className="edit-form">
+                <Spin spinning={isFetching} tip="Loading...">
+                    <Form layout="vertical" labelCol={{ span: 4 }} wrapperCol={{ span: 20 }} >
+                        <Form.Item label="Name:">
+                            <Input value={product.name} onChange={onChange} name="name" />
+                        </Form.Item>
+                        <Form.Item label="Price:">
+                            <Input type="number" value={product.price} onChange={onChange} name="price" />
+                        </Form.Item>
+                        <Form.Item label="Category:" wrapperCol={{ span: 8 }}>
+                            <Select
+                                value={product.categoryId}
+                                onChange={onChangeSelect}
+                                loading={categories.length > 0 ? false : true}
+                            >
+                                {categories.map((item: IProductCategory) => <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>)}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item label="Image Url:" >
+                            <Input value={product.imgURL} onChange={onChange} name="imgURL" />
+                            <img onError={addDefaultSrc} className="edit-form__img" src={product.imgURL} alt="product" />
 
-                </Form.Item>
-            </Form>
-            <div className="edit-form-button">
-                <Button
-                    onClick={handleEditProduct}
-                    disabled={!formValid}
-                    loading={isFetching} type="primary" icon="save">Edit</Button>
+                        </Form.Item>
+                    </Form>
+                    <div className="edit-form-button">
+                        <Button
+                            onClick={handleEditProduct}
+                            disabled={!formValid}
+                            loading={isFetching} type="primary" icon="save">Edit</Button>
+                    </div>
+                </Spin>
             </div>
-
         </div>
-    </div>
     )
 }

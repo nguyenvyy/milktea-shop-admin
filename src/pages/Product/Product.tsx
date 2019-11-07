@@ -22,6 +22,7 @@ const ProductPage = ({
     requestEditProduct,
     requestDeleteProduct,
 }: any) => {
+
     useEffect(() => {
         if (products.length < 1) {
             fetchProducts()
@@ -51,9 +52,12 @@ const ProductPage = ({
                     handleSearchProducts={handleSearchProducts}
                     />
                     <ListProduct
+                        isFetching={isFetching}
                         products={displayProducts}
                         categories={categories}
-                        requestDeleteProduct={requestDeleteProduct} />
+                        requestDeleteProduct={requestDeleteProduct}
+                        requestEditProduct={requestEditProduct}
+                        />
                 </div>
                 <div className="product__wrapper-right">
                     <Switch>
