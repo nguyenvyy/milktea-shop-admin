@@ -61,9 +61,9 @@ export const requestAddProduct = (product: IProduct) => (dispatch: any) => {
 export const requestEditProduct = (product: IProduct) => (dispatch: any) => {
     dispatch(requestProduct())
     return updateProductAPI(product)
-        .then((newCategory: any | IProduct) => {
+        .then((newProduct: any | IProduct) => {
             dispatch(stopRequestProduct())
-            if(newCategory[1] === undefinedError) {
+            if(newProduct[1] === undefinedError) {
                 return undefinedError
             }
             dispatch(editProduct(product))
@@ -71,7 +71,7 @@ export const requestEditProduct = (product: IProduct) => (dispatch: any) => {
         })
 }
 
-export const requestDeleteProductCategory = (id: string) => (dispatch: any) => {
+export const requestDeleteProduct= (id: string) => (dispatch: any) => {
     dispatch(requestProduct())
     return deleteProductAPI(id)
         .then((id: any | string) => {

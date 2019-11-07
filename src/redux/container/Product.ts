@@ -5,20 +5,25 @@ import {
     featchProducts,
     requestAddProduct,
     requestEditProduct,
-    requestDeleteProductCategory
+    requestDeleteProduct
 } from '../actions/product/actions'
+import { featchProductCategories } from "../actions/product-category/actions";
+import { getActiveProductCategory } from "../selectors/product-category";
 const mapState = (state: RootState) => {
+    const categories = getActiveProductCategory(state.productCategory.items)
     return {
-        product: state.product.items,
+        products: state.product.items,
+        categories,
         isFeatching: state.product.isFeatching
     }
 }
 
 const mapDispatch = {
     featchProducts,
+    featchProductCategories,
     requestAddProduct,
     requestEditProduct,
-    requestDeleteProductCategory
+    requestDeleteProduct
 }
 
 const ProductCategoryContainer = connect(mapState, mapDispatch)(ProductPage)

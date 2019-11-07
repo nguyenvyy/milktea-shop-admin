@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Table, Divider, Badge, message } from "antd";
 import { ColumnProps } from "antd/lib/table";
 import moment from "moment";
@@ -15,15 +15,7 @@ export const ListProductCategory = ({
     requestDeleteProductCategory,
     requestEditProductCategory
 }: any) => {
-    const [displayCategories, setDisplayCategories] : any = useState(null)
-    useEffect(() => {
-        if(categories.length > 0) {
-            setDisplayCategories([...categories])
-        }
-    }, [categories])
-    useEffect(() => {
-        console.log(displayCategories)
-    }, [displayCategories])
+
     const handleDeleteCategory = (category: IProductCategory) => {
         requestDeleteProductCategory(category.id).then((status: number) => {
             switch (status) {
@@ -128,7 +120,7 @@ export const ListProductCategory = ({
                 loading={isFeatching}
                 rowKey={record => record.id}
                 columns={columns}
-                dataSource={displayCategories}
+                dataSource={categories.length > 0 ? categories : null}
             />
         </div>
     )
