@@ -57,8 +57,6 @@ export const requestAddProductCategory = (category: IProductCategory) => (dispat
         })
 }
 
-export type RequestAddProductCategoryType = ReturnType<typeof requestAddProductCategory>
-
 export const requestEditProductCategory = (category: IProductCategory) => (dispatch: any) => {
     dispatch(requestProductCategory())
     return updateProductCategoryAPI(category)

@@ -44,8 +44,6 @@ export const updateProductAPI  = async (product: IProduct) => {
     const productDocRef = FirebaseServices.db.collection(collections.products).doc(product.id)
     try {
         const productClone: IProduct = {...product, updateAt: new Date()}
-        delete productClone.createAt
-        delete productClone.id
         productDocRef.update(productClone)
         return {...product, ...productClone}
     } catch (error) {

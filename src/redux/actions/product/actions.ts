@@ -44,8 +44,6 @@ export const fetchProducts = () => (dispatch: any) => {
         return success
     })
 }
-export type FetchProducts = typeof fetchProducts
-
 export const requestAddProduct = (product: IProduct) => (dispatch: any) => {
     dispatch(requestProduct())
     return addProductAPI(product)
@@ -58,7 +56,6 @@ export const requestAddProduct = (product: IProduct) => (dispatch: any) => {
             return success
         })
 }
-export type RequestAddProductType = typeof requestAddProduct
 
 export const requestEditProduct = (product: IProduct) => (dispatch: any) => {
     dispatch(requestProduct())
@@ -73,8 +70,6 @@ export const requestEditProduct = (product: IProduct) => (dispatch: any) => {
         })
 }
 
-export type RequestEditProductType = typeof requestEditProduct
-
 export const requestDeleteProduct= (id: string) => (dispatch: any) => {
     dispatch(requestProduct())
     return deleteProductAPI(id)
@@ -87,5 +82,3 @@ export const requestDeleteProduct= (id: string) => (dispatch: any) => {
             return success
         })
 }
-
-export type RequestDeleteProductType = typeof requestDeleteProduct

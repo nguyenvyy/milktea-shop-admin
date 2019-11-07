@@ -60,7 +60,6 @@ const ProductPage = ({
                         <Route exact path={`${productPath}`} render={() => <Empty />} />
                         <Route path={`${productPath}/add`} render={props => (
                             <AddProduct
-                                {...props}
                                 categories={categories}
                                 isFetching={isFetching}
                                 requestAddProduct={requestAddProduct}
@@ -71,7 +70,7 @@ const ProductPage = ({
                             const product = products.find((item: any) => item.id === id)
                             return (
                                 <EditProduct
-                                    {...props}
+                                    isFetching={isFetching}
                                     categories={categories}
                                     product={product ? product : false}
                                     requestEditProduct={requestEditProduct}

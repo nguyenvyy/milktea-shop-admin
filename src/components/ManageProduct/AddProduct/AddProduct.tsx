@@ -8,7 +8,7 @@ import { undefinedError, success } from "../../../constant";
 import { IProduct } from "../../../model/types/IProduct";
 export const AddProduct = ({
     isFetching,
-    categories = [],
+    categories,
     requestAddProduct
 }: any) => {
     const [product, setProduct] = useState({

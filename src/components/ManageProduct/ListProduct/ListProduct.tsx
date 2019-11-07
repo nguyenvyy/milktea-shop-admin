@@ -4,12 +4,10 @@ import "./ListProduct.scss";
 import { Table, Badge, Divider } from "antd";
 import { IProduct } from "../../../model/types/IProduct";
 import { ColumnProps } from "antd/lib/table";
-import moment from "moment";
-import { formatDate } from "../../../constant";
 import { NavLink } from "react-router-dom";
 import { productPath } from "../../../config/route-config";
 export const ListProduct = ({
-    products,
+    products = [],
     categories,
     isFetching
 }: any) => {
