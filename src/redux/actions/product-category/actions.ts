@@ -31,7 +31,7 @@ export const receiveProductCategories = (categories: IProductCategory[]): Receiv
     payload: categories
 })  
 
-export const featchProductCategories = () => (dispatch: any) => {
+export const fetchProductCategories = () => (dispatch: any) => {
     dispatch(requestProductCategory())
     return getProductCategoriesAPI()
     .then(categories => {

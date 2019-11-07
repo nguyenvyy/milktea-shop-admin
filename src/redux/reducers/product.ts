@@ -4,7 +4,7 @@ import { getProductIndexById } from "../selectors/product";
 
 const initSate: ProductState = {
     items: [],
-    isFeatching: false
+    isFetching: false
 }
 
 export const productReducer = (
@@ -15,22 +15,22 @@ export const productReducer = (
         case REQUEST_PRODUCT:
             return {
                 ...state,
-                isFeatching: true
+                isFetching: true
             }
         case STOP_REQUEST_PRODUCT:
             return {
                 ...state,
-                isFeatching: false
+                isFetching: false
             }
         case RECEIVE_PRODUCTS:
             return {
                 items: action.payload,
-                isFeatching: state.isFeatching
+                isFetching: state.isFetching
             }
         case ADD_PRODUCT:
             return {
                 items: [action.payload, ...state.items],
-                isFeatching: state.isFeatching
+                isFetching: state.isFetching
             }
         case EDIT_PRODUCT:
             const index = getProductIndexById(state.items, action.payload.id)

@@ -11,7 +11,7 @@ import { productPath } from "../../../config/route-config";
 export const ListProduct = ({
     products,
     categories,
-    isFeatching
+    isFetching
 }: any) => {
 
     const columns: ColumnProps<IProduct>[] = [
@@ -86,7 +86,7 @@ export const ListProduct = ({
     return (
         <div className="list-product">
             <Table
-                loading={isFeatching}
+                loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
                 dataSource={products.length > 0 ? products : null}

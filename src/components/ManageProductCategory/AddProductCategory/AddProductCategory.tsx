@@ -6,7 +6,7 @@ import "./AddProductCategory.scss";
 import { IProductCategory } from "../../../model/types/IProductCategory";
 import { undefinedError, success } from "../../../constant";
 export const AddProductCategory = ({
-    isFeatching,
+    isFetching,
     requestAddProductCategory,
 }: any) => {
     
@@ -52,7 +52,7 @@ export const AddProductCategory = ({
                     <Form.Item className="add-product-category__form-button">
                         <Button
                             onClick={handleAddCategory}
-                            loading={isFeatching} disabled={name === '' ? true : false} type="primary" icon="save">Add</Button>
+                            loading={isFetching} disabled={name === '' ? true : false} type="primary" icon="save">Add</Button>
                     </Form.Item>
                 </Form>
 

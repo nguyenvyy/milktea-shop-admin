@@ -3,7 +3,7 @@ import { getProductCategoryIndexById } from "../selectors/product-category"
 
 const initState: ProductCategoryState = {
     items: [],
-    isFeatching: false,
+    isFetching: false,
 }
 
 export const productCategoryReducer = (
@@ -13,22 +13,22 @@ export const productCategoryReducer = (
         case REQUEST_PRODUCT_CATEGORY:
             return {
                 ...state,
-                isFeatching: true
+                isFetching: true
             }
         case STOP_REQUEST_PRODUCT_CATEGORY:
             return {
                 ...state,
-                isFeatching: false
+                isFetching: false
             }
         case RECEIVE_PRODUCT_CATEGORIES:
             return {
                 items: action.payload,
-                isFeatching: state.isFeatching
+                isFetching: state.isFetching
             }
         case ADD_PRODUCT_CATEGORY:
             return {
                 items: [action.payload, ...state.items],
-                isFeatching: state.isFeatching
+                isFetching: state.isFetching
             }
         case EDIT_PRODUCT_CATEGORY:
             const index = getProductCategoryIndexById(state.items, action.payload.id)

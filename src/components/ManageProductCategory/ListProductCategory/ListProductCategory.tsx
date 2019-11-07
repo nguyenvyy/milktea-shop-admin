@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import { productCategoryPath } from "../../../config/route-config";
 import { formatDate } from "../../../constant";
 export const ListProductCategory = ({
-    isFeatching,
+    isFetching,
     categories,
     requestDeleteProductCategory,
     requestEditProductCategory
@@ -117,7 +117,7 @@ export const ListProductCategory = ({
     return (
         <div className="list-product-category">
             <Table
-                loading={isFeatching}
+                loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
                 dataSource={categories.length > 0 ? categories : null}

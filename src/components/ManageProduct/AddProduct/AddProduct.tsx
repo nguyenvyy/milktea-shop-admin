@@ -7,7 +7,7 @@ import { IProductCategory } from "../../../model/types/IProductCategory";
 import { undefinedError, success } from "../../../constant";
 import { IProduct } from "../../../model/types/IProduct";
 export const AddProduct = ({
-    isFeatching,
+    isFetching,
     categories = [],
     requestAddProduct
 }: any) => {
@@ -102,7 +102,7 @@ export const AddProduct = ({
                     <Button
                         onClick={handleAddProduct}
                         disabled={!formValid}
-                        loading={isFeatching} type="primary" icon="save">Add</Button>
+                        loading={isFetching} type="primary" icon="save">Add</Button>
                 </div>
 
             </div>

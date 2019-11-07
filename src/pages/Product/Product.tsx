@@ -14,20 +14,20 @@ import { IProduct } from '../../model/types/IProduct';
 
 const ProductPage = ({
     categories,
-    featchProductCategories,
+    fetchProductCategories,
     products,
-    isFeatching,
-    featchProducts,
+    isFetching,
+    fetchProducts,
     requestAddProduct,
     requestEditProduct,
     requestDeleteProduct,
 }: any) => {
     useEffect(() => {
         if (products.length < 1) {
-            featchProducts()
+            fetchProducts()
         }
         if (categories.length < 1) {
-            featchProductCategories()
+            fetchProductCategories()
         }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
     const initState: any = []
@@ -62,7 +62,7 @@ const ProductPage = ({
                             <AddProduct
                                 {...props}
                                 categories={categories}
-                                isFeatching={isFeatching}
+                                isFetching={isFetching}
                                 requestAddProduct={requestAddProduct}
                             />
                         )} />
