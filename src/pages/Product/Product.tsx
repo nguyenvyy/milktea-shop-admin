@@ -11,6 +11,7 @@ import { AddProduct } from '../../components/ManageProduct/AddProduct/AddProduct
 import { EditProduct } from '../../components/ManageProduct/EditProduct/EditProduct';
 import { ProductDetail } from '../../components/ManageProduct/ProductDetail/ProductDetail';
 import { IProduct } from '../../model/types/IProduct';
+import { IProductCategory } from '../../model/types/IProductCategory';
 
 const ProductPage = ({
     categories,
@@ -83,13 +84,13 @@ const ProductPage = ({
 
                         <Route path={`${productPath}/detail/:id`} render={props => {
                             const id = props.match.params.id;
-                            const product = products.find((item: any) => item.id === id)
+                            const product: IProduct = products.find((item: any) => item.id === id)
+                            const category: IProductCategory = categories.find((item: any) => item.id === product.categoryId)
                             return (
                                 <ProductDetail
-                                    {...props}
-                                    categories={categories}
-                                    product={product ? product : false}
-                                    requestEditProduct={requestEditProduct}
+                                product={product}
+                                category={category}
+                                isFetching={(product !== undefined && category !== undefined) ? false : true}
                                 />)
                         }} />
                     </Switch>

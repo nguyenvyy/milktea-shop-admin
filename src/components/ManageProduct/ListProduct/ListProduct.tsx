@@ -6,7 +6,8 @@ import { IProduct } from "../../../model/types/IProduct";
 import { ColumnProps } from "antd/lib/table";
 import { NavLink } from "react-router-dom";
 import { productPath } from "../../../config/route-config";
-import { undefinedError, success } from "../../../constant";
+import { undefinedError, success, status } from "../../../constant";
+import { IProductCategory } from "../../../model/types/IProductCategory";
 export const ListProduct = ({
     products = [],
     categories,
@@ -57,6 +58,7 @@ export const ListProduct = ({
             title: 'Price',
             dataIndex: 'price',
             key: 'price',
+            sorter: (a: IProduct, b: IProduct) => a.price - b.price
         },
         {
             title: 'Category',
@@ -65,7 +67,9 @@ export const ListProduct = ({
             render: (categoryId: string) => {
                 const category: any = categories.find((item: any) => item.id === categoryId)
                 return category ? category.name : 'loading...'
-            }
+            },
+            filters: categories.map((item: IProductCategory) =>( {text: item.name, value: item.id})),
+            onFilter: (value, record) => value === record.categoryId,
         },
         {
             title: 'Status',
@@ -74,11 +78,16 @@ export const ListProduct = ({
             render: isDeleted => (
                 <>
                     {!isDeleted ?
-                        <Badge status="success" text="Đang hoạt động" /> :
-                        <Badge status="error" text="Đã dừng" />
+                        <Badge status="success" text={status.active} /> :
+                        <Badge status="error" text={status.stop} />
                     }
                 </>
-            )
+            ),
+            filters: [
+                { text: status.active, value: false },
+                { text: status.stop, value: true },
+            ],
+            onFilter: (value, record) => record.isDeleted === value,
         },
         {
             title: 'Action',

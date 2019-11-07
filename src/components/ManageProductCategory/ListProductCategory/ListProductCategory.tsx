@@ -4,7 +4,7 @@ import { ColumnProps } from "antd/lib/table";
 import moment from "moment";
 
 import "./ListProductCategory.scss";
-import { undefinedError, success } from "../../../constant";
+import { undefinedError, success, status } from "../../../constant";
 import { IProductCategory } from "../../../model/types/IProductCategory";
 import { NavLink } from "react-router-dom";
 import { productCategoryPath } from "../../../config/route-config";
@@ -66,8 +66,8 @@ export const ListProductCategory = ({
             render: isDeleted => (
                 <>
                     {!isDeleted ?
-                        <Badge status="success" text="Đang hoạt động" /> :
-                        <Badge status="error" text="Đã dừng" />
+                        <Badge status="success" text={status.active} /> :
+                        <Badge status="error" text={status.stop} />
                     }
                 </>
             )
