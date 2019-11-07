@@ -5,7 +5,7 @@ import { undefinedError, success } from "../../../constant";
 import { IProductCategory } from "../../../model/types/IProductCategory";
 
 export const EditProductCategory = ({
-    isFeatching,
+    isFetching,
     category,
     requestEditProductCategory,
 }: any) => {
@@ -53,7 +53,7 @@ export const EditProductCategory = ({
                     <Form.Item className="add-product-category__form-button">
                         <Button
                             onClick={handleEditCategory}
-                            loading={isFeatching} disabled={name === '' ? true : false} type="primary" icon="edit">Edit</Button>
+                            loading={isFetching} disabled={name === '' ? true : false} type="primary" icon="edit">Edit</Button>
                     </Form.Item>
                 </Form>
                 </div>

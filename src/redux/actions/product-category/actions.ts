@@ -1,6 +1,6 @@
 import { AddProductCategoryAction, ADD_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY, DeleteProductCategoryAction, EditProductCategoryAction, EDIT_PRODUCT_CATEGORY, RequestProductCategoryAction, REQUEST_PRODUCT_CATEGORY, StopRequestProductCategoryAction, STOP_REQUEST_PRODUCT_CATEGORY, ReceiveProductCategoriesAction, RECEIVE_PRODUCT_CATEGORIES } from "./types"
 import { IProductCategory } from "../../../model/types/IProductCategory"
-import { getProductCategoriesAPI, addProductCategoryAPI, updateProductCategoryAPI, deleteProductCategoryAPI } from "./service"
+import { getProductCategoriesAPI, addProductCategoryAPI, updateProductCategoryAPI, deleteProductCategoryAPI } from "./services"
 import { undefinedError, success } from "../../../constant"
 
 export const addProductCategory = (category: IProductCategory): AddProductCategoryAction =>({
@@ -31,7 +31,7 @@ export const receiveProductCategories = (categories: IProductCategory[]): Receiv
     payload: categories
 })  
 
-export const featchProductCategories = () => (dispatch: any) => {
+export const fetchProductCategories = () => (dispatch: any) => {
     dispatch(requestProductCategory())
     return getProductCategoriesAPI()
     .then(categories => {
@@ -56,8 +56,6 @@ export const requestAddProductCategory = (category: IProductCategory) => (dispat
             return success
         })
 }
-
-export type RequestAddProductCategoryType = ReturnType<typeof requestAddProductCategory>
 
 export const requestEditProductCategory = (category: IProductCategory) => (dispatch: any) => {
     dispatch(requestProductCategory())

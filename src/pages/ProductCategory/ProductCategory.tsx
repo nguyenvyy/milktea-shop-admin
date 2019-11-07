@@ -10,15 +10,15 @@ import { EditProductCategory } from "../../components/ManageProductCategory/Edit
 import { Empty } from "antd";
 const ProductCategoryPage = ({
     categories,
-    isFeatching,
-    featchProductCategories,
+    isFetching,
+    fetchProductCategories,
     requestAddProductCategory,
     requestEditProductCategory,
     requestDeleteProductCategory,
 }: any) => {
     useEffect(() => {
         if (categories.length < 1) {
-            featchProductCategories()
+            fetchProductCategories()
         }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -29,7 +29,7 @@ const ProductCategoryPage = ({
                 <div className="product-category__wrapper-left">
                     <ProductCategoryPanel />
                     <ListProductCategory 
-                    isFeatching={isFeatching}
+                    isFetching={isFetching}
                     requestEditProductCategory={requestEditProductCategory} 
                     requestDeleteProductCategory={requestDeleteProductCategory} 
                     categories={categories} />
@@ -40,7 +40,7 @@ const ProductCategoryPage = ({
                         <Route path={`${productCategoryPath}/add`} render={props => (
                             <AddProductCategory
                                 {...props}
-                                isFeatching={isFeatching}
+                                isFetching={isFetching}
                                 requestAddProductCategory={requestAddProductCategory}
                             />
                         )} />

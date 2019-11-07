@@ -1,21 +1,21 @@
 import { connect } from "react-redux";
 import ProductCategoryPage from "../../pages/ProductCategory/ProductCategory";
 import {
-    featchProductCategories,
+    fetchProductCategories,
     requestAddProductCategory,
     requestEditProductCategory,
     requestDeleteProductCategory
-} from "../actions/product-category/action";
+} from "../actions/product-category/actions";
 import { RootState } from "../reducers/root-reducer";
 const mapState = (state: RootState) => {
     return {
         categories: state.productCategory.items,
-        isFeatching: state.productCategory.isFeatching
+        isFetching: state.productCategory.isFetching
     }
 }
 
 const mapDispatch = {
-    featchProductCategories,
+    fetchProductCategories,
     requestAddProductCategory,
     requestEditProductCategory,
     requestDeleteProductCategory

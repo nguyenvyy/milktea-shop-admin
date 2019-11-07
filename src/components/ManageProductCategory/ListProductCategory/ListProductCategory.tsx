@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Table, Divider, Badge, message } from "antd";
 import { ColumnProps } from "antd/lib/table";
 import moment from "moment";
 
 import "./ListProductCategory.scss";
-import { undefinedError, success } from "../../../constant";
+import { undefinedError, success, status } from "../../../constant";
 import { IProductCategory } from "../../../model/types/IProductCategory";
 import { NavLink } from "react-router-dom";
 import { productCategoryPath } from "../../../config/route-config";
 import { formatDate } from "../../../constant";
 export const ListProductCategory = ({
-    isFeatching,
+    isFetching,
     categories,
     requestDeleteProductCategory,
     requestEditProductCategory
 }: any) => {
-    const [displayCategories, setDisplayCategories] : any = useState(null)
-    useEffect(() => {
-        if(categories.length > 0) {
-            setDisplayCategories([...categories])
-        }
-    }, [categories])
-    useEffect(() => {
-        console.log(displayCategories)
-    }, [displayCategories])
+
     const handleDeleteCategory = (category: IProductCategory) => {
         requestDeleteProductCategory(category.id).then((status: number) => {
             switch (status) {
@@ -74,8 +66,8 @@ export const ListProductCategory = ({
             render: isDeleted => (
                 <>
                     {!isDeleted ?
-                        <Badge status="success" text="Đang hoạt động" /> :
-                        <Badge status="error" text="Đã dừng" />
+                        <Badge status="success" text={status.active} /> :
+                        <Badge status="error" text={status.stop} />
                     }
                 </>
             )
@@ -125,10 +117,10 @@ export const ListProductCategory = ({
     return (
         <div className="list-product-category">
             <Table
-                loading={isFeatching}
+                loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
-                dataSource={displayCategories}
+                dataSource={categories.length > 0 ? categories : null}
             />
         </div>
     )

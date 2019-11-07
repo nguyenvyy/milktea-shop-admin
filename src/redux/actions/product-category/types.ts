@@ -46,7 +46,7 @@ export type ProductCategoryActionTypes = (
     StopRequestProductCategoryAction
 )
 
-export interface ProductCategortyState {
+export interface ProductCategoryState {
     items: IProductCategory[],
-    isFeatching: Boolean
+    isFetching: Boolean
 } 
