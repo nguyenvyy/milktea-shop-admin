@@ -17,6 +17,7 @@ export const getVIPsAPI = async () => {
                 id: doc.data().id,
                 name: doc.data().name,
                 point: doc.data().point,
+                isDeleted: doc.data().isDeleted,
                 createAt: doc.data().createAt.toDate(),
                 updateAt: doc.data().updateAt.toDate(),
             }

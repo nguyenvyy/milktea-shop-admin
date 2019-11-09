@@ -4,4 +4,5 @@ export interface IVIP {
     point: number,
     createAt: Date,
     updateAt: Date
+    isDeleted: boolean
 }
