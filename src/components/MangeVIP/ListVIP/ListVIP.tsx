@@ -3,27 +3,28 @@ import { Table, Divider, Badge, message } from "antd";
 import { ColumnProps } from "antd/lib/table";
 import moment from "moment";
 
-import "./ListProductCategory.scss";
+import "./ListVIP.scss";
 import { undefinedError, success, status } from "../../../constant";
-import { IProductCategory } from "../../../model/IProductCategory";
+import { IVIP } from "../../../model/IVIP";
 import { NavLink } from "react-router-dom";
-import { productCategoryPath } from "../../../config/route-config";
+import { vipPath } from "../../../config/route-config";
 import { formatDate } from "../../../constant";
-export const ListProductCategory = ({
+import { formatVND } from "../../utils";
+export const ListVIP = ({
     isFetching,
-    categories,
-    requestDeleteProductCategory,
-    requestEditProductCategory
+    vips,
+    requestDeleteVIP,
+    requestEditVIP
 }: any) => {
 
-    const handleDeleteCategory = (category: IProductCategory) => {
-        requestDeleteProductCategory(category.id).then((status: number) => {
+    const handleDeleteVIP = (vip: IVIP) => {
+        requestDeleteVIP(vip.id).then((status: number) => {
             switch (status) {
                 case undefinedError:
                     message.error("delete fail", 1)
                     break;
                 case success:
-                    message.success(`${category.name} deleted`, 1)
+                    message.success(`${vip.name} deleted`, 1)
                     break;
                 default:
                     break;
@@ -31,19 +32,18 @@ export const ListProductCategory = ({
         })
     }
 
-    const handleActiveCategory = (category: IProductCategory) => {
-        const newCategory: IProductCategory = {
-            ...category,
-            updateAt: new Date(),
+    const handleActiveVIP = (vip: IVIP) => {
+        const newVIP: IVIP = {
+            ...vip,
             isDeleted: false
         }
-        requestEditProductCategory(newCategory).then((status: number) => {
+        requestEditVIP(newVIP).then((status: number) => {
             switch (status) {
                 case undefinedError:
                     message.error("active fail", 1)
                     break;
                 case success:
-                    message.success(`${category.name} actived`, 1)
+                    message.success(`${vip.name} actived`, 1)
                     break;
                 default:
                     break;
@@ -51,11 +51,18 @@ export const ListProductCategory = ({
         })
     }
 
-    const columns: ColumnProps<IProductCategory>[] = [
+    const columns: ColumnProps<IVIP>[] = [
         {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
+        },
+        {
+            title: 'Point',
+            dataIndex: 'point',
+            key: 'point',
+            render: (point: number) => formatVND(point),
+            sorter: (a: IVIP, b: IVIP) => a.point - b.point
         },
         {
             title: 'Status',
@@ -92,20 +99,20 @@ export const ListProductCategory = ({
                         {!record.isDeleted ? (
                             <>
                                 <span className="action-delete"
-                                    onClick={() => handleDeleteCategory(record)}>stop</span>
+                                    onClick={() => handleDeleteVIP(record)}>stop</span>
                                 <Divider type="vertical" />
                             </>
                         ) : (
                                 <>
                                     <span className="action-delete"
-                                        onClick={() => handleActiveCategory(record)}>active</span>
+                                        onClick={() => handleActiveVIP(record)}>active</span>
                                     <Divider type="vertical" />
                                 </>
                             )
                         }
                         <NavLink
                             activeClassName="action--active"
-                            to={`${productCategoryPath}/edit/${record.id}`}>edit</NavLink>
+                            to={`${vipPath}/edit/${record.id}`}>edit</NavLink>
                     </div>
                 )
             }
@@ -113,12 +120,12 @@ export const ListProductCategory = ({
     ];
 
     return (
-        <div className="list-product-category">
+        <div className="list-vip">
             <Table
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
-                dataSource={categories.length > 0 ? categories : null}
+                dataSource={vips.length > 0 ? vips : null}
             />
         </div>
     )

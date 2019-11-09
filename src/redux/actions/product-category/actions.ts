@@ -1,5 +1,5 @@
 import { AddProductCategoryAction, ADD_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY, DeleteProductCategoryAction, EditProductCategoryAction, EDIT_PRODUCT_CATEGORY, RequestProductCategoryAction, REQUEST_PRODUCT_CATEGORY, StopRequestProductCategoryAction, STOP_REQUEST_PRODUCT_CATEGORY, ReceiveProductCategoriesAction, RECEIVE_PRODUCT_CATEGORIES } from "./types"
-import { IProductCategory } from "../../../model/types/IProductCategory"
+import { IProductCategory } from "../../../model/IProductCategory"
 import { getProductCategoriesAPI, addProductCategoryAPI, updateProductCategoryAPI, deleteProductCategoryAPI } from "./services"
 import { undefinedError, success } from "../../../constant"
 

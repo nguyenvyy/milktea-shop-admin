@@ -3,7 +3,7 @@ import { Header } from "../../common/Header/Header";
 import { Form, Input, Button, message } from "antd";
 
 import "./AddProductCategory.scss";
-import { IProductCategory } from "../../../model/types/IProductCategory";
+import { IProductCategory } from "../../../model/IProductCategory";
 import { undefinedError, success } from "../../../constant";
 export const AddProductCategory = ({
     isFetching,

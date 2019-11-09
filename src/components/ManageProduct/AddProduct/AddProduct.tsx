@@ -3,9 +3,9 @@ import React, { useState, useMemo } from "react";
 import "./AddProduct.scss";
 import { Header } from "../../common/Header/Header";
 import { Form, Input, Button, Select, message } from "antd";
-import { IProductCategory } from "../../../model/types/IProductCategory";
+import { IProductCategory } from "../../../model/IProductCategory";
 import { undefinedError, success } from "../../../constant";
-import { IProduct } from "../../../model/types/IProduct";
+import { IProduct } from "../../../model/IProduct";
 export const AddProduct = ({
     isFetching,
     categories,

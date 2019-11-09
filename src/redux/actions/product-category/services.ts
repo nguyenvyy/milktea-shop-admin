@@ -1,6 +1,6 @@
 import { FirebaseServices } from "../../../services/firebase"
 import { collections, sub_collections, types_docs } from "../../../constant/FirebaseEnum"
-import { IProductCategory } from "../../../model/types/IProductCategory";
+import { IProductCategory } from "../../../model/IProductCategory";
 import { undefinedError } from "../../../constant";
 
 

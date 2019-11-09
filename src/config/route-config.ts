@@ -2,13 +2,17 @@ import { lazy } from 'react'
 import { Redirect } from 'react-router-dom'
 import { PrivateRoute } from '../routes/PrivateRoute'
 //path
-export const productCategoryPath = '/a/type/product-category'
 export const productPath = '/a/product'
+export const productCategoryPath = '/a/type/product-category'
+export const vipPath = '/a/type/vip'
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
 const Test = lazy(() => import('../pages/TestFirebase/TestFirebase'))
 const ProductPage = lazy(() => import('../redux/container/Product'))
-const ProductCategoryContainer = lazy(() => import('../redux/container/ProductCategory'))
+const ProductCategoryPage = lazy(() => import('../redux/container/ProductCategory'))
+const VIPPage = lazy(() => import('../redux/container/VIP'))
+
+
 
 export const routes = [
     {
@@ -35,8 +39,12 @@ export const routes = [
                 exact: true
             },
             {
-                path: productCategoryPath,
-                component: ProductCategoryContainer
+                path: '/a/type/product-category',
+                component: ProductCategoryPage
+            },
+            {
+                path: '/a/type/vip',
+                component: VIPPage
             },
             {
                 path: '/a/test',

@@ -2,12 +2,12 @@ import React from "react";
 
 import "./ListProduct.scss";
 import { Table, Badge, Divider, message } from "antd";
-import { IProduct } from "../../../model/types/IProduct";
+import { IProduct } from "../../../model/IProduct";
 import { ColumnProps } from "antd/lib/table";
 import { NavLink } from "react-router-dom";
 import { productPath } from "../../../config/route-config";
 import { undefinedError, success, status } from "../../../constant";
-import { IProductCategory } from "../../../model/types/IProductCategory";
+import { IProductCategory } from "../../../model/IProductCategory";
 export const ListProduct = ({
     products = [],
     categories,

@@ -26,5 +26,5 @@ const mapDispatch = {
     requestDeleteProduct
 }
 
-const ProductCategoryContainer = connect(mapState, mapDispatch)(ProductPage)
-export default ProductCategoryContainer
+export default connect(mapState, mapDispatch)(ProductPage)
+ 

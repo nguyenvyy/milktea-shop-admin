@@ -1,4 +1,4 @@
-import { IProduct } from "../../../model/types/IProduct"
+import { IProduct } from "../../../model/IProduct"
 import { AddProductAction, ADD_PRODUCT, DeleteProductAction, DELETE_PRODUCT, EditProductAction, EDIT_PRODUCT, RequestProductAction, REQUEST_PRODUCT, StopRequestProductAction, STOP_REQUEST_PRODUCT, RECEIVE_PRODUCTS, ReceiveProductsAction } from "./types"
 import { getProductsAPI, addProductAPI, updateProductAPI, deleteProductAPI } from "./services"
 import { success, undefinedError } from "../../../constant"

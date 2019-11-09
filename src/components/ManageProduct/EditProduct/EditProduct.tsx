@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 
 import "./EditProduct.scss";
-import { IProductCategory } from "../../../model/types/IProductCategory";
-import { IProduct } from "../../../model/types/IProduct";
+import { IProductCategory } from "../../../model/IProductCategory";
+import { IProduct } from "../../../model/IProduct";
 import { undefinedError, success } from "../../../constant";
 import { message, Form, Input, Select, Button, Spin } from "antd";
 import { Header } from "../../common/Header/Header";
