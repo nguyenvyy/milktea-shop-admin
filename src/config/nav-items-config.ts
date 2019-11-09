@@ -27,7 +27,7 @@ export const navItems = [
             {
                 title: 'Disscounts',
                 Component: MenuItem,
-                to: '/a/type/disscounts'
+                to: '/a/type/disscount'
             },
             {
                 title: 'Product Category',
@@ -37,12 +37,12 @@ export const navItems = [
             {
                 title: 'Surcharges',
                 Component: MenuItem,
-                to: '/a/type/surcharges'
+                to: '/a/type/surcharge'
             },
             {
                 title: 'VIPs',
                 Component: MenuItem,
-                to: '/a/type/vips'
+                to: '/a/type/vip'
             }
         ]
     },
