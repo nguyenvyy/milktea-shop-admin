@@ -20,6 +20,7 @@ const VIP = ({
     useEffect(() => {
         if(vips.length === 0)
             fetchVIPs()
+            // eslint-disable-next-line
     }, [])
     return (
         <div className="vip">
