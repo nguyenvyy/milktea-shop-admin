@@ -1,8 +1,8 @@
 import React from "react";
 
 import "./ProductDetail.scss";
-import { IProductCategory } from "../../../model/types/IProductCategory";
-import { IProduct } from "../../../model/types/IProduct";
+import { IProductCategory } from "../../../model/IProductCategory";
+import { IProduct } from "../../../model/IProduct";
 import { Header } from "../../common/Header/Header";
 import { Descriptions, Spin, Badge } from "antd";
 import { formatVND } from "../../utils";

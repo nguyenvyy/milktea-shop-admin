@@ -5,7 +5,7 @@ import moment from "moment";
 
 import "./ListProductCategory.scss";
 import { undefinedError, success, status } from "../../../constant";
-import { IProductCategory } from "../../../model/types/IProductCategory";
+import { IProductCategory } from "../../../model/IProductCategory";
 import { NavLink } from "react-router-dom";
 import { productCategoryPath } from "../../../config/route-config";
 import { formatDate } from "../../../constant";

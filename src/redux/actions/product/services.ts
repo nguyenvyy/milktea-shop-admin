@@ -1,7 +1,7 @@
 import { FirebaseServices } from "../../../services/firebase"
 import { collections } from "../../../constant/FirebaseEnum"
 import { undefinedError } from "../../../constant";
-import { IProduct } from "../../../model/types/IProduct";
+import { IProduct } from "../../../model/IProduct";
 
 export const getProductsAPI = async () => {
     const productCollectionRef = FirebaseServices.db.collection(collections.products)

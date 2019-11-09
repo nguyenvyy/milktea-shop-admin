@@ -1,4 +1,4 @@
-import { IProduct } from "../../../model/types/IProduct"
+import { IProduct } from "../../../model/IProduct"
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'

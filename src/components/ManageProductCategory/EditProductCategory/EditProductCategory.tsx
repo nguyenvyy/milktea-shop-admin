@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Spin, Form, Input, Button, message } from "antd";
 import { Header } from "../../common/Header/Header";
 import { undefinedError, success } from "../../../constant";
-import { IProductCategory } from "../../../model/types/IProductCategory";
+import { IProductCategory } from "../../../model/IProductCategory";
 
 export const EditProductCategory = ({
     isFetching,

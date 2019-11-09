@@ -1,4 +1,4 @@
-import { IProductCategory } from "../../../model/types/IProductCategory"
+import { IProductCategory } from "../../../model/IProductCategory"
 
 export const ADD_PRODUCT_CATEGORY = 'ADD_PRODUCT_CATEGORY'
 export const DELETE_PRODUCT_CATEGORY = 'DELETE_PRODUCT_CATEGORY'

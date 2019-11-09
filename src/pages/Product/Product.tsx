@@ -10,8 +10,8 @@ import { Empty } from 'antd';
 import { AddProduct } from '../../components/ManageProduct/AddProduct/AddProduct';
 import { EditProduct } from '../../components/ManageProduct/EditProduct/EditProduct';
 import { ProductDetail } from '../../components/ManageProduct/ProductDetail/ProductDetail';
-import { IProduct } from '../../model/types/IProduct';
-import { IProductCategory } from '../../model/types/IProductCategory';
+import { IProduct } from '../../model/IProduct';
+import { IProductCategory } from '../../model/IProductCategory';
 
 const ProductPage = ({
     categories,
