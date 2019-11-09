@@ -2,8 +2,9 @@ import { lazy } from 'react'
 import { Redirect } from 'react-router-dom'
 import { PrivateRoute } from '../routes/PrivateRoute'
 //path
-export const productCategoryPath = '/a/type/product-category'
 export const productPath = '/a/product'
+export const productCategoryPath = '/a/type/product-category'
+export const vipPath = '/a/type/vip'
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
 const Test = lazy(() => import('../pages/TestFirebase/TestFirebase'))

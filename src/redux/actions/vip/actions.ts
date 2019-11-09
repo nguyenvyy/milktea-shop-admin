@@ -3,30 +3,30 @@ import { AddVIPAction, ADD_VIP, DeleteVIPAction, DELETE_VIP, EditVIPAction, EDIT
 import { getVIPsAPI, addVIPAPI, updateVIPAPI, deleteVIPAPI } from "./servives";
 import { undefinedError, success } from "../../../constant";
 
-export const addVIP = (vip: IVIP): AddVIPAction => ({
+const addVIP = (vip: IVIP): AddVIPAction => ({
     type: ADD_VIP,
     payload: vip
 })
 
-export const deleteVIP = (id: string): DeleteVIPAction => ({
+const deleteVIP = (id: string): DeleteVIPAction => ({
     type: DELETE_VIP,
     payload: id
 })
 
-export const editVIP = (vip: IVIP): EditVIPAction => ({
+const editVIP = (vip: IVIP): EditVIPAction => ({
     type: EDIT_VIP,
     payload: vip
 })
 
-export const requestVIP = (): RequestVIPAction => ({
+const requestVIP = (): RequestVIPAction => ({
     type: REQUEST_VIP
 })
 
-export const stopRequestVIP = (): StopRequestVIPAction => ({
+const stopRequestVIP = (): StopRequestVIPAction => ({
     type:STOP_REQUEST_VIP
 })
 
-export const receiveVIPs = (vips: IVIP[]): ReceiveVIPsAction => ({
+const receiveVIPs = (vips: IVIP[]): ReceiveVIPsAction => ({
     type: RECEIVE_VIPS,
     payload: vips
 })
