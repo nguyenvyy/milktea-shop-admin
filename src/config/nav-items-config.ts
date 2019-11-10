@@ -25,9 +25,9 @@ export const navItems = [
         CollapsedIcon: LetterIcon,
         items: [
             {
-                title: 'Disscounts',
+                title: 'Discounts',
                 Component: MenuItem,
-                to: '/a/type/disscount'
+                to: '/a/type/discount'
             },
             {
                 title: 'Product Category',

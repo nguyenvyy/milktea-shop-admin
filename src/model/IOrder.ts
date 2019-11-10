@@ -2,16 +2,10 @@ export interface IOrderFromCusTomer {
     id: string,
     priceTotal: number,
     idMembership?: string,
-    idDisscount?: string,
-    surcharges: ISurcharge[],
+    idDiscount?: string,
     idPaymentMethod: string,
     createAt: Date,
     detail: IOrderDetail[]
-}
-
-export interface ISurcharge {
-    id: string,
-    value: number
 }
 
 export interface IOrderDetail {

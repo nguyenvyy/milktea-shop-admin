@@ -3,6 +3,7 @@ import { authReducer } from './auth'
 import { productCategoryReducer } from './product-category'
 import { productReducer } from './product'
 import { vipReducer } from './vip'
+import { discountReducer } from './discount'
 
 
 
@@ -10,7 +11,8 @@ export const rootReducer = combineReducers({
     user: authReducer,
     productCategory: productCategoryReducer,
     product: productReducer,
-    vip: vipReducer
+    vip: vipReducer,
+    discount: discountReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

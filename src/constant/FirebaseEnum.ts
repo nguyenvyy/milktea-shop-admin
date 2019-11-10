@@ -9,7 +9,7 @@ export enum collections{
 }
 
 export enum types_docs {
-    disscounts = 'disscounts',
+    discounts = 'discounts',
     surcharges = 'surcharges',
     product_category = 'product_category',
     ratings = 'ratings',

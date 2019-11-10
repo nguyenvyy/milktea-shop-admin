@@ -45,7 +45,7 @@
       }
     }
   },
-  "disscounts": {
+  "discounts": {
     "name": "value"
   },
   "taxs": {

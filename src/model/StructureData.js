@@ -11,7 +11,7 @@ export const data = {
     membership: {},
     products: {},
     types: {
-        disscounts: {}, 
+        discounts: {}, 
         surcharges: {}, 
         product_category: {}, 
         rating: {}, 
