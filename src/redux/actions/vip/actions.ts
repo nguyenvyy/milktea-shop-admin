@@ -32,7 +32,7 @@ const receiveVIPs = (vips: IVIP[]): ReceiveVIPsAction => ({
 })
 
 export const fetchVIPs = () => (dispatch: any) => {
-    dispatch(requestVIP)
+    dispatch(requestVIP())
     return getVIPsAPI()
     .then(vips => {
         dispatch(stopRequestVIP())
