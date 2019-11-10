@@ -1,0 +1,12 @@
+.constant-type {
+    & .item {
+        &__title {
+            font-size: 1.2em;
+            color: #002140;
+        }
+    }
+
+    & .list {
+        padding: 0 40px;
+    }
+}

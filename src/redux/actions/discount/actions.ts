@@ -3,6 +3,8 @@ import { AddDiscountAction, ADD_DISCOUNT, DeleteDiscountAction, DELETE_DISCOUNT,
 import { getDiscountsAPI, addDiscountAPI, updateDiscountAPI, deleteDiscountAPI } from "./servives";
 import { undefinedError, success } from "../../../constant";
 
+import '../constant-type/actions.ts'
+
 const addDiscount = (discount: IDiscount): AddDiscountAction => ({
     type: ADD_DISCOUNT,
     payload: discount
