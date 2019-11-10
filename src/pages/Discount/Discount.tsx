@@ -2,15 +2,12 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import './Discount.scss'
 import { Header } from "../../components/common/Header/Header";
-import { vipPath, discountPath } from "../../config/route-config";
+import { discountPath } from "../../config/route-config";
 import { Empty } from "antd";
-import { AddVIP } from "../../components/MangeVIP/AddVIP/AddVIP";
-import { VIPPanel } from "../../components/MangeVIP/Panel/Panel";
-import { ListVIP } from "../../components/MangeVIP/ListVIP/ListVIP";
-import { EditVIP } from "../../components/MangeVIP/EditVIP/EditVIP";
 import { DiscountPanel } from "../../components/ManageDiscount/Panel/Panel";
 import { AddDiscount } from "../../components/ManageDiscount/AddDiscount/AddDiscount";
 import { EditDiscount } from "../../components/ManageDiscount/EditDiscount/EditDiscount";
+import { ListDiscount } from "../../components/ManageDiscount/ListDiscount/ListDiscount";
 
 const Discount = ({
     discounts = [],
@@ -31,12 +28,11 @@ const Discount = ({
             <div className="discount__wrapper">
                 <div className="discount__wrapper-left">
                     <DiscountPanel />
-                    {/*
-                    <ListVIP 
-                    isFetching={isFetching}
-                    requestEditVIP={requestEditVIP} 
-                    requestDeleteVIP={requestDeleteVIP} 
-                    vips={vips} /> */}
+                    <ListDiscount
+                        isFetching={isFetching}
+                        requestEditDiscount={requestEditDiscount}
+                        requestDeleteDiscount={requestDeleteDiscount}
+                        discounts={discounts} />
                 </div>
                 <div className="discount__wrapper-right">
                     <Switch>
