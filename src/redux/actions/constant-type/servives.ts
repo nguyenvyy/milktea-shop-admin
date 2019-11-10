@@ -34,7 +34,7 @@ export const getRolesAPI = async () => {
     const collectionRef = FirebaseServices
         .generalLV1SubCollectionRef(
             collections.types,
-            types_docs.payment_method,
+            types_docs.roles,
             sub_collections.types
         )
 

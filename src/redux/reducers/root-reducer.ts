@@ -4,6 +4,7 @@ import { productCategoryReducer } from './product-category'
 import { productReducer } from './product'
 import { vipReducer } from './vip'
 import { discountReducer } from './discount'
+import { constantTypeReducer } from './constant-type'
 
 
 
@@ -12,7 +13,8 @@ export const rootReducer = combineReducers({
     productCategory: productCategoryReducer,
     product: productReducer,
     vip: vipReducer,
-    discount: discountReducer
+    discount: discountReducer,
+    constantType: constantTypeReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -13,6 +13,7 @@ const ProductPage = lazy(() => import('../redux/container/Product'))
 const ProductCategoryPage = lazy(() => import('../redux/container/ProductCategory'))
 const VIPPage = lazy(() => import('../redux/container/VIP'))
 const DiscountPage = lazy(() => import('../redux/container/Disccount'))
+const ConstantTypePage = lazy(() => import('../redux/container/ConstantType'))
 
 
 export const routes = [
@@ -50,6 +51,10 @@ export const routes = [
             {
                 path: '/a/type/discount',
                 component: DiscountPage
+            },
+            {
+                path: '/a/type/orther',
+                component: ConstantTypePage
             },
             {
                 path: '/a/test',

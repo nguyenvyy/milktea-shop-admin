@@ -11,10 +11,50 @@ export const navItems = [
         CollapsedIcon: LetterIcon,
     },
     {
-        title: 'Test',
+        title: 'Product',
         shortHand: 'P',
         Component: MenuItem,
-        to: '/a/test',
+        to: '/a/product',
+        CollapsedIcon: LetterIcon,
+    },
+    {
+        title: 'Order',
+        shortHand: 'O',
+        Component: SubMenu,
+        to: '/a/order',
+        CollapsedIcon: LetterIcon,
+        items: [
+            {
+                title: 'Processing',
+                Component: MenuItem,
+                to: '/a/type/discount'
+            },
+            {
+                title: 'Processed',
+                Component: MenuItem,
+                to: '/a/type/product-category'
+            },
+        ]
+    },
+    {
+        title: 'Employee',
+        shortHand: 'E',
+        Component: MenuItem,
+        to: '/a/employee',
+        CollapsedIcon: LetterIcon,
+    },
+    {
+        title: 'Customer',
+        shortHand: 'C',
+        Component: MenuItem,
+        to: '/a/customer',
+        CollapsedIcon: LetterIcon,
+    },
+    {
+        title: 'Feedback',
+        shortHand: 'F',
+        Component: MenuItem,
+        to: '/a/feedback',
         CollapsedIcon: LetterIcon,
     },
     {
@@ -35,57 +75,15 @@ export const navItems = [
                 to: '/a/type/product-category'
             },
             {
-                title: 'Surcharges',
-                Component: MenuItem,
-                to: '/a/type/surcharge'
-            },
-            {
                 title: 'VIPs',
                 Component: MenuItem,
                 to: '/a/type/vip'
-            }
+            },
+            {
+                title: 'Orther',
+                Component: MenuItem,
+                to: '/a/type/orther'
+            },
         ]
-    },
-    {
-        title: 'Product',
-        shortHand: 'P',
-        Component: MenuItem,
-        to: '/a/product',
-        CollapsedIcon: LetterIcon,
-    },
-    {
-        title: 'Order',
-        shortHand: 'O',
-        Component: MenuItem,
-        to: '/a/order',
-        CollapsedIcon: LetterIcon,
-    },
-    {
-        title: 'Employee',
-        shortHand: 'E',
-        Component: MenuItem,
-        to: '/a/employee',
-        CollapsedIcon: LetterIcon,
-    },
-    {
-        title: 'Customer',
-        shortHand: 'C',
-        Component: MenuItem,
-        to: '/a/customer',
-        CollapsedIcon: LetterIcon,
-    },
-    {
-        title: 'Account',
-        shortHand: 'A',
-        Component: MenuItem,
-        to: '/a/Account',
-        CollapsedIcon: LetterIcon,
-    },
-    {
-        title: 'Feedback',
-        shortHand: 'F',
-        Component: MenuItem,
-        to: '/a/feedback',
-        CollapsedIcon: LetterIcon,
-    },
+    }
 ]
