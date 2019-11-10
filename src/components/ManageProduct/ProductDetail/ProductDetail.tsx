@@ -39,6 +39,9 @@ export const ProductDetail = ({
                                         <Badge status="error" text={status.stop} />
                                     }
                                 </Descriptions.Item>
+                                <Descriptions.Item label="Description" span={3} >
+                                    {product.description}
+                                </Descriptions.Item>
                                 <Descriptions.Item label="Image" span={3}>
                                     <img onError={addDefaultSrc} className="img" src={product.imgURL} alt="product" />
                                 </Descriptions.Item>

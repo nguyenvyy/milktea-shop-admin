@@ -22,14 +22,15 @@ export const EditProduct = ({
         name: '',
         price: 0,
         imgURL: '',
-        categoryId: ''
+        categoryId: '',
+        description: ''
     })
 
     useEffect(() => {
         setProduct({ ...preProduct })
     }, [preProduct])
     const formValid = useMemo(() => {
-        if (product.name !== '' && product.price > 1000 && product.categoryId !== "" && product.imgURL !== '')
+        if (product.name !== '' && product.description !== '' && product.price > 1000 && product.categoryId !== "" && product.imgURL !== '')
             return true
         else
             return false
@@ -85,6 +86,9 @@ export const EditProduct = ({
                         </Form.Item>
                         <Form.Item label="Price:">
                             <Input type="number" value={product.price} onChange={onChange} name="price" />
+                        </Form.Item>
+                        <Form.Item label="Description:" labelCol={{ span: 10 }} wrapperCol={{ span: 50 }} >
+                            <Input.TextArea value={product.description} onChange={onChange} name="description" />
                         </Form.Item>
                         <Form.Item label="Category:" wrapperCol={{ span: 8 }}>
                             <Select

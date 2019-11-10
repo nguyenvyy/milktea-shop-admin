@@ -13,6 +13,7 @@ export const getProductsAPI = async () => {
                 id: data.id,
                 name: data.name,
                 price: data.price,
+                description: data.description + '',
                 categoryId: data.categoryId,
                 updateAt: data.updateAt.toDate(),
                 createAt: data.createAt.toDate(),
