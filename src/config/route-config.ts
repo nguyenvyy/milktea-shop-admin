@@ -5,13 +5,14 @@ import { PrivateRoute } from '../routes/PrivateRoute'
 export const productPath = '/a/product'
 export const productCategoryPath = '/a/type/product-category'
 export const vipPath = '/a/type/vip'
+export const discountPath = '/a/type/discount'
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
 const Test = lazy(() => import('../pages/TestFirebase/TestFirebase'))
 const ProductPage = lazy(() => import('../redux/container/Product'))
 const ProductCategoryPage = lazy(() => import('../redux/container/ProductCategory'))
 const VIPPage = lazy(() => import('../redux/container/VIP'))
-
+const DiscountPage = lazy(() => import('../redux/container/Disccount'))
 
 
 export const routes = [
@@ -45,6 +46,10 @@ export const routes = [
             {
                 path: '/a/type/vip',
                 component: VIPPage
+            },
+            {
+                path: '/a/type/discount',
+                component: DiscountPage
             },
             {
                 path: '/a/test',

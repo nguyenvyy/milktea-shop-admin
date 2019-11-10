@@ -1,0 +1,15 @@
+.add-discount{
+    &__title {
+        font-size: 1.2em;
+        color: #002140;
+    }
+    &__form {
+        padding: 0 10px;
+        &-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+}

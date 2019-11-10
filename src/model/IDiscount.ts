@@ -3,7 +3,6 @@ export interface IDiscount {
     name: string,
     value: number,
     code: string,
-    description: string,
     minPoint: number,
     createAt?: Date,
     updateAt?: Date
