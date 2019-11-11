@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { PrivateRoute } from '../routes/PrivateRoute'
 //path
 export const productPath = '/a/product'
+export const employeePath = '/a/employee'
 export const productCategoryPath = '/a/type/product-category'
 export const vipPath = '/a/type/vip'
 export const discountPath = '/a/type/discount'
@@ -14,7 +15,7 @@ const ProductCategoryPage = lazy(() => import('../redux/container/ProductCategor
 const VIPPage = lazy(() => import('../redux/container/VIP'))
 const DiscountPage = lazy(() => import('../redux/container/Disccount'))
 const ConstantTypePage = lazy(() => import('../redux/container/ConstantType'))
-
+const EmployeePage = lazy(() => import('../redux/container/Employee'))
 
 export const routes = [
     {
@@ -63,6 +64,10 @@ export const routes = [
             {
                 path: '/a/product',
                 component: ProductPage
+            },
+            {
+                path: '/a/employee',
+                component: EmployeePage
             }
         ]
     }

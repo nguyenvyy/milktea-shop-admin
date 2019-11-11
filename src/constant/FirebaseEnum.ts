@@ -3,7 +3,7 @@ export enum collections{
     products = 'products',
     feedbacks = 'feedbacks',
     orders = 'orders',
-    users = 'users',
+    employees = 'employees',
     membership = 'membership',
     types = 'types',
 }
