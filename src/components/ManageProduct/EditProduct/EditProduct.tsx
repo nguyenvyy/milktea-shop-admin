@@ -90,7 +90,7 @@ export const EditProduct = ({
                         <Form.Item label="Description:" labelCol={{ span: 10 }} wrapperCol={{ span: 50 }} >
                             <Input.TextArea value={product.description} onChange={onChange} name="description" />
                         </Form.Item>
-                        <Form.Item label="Category:" wrapperCol={{ span: 8 }}>
+                        <Form.Item label="Category:" wrapperCol={{ span: 14 }}>
                             <Select
                                 value={product.categoryId}
                                 onChange={onChangeSelect}

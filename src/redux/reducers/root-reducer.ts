@@ -10,7 +10,7 @@ import { employeeReducer } from './employee'
 
 
 export const rootReducer = combineReducers({
-    user: authReducer,
+    auth: authReducer,
     productCategory: productCategoryReducer,
     product: productReducer,
     vip: vipReducer,

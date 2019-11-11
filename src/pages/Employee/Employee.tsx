@@ -8,6 +8,9 @@ import { Empty } from "antd";
 import { AddEmployee } from "../../components/ManageEmployee/AddEmployee/AddEmployee";
 import { ListEmployee } from "../../components/ManageEmployee/ListEmployee/ListEmployee";
 import { EditEmployee } from "../../components/ManageEmployee/EditEmployee/EditEmployee";
+import { EmployeeDetail } from "../../components/ManageEmployee/EmployeeDetail/EmployeeDetail";
+import { IEmployee } from "../../model/IEmployee";
+import { IRole } from "../../model/constant-types-interface";
 
 
 const Employee = ({
@@ -65,19 +68,17 @@ const Employee = ({
                                     requestEditEmployee={requestEditEmployee}
                                 />)
                         }} />
-                        {/*
-
                         <Route path={`${employeePath}/detail/:id`} render={props => {
                             const id = props.match.params.id;
-                            const product: IProduct = products.find((item: any) => item.id === id)
-                            const category: IProductCategory = categories.find((item: any) => item.id === product.categoryId)
+                            const employee: IEmployee = employees.find((item: any) => item.id === id)
+                            const role: IRole = roles.find((item: any) => item.id === employee.idRole)
                             return (
-                                <ProductDetail
-                                product={product}
-                                category={category}
-                                isFetching={(product !== undefined && category !== undefined) ? false : true}
+                                <EmployeeDetail
+                                    employee={employee}
+                                    role={role}
+                                    isFetching={(employee !== undefined && role !== undefined) ? false : true}
                                 />)
-                        }} /> */}
+                        }} />
                     </Switch>
                 </div>
             </div>

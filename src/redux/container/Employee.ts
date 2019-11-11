@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { RootState } from "../reducers/root-reducer";
 import * as actions from '../actions/employee/actions'
 import { fetchConstantTypes } from '../actions/constant-type/actions'
-import { useParams } from 'react-router-dom'
 
 import Employee from "../../pages/Employee/Employee";
 const mapState = (state: RootState) => {

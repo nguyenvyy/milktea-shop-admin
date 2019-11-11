@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 
 import "./EditEmployee.scss";
 import { undefinedError, success } from "../../../constant";
-import { message, Form, Input, Select, Button, Spin } from "antd";
+import { message, Form, Select, Button, Spin, Input } from "antd";
 import { Header } from "../../common/Header/Header";
 import { IRole } from "../../../model/constant-types-interface";
 import { FirebaseServices } from "../../../services/firebase";
@@ -15,16 +15,22 @@ export const EditEmployee = ({
 }: any) => {
     const [employee, setEmployee] = useState({
         idRole: '',
+        name: ''
     })
     useEffect(() => {
         if (preEmployee !== false)
-            setEmployee({ idRole: preEmployee.idRole })
+            setEmployee({ name: preEmployee.name, idRole: preEmployee.idRole })
     }, [preEmployee])
 
     const onChangeIdRole = (value: string) => {
         setEmployee({
+            ...employee,
             idRole: value
         })
+    }
+
+    const onChangeName = (e: any) => {
+        setEmployee({...employee, name: e.target.value})
     }
 
     const handleEditEmployee = () => {
@@ -53,11 +59,11 @@ export const EditEmployee = ({
             hiden()
             message.success('send success', 1)
         })
-        .catch(() => {
-            hiden()
-            message.success('send fail', 1)
+            .catch(() => {
+                hiden()
+                message.success('send fail', 1)
 
-        })
+            })
     }
     const formValid = useMemo(() => {
         return employee.idRole !== ''
@@ -65,9 +71,16 @@ export const EditEmployee = ({
 
     return (
         <div className="edit-employee">
-            <Header className="edit-employee__title" title={`Edit employee: ${preEmployee.name}`} />
+            <Header className="edit-employee__title" title={`Edit employee`} />
             <div className="edit-form">
                 <Spin spinning={isFetching} tip="Loading...">
+                    <Form.Item label="Name"
+                        help={employee.name === '' ? 'input is not valid' : ''}
+                        hasFeedback
+                        validateStatus={employee.name === '' ? 'error' : 'success'}
+                    >
+                        <Input value={employee.name} onChange={onChangeName} name="name" />
+                    </Form.Item>
                     <Form.Item label="Role"
                         help={!formValid ? 'input is not valid' : ''}
                         validateStatus={!formValid ? 'error' : 'success'}

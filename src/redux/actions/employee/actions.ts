@@ -14,7 +14,7 @@ import {
     ReceiveEmployeesAction
 } from "./types"
 import { getEmployeesAPI, addEmployeeAPI, deleteEmployeeAPI, updateEmployeeAPI } from "./services"
-import { success, undefinedError } from "../../../constant"
+import { success, undefinedError, existed } from "../../../constant"
 
 const addEmployee = (Employee: IEmployee): AddEmployeeAction =>({
     type: ADD_EMPLOYEE,
@@ -47,23 +47,25 @@ const receiveEmployees = (Employees: IEmployee[]): ReceiveEmployeesAction => ({
 export const fetchEmployees = () => (dispatch: any) => {
     dispatch(requestEmployee())
     return getEmployeesAPI()
-    .then(Employees => {
+    .then(employees => {
         dispatch(stopRequestEmployee())
-        if(Employees[1] === undefinedError) {
+        if(employees[1] === undefinedError) {
             return undefinedError
         }
-        dispatch(receiveEmployees(Employees))
+        dispatch(receiveEmployees(employees))
         return success
     })
 }
 
 
-export const requestAddEmployee = (Employee: IEmployee) => (dispatch: any) => {
+export const requestAddEmployee = (employee: IEmployee) => (dispatch: any) => {
     dispatch(requestEmployee())
-    return addEmployeeAPI(Employee)
+    return addEmployeeAPI(employee)
         .then((newEmployee: any | IEmployee) => {
             dispatch(stopRequestEmployee())
             if(newEmployee[1] === undefinedError) {
+                if(newEmployee[0] && newEmployee[0].code === 'auth/email-already-in-use')
+                    return existed
                 return undefinedError
             }
             dispatch(addEmployee(newEmployee))

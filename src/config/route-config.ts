@@ -16,6 +16,7 @@ const VIPPage = lazy(() => import('../redux/container/VIP'))
 const DiscountPage = lazy(() => import('../redux/container/Disccount'))
 const ConstantTypePage = lazy(() => import('../redux/container/ConstantType'))
 const EmployeePage = lazy(() => import('../redux/container/Employee'))
+const LoginPage = lazy(() => import('../pages/Login/Login'))
 
 export const routes = [
     {
@@ -23,6 +24,10 @@ export const routes = [
         customRoute: Redirect,
         to: '/a',
         exact: true,
+    },
+    {
+        path: '/login',
+        component: LoginPage,
     },
     {
         path: '/a',

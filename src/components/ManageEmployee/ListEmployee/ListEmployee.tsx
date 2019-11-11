@@ -59,12 +59,14 @@ export const ListEmployee = ({
             title: 'Point',
             dataIndex: 'point',
             key: 'point',
+            align: 'center',
             sorter: (a: IEmployee, b: IEmployee) => a.point - b.point
         },
         {
-            title: 'Order Count',
+            title: 'Orders',
             dataIndex: 'orderCount',
             key: 'orderCount',
+            align: 'center',
             sorter: (a: IEmployee, b: IEmployee) => a.orderCount - b.orderCount
         },
         {

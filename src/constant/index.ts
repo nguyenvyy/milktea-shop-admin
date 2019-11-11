@@ -1,4 +1,5 @@
 export const undefinedError = 500;
+export const existed = 300;
 export type ErrorType =  typeof undefinedError
 export const success = 200;
 export type SuccessType =  typeof success

@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { Header } from "../../common/Header/Header";
 import { Form, Input, Button, message, DatePicker, Select } from "antd";
 
 import "./AddEmployee.scss";
-import { undefinedError, success, formatDate } from "../../../constant";
+import { undefinedError, success, formatDate, existed } from "../../../constant";
 import moment from "moment";
 import { IEmployee } from "../../../model/IEmployee";
 import { IRole } from "../../../model/constant-types-interface";
@@ -73,6 +73,9 @@ export const AddEmployee = ({
             switch (status) {
                 case undefinedError:
                     message.error("add fail", 1)
+                    break;
+                case existed:
+                    message.error("The email address is already in use by another account", 1)
                     break;
                 case success:
                     message.success(`${newEmployee.name} added`, 1)
