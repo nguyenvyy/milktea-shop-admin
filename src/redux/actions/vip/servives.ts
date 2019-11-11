@@ -34,7 +34,7 @@ export const addVIPAPI = async (vip: IVIP) => {
     const id = vipDocsRef.id
     try {
         const newvip = { ...vip, id, createAt: new Date(), updateAt: new Date() }
-        vipDocsRef.set(newvip)
+        await vipDocsRef.set(newvip)
         return newvip
     } catch (error) {
         return [error, undefinedError]
@@ -49,7 +49,7 @@ export const updateVIPAPI  = async (vip: IVIP) => {
         const vipClone: IVIP = {...vip, updateAt: new Date()}
         delete vipClone.createAt
         delete vipClone.id
-        vipDocsRef.update(vipClone)
+        await vipDocsRef.update(vipClone)
         return {...vip, ...vipClone}
     } catch (error) {
         return [error, undefinedError]
@@ -61,7 +61,7 @@ export const deleteVIPAPI  = async (id: string) => {
         .generalLV1SubCollectionRef(collections.types, types_docs.vips, sub_collections.types)
         .doc(id)
     try {
-        vipDocsRef.update({isDeleted: true})
+        await vipDocsRef.update({isDeleted: true})
         return id
     } catch (error) {
         return [error, undefinedError]
