@@ -60,8 +60,6 @@ export const AddDiscount = ({
             isDeleted: false,
             ...discount
         }
-
-        console.log(newDiscount)
         const isExistName = discounts.find((item: any) => item.code === newDiscount.code)
         if (isExistName) {
             message.error("code existed", 1)
