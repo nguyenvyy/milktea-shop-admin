@@ -9,6 +9,8 @@ export interface IOrderState {
     name: string,
     color: string,
     canFeedback: boolean,
+    canCancel: boolean,
+    canReturn: boolean
 }
 
 export interface IPaymentMethod {

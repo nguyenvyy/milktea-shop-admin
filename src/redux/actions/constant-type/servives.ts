@@ -15,12 +15,9 @@ export const getOrderStatesAPI = async () => {
 
     try {
         const querySnapshot = await collectionRef.get();
-        return querySnapshot.docs.map(doc => {
+        return querySnapshot.docs.map((doc: any) => {
             const state: IOrderState = {
-                id: doc.data().id,
-                name: doc.data().name,
-                color: doc.data().color,
-                canFeedback: doc.data().canFeedback
+                ...doc.data()
             }
             return state
         })
