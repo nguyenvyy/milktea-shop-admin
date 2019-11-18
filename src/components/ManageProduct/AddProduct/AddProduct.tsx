@@ -76,9 +76,9 @@ export const AddProduct = ({
         })
     }
     return (
-        <div className="add-product">
-            <Header className="add-product__title" title="Add new product" />
-            <div className="add-form">
+        <div className="add-product">1
+            <Header className="add-product__title" title={`Add new product${formValid ? '': ': form is not valid!'}`} />
+            <div className="add-form" id="scoller">
                 <Form layout="vertical" labelCol={{ span: 4 }} wrapperCol={{ span: 20 }} >
                     <Form.Item label="Name:">
                         <Input value={product.name} onChange={onChange} name="name" />

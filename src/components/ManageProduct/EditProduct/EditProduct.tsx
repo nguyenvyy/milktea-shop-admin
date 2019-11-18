@@ -77,8 +77,8 @@ export const EditProduct = ({
     }
     return (
         <div className="edit-product">
-            <Header className="edit-product__title" title="Edit product" />
-            <div className="edit-form">
+            <Header className="edit-product__title" title={`Edit product${formValid ? '': ': form is not valid!'}`} />
+            <div className="edit-form" id="scoller">
                 <Spin spinning={isFetching} tip="Loading...">
                     <Form layout="vertical" labelCol={{ span: 4 }} wrapperCol={{ span: 20 }} >
                         <Form.Item label="Name:">

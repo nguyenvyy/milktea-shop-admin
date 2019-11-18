@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { productPath } from "../../../config/route-config";
 import { undefinedError, success, status } from "../../../constant";
 import { IProductCategory } from "../../../model/IProductCategory";
+import { formatVND } from "../../utils";
 export const ListProduct = ({
     products = [],
     categories,
@@ -58,6 +59,7 @@ export const ListProduct = ({
             title: 'Price',
             dataIndex: 'price',
             key: 'price',
+            render: price => formatVND(price),
             sorter: (a: IProduct, b: IProduct) => a.price - b.price
         },
         {
@@ -130,6 +132,8 @@ export const ListProduct = ({
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
+                size="small"
+                pagination={{position: 'bottom', pageSize: 12}}
                 dataSource={products.length > 0 ? products : null}
             />
         </div>

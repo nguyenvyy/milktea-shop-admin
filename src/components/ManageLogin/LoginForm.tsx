@@ -5,7 +5,6 @@ import { Button, Drawer, message, Input, Checkbox } from 'antd';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authenticateUser } from '../../redux/actions/auth/actions';
-import { Link } from 'react-router-dom';
 import { FirebaseServices } from '../../services/firebase';
 
 export const LoginForm = ({ isLoading }: any) => {
