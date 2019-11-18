@@ -25,7 +25,7 @@ export const AccountInfo = () => {
                 return 'loading...!'
         }
         return 'loading...!'
-    }, [user, roles.length])
+    }, [user, roles])
     const [password, setPassword] = useState('');
     const onChangePassword = (e: any) => {
         setPassword(e.target.value)
@@ -43,7 +43,7 @@ export const AccountInfo = () => {
                     // Update successful.
                     setVisible(false)
                     hiden()
-                    message.error('change password success', 1)
+                    message.success('change password success', 1)
                 }).catch(function (error) {
                     // An error happened.
                     debugger
