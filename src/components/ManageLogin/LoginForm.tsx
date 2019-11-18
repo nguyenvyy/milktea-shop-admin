@@ -1,11 +1,12 @@
 import React from 'react'
 
 import './LoginForm.scss'
-import { Button, message, Input, Checkbox } from 'antd';
+import { Button, Drawer, message, Input, Checkbox } from 'antd';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authenticateUser } from '../../redux/actions/auth/actions';
 import { Link } from 'react-router-dom';
+import { FirebaseServices } from '../../services/firebase';
 
 export const LoginForm = ({ isLoading }: any) => {
     const dispatch: any = useDispatch();
@@ -13,6 +14,9 @@ export const LoginForm = ({ isLoading }: any) => {
         email: '',
         password: ''
     })
+
+    const [visible, setVisible] = useState(false)
+
     const onChange = ({ target: { name, value } }: any) => {
         setUser({
             ...user,
@@ -40,7 +44,7 @@ export const LoginForm = ({ isLoading }: any) => {
                     }
                     break;
                 default:
-                    message.error('Login fail')
+                    message.error('Email or passowrd is incorrect')
                     break;
             }
         })
@@ -50,6 +54,19 @@ export const LoginForm = ({ isLoading }: any) => {
         if (e.keyCode === 13) {
             handleLogin()
         }
+    }
+
+    const handleResetPassword = () => {
+        const hiden = message.loading('sending...')
+        FirebaseServices.sendMailToResetPassword(user.email).then(() => {
+            hiden()
+            message.success('send success', 1)
+        })
+            .catch(() => {
+                hiden()
+                message.success('send fail', 1)
+
+            })
     }
 
     return (
@@ -72,12 +89,35 @@ export const LoginForm = ({ isLoading }: any) => {
             <div className="d-flex justify-content-between form-group ">
                 <div className="remember-user">
                     <div className="remember-user__check">
-                        <Checkbox  checked={isRemember} onChange={onChangeRemember} />
+                        <Checkbox checked={isRemember} onChange={onChangeRemember} />
                     </div>
-                    <label className="remember-user__lable" onClick={onChangeRemember}  htmlFor="remember">Remember me</label>
+                    <label className="remember-user__lable" onClick={onChangeRemember} htmlFor="remember">Remember me</label>
                 </div>
                 <div>
-                    <Link className="forgot-password" to="/forgot-password">Forgot</Link>
+                    <span className="forgot-password" onClick={() => setVisible(true)}>Forgot password</span>
+                    <Drawer
+                        title="Send email to reset password"
+                        placement="right"
+                        closable={false}
+                        onClose={() => setVisible(false)}
+                        visible={visible}
+                        width={400}
+                    >
+                        <div className="form-resetpassowrd">
+                            <Input className="input" name="email" placeholder="Email"
+                                value={user.email}
+                                onChange={onChange}
+                            />
+                            <div className="form-resetpassowrd__btn d-flex-center">
+                                <Button
+                                    onClick={handleResetPassword}
+                                    disabled={user.email !== '' ? false : true} type="primary" icon="rise">
+                                    Send
+                                    </Button>
+                            </div>
+                        </div>
+
+                    </Drawer>
                 </div>
             </div>
             <Button className="btn-submit"

@@ -55,7 +55,7 @@ export const EditEmployee = ({
 
     const handleResetPassword = () => {
         const hiden = message.loading('sending...')
-        FirebaseServices.auth.sendPasswordResetEmail(preEmployee.email).then(() => {
+        FirebaseServices.sendMailToResetPassword(preEmployee.email).then(() => {
             hiden()
             message.success('send success', 1)
         })

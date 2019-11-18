@@ -16,6 +16,10 @@ export class FirebaseServices {
         return FirebaseServices.db.collection(collection).doc(doc).collection(subCollection)
     }
 
+    public static async sendMailToResetPassword(email: string) {
+        return FirebaseServices.auth.sendPasswordResetEmail(email)
+    }
+
     
 
 }
