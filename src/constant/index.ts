@@ -4,6 +4,7 @@ export type ErrorType =  typeof undefinedError
 export const success = 200;
 export type SuccessType =  typeof success
 
+export const adminPermission = '72y6x8BpGphfRnKVWWEl'
 
 export const formatDate = 'DD/MM/YYYY'
 

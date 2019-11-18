@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import { Redirect } from 'react-router-dom'
 import { PrivateRoute } from '../routes/PrivateRoute'
+import { AdminRoute } from '../routes/AdminRoute'
 //path
 export const productPath = '/a/product'
 export const employeePath = '/a/employee'
@@ -69,7 +70,8 @@ export const routes = [
             },
             {
                 path: '/a/employee',
-                component: EmployeePage
+                component: EmployeePage,
+                customRoute: AdminRoute
             },
             {
                 path: '/a/user-profile',
