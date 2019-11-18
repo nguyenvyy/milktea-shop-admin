@@ -36,7 +36,7 @@ export const addDiscountAPI = async (discount: IDiscount) => {
     const id = discountDocsRef.id
     try {
         const newdiscount = { ...discount, id, createAt: new Date(), updateAt: new Date() }
-        discountDocsRef.set(newdiscount)
+        await discountDocsRef.set(newdiscount)
         return newdiscount
     } catch (error) {
         return [error, undefinedError]
@@ -51,7 +51,7 @@ export const updateDiscountAPI  = async (discount: IDiscount) => {
         const discountClone: IDiscount = {...discount, updateAt: new Date()}
         delete discountClone.createAt
         delete discountClone.id
-        discountDocsRef.update(discountClone)
+        await discountDocsRef.update(discountClone)
         return {...discount, ...discountClone}
     } catch (error) {
         return [error, undefinedError]
@@ -63,7 +63,7 @@ export const deleteDiscountAPI  = async (id: string) => {
         .generalLV1SubCollectionRef(collections.types, types_docs.discounts, sub_collections.types)
         .doc(id)
     try {
-        discountDocsRef.update({isDeleted: true})
+        await discountDocsRef.update({isDeleted: true})
         return id
     } catch (error) {
         return [error, undefinedError]

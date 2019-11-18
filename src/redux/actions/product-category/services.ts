@@ -30,7 +30,7 @@ export const addProductCategoryAPI = async (category: IProductCategory) => {
 
     try {
         const newCategory = { ...category, id }
-        categoryDocsRef.set(newCategory)
+        await categoryDocsRef.set(newCategory)
         return newCategory
     } catch (error) {
         return [error, undefinedError]
@@ -45,7 +45,7 @@ export const updateProductCategoryAPI  = async (category: IProductCategory) => {
         const categoryClone: IProductCategory = {...category, updateAt: new Date()}
         delete categoryClone.createAt
         delete categoryClone.id
-        categoryDocsRef.update(categoryClone)
+        await categoryDocsRef.update(categoryClone)
         return {...category, ...categoryClone}
     } catch (error) {
         return [error, undefinedError]
@@ -57,7 +57,7 @@ export const deleteProductCategoryAPI  = async (id: string) => {
         .generalLV1SubCollectionRef(collections.types, types_docs.product_category, sub_collections.types)
         .doc(id)
     try {
-        categoryDocsRef.update({isDeleted: true})
+        await categoryDocsRef.update({isDeleted: true})
         return id
     } catch (error) {
         return [error, undefinedError]

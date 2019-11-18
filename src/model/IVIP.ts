@@ -6,3 +6,4 @@ export interface IVIP {
     updateAt?: Date
     isDeleted: boolean
 }
+

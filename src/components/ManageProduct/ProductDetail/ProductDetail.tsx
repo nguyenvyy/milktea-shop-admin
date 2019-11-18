@@ -23,32 +23,34 @@ export const ProductDetail = ({
     return (
         <div className="detail-product">
             <Header className="detail-product__title" title="Detail product" />
-            <div className="detail-product__info">
-                <Spin spinning={isFetching} tip="Loading...">
-                    {
-                        !isFetching && (
-                            <Descriptions layout="vertical" size="small" bordered>
-                                <Descriptions.Item label="Name" span={2}>{product.name}</Descriptions.Item>
-                                <Descriptions.Item label="Price">{formatVND(product.price)} VNĐ </Descriptions.Item>
-                                <Descriptions.Item label="Category" span={3}>{category.name}</Descriptions.Item>
-                                <Descriptions.Item label="Create date">{moment(product.createAt, formatDate).format(formatDate)}</Descriptions.Item>
-                                <Descriptions.Item label="Last updae" span={2} >{moment(product.updateAt, formatDate).format(formatDate)}</Descriptions.Item>
-                                <Descriptions.Item label="Status" span={3} >
-                                    {!product.isDeleted ?
-                                        <Badge status="success" text={status.active} /> :
-                                        <Badge status="error" text={status.stop} />
-                                    }
-                                </Descriptions.Item>
-                                <Descriptions.Item label="Description" span={3} >
-                                    {product.description}
-                                </Descriptions.Item>
-                                <Descriptions.Item label="Image" span={3}>
-                                    <img onError={addDefaultSrc} className="img" src={product.imgURL} alt="product" />
-                                </Descriptions.Item>
-                            </Descriptions>
-                        )
-                    }
-                </Spin>
+            <div className="" id="scoller">
+                <div className="detail-product__info">
+                    <Spin spinning={isFetching} tip="Loading...">
+                        {
+                            !isFetching && (
+                                <Descriptions layout="vertical" size="small" bordered>
+                                    <Descriptions.Item label="Name" span={2}>{product.name}</Descriptions.Item>
+                                    <Descriptions.Item label="Price" span={1}>{formatVND(product.price)} VNĐ </Descriptions.Item>
+                                    <Descriptions.Item label="Category" span={3}>{category.name}</Descriptions.Item>
+                                    <Descriptions.Item label="Create date" span={1}>{moment(product.createAt, formatDate).format(formatDate)}</Descriptions.Item>
+                                    <Descriptions.Item label="Last updae" span={2} >{moment(product.updateAt, formatDate).format(formatDate)}</Descriptions.Item>
+                                    <Descriptions.Item label="Status" span={3} >
+                                        {!product.isDeleted ?
+                                            <Badge status="success" text={status.active} /> :
+                                            <Badge status="error" text={status.stop} />
+                                        }
+                                    </Descriptions.Item>
+                                    <Descriptions.Item label="Description" span={3} >
+                                        {product.description}
+                                    </Descriptions.Item>
+                                    <Descriptions.Item label="Image" span={3}>
+                                        <img onError={addDefaultSrc} className="img" src={product.imgURL} alt="product" />
+                                    </Descriptions.Item>
+                                </Descriptions>
+                            )
+                        }
+                    </Spin>
+                </div>
             </div>
         </div>
     )

@@ -1,0 +1,22 @@
+.edit-employee{
+    &__title {
+        font-size: 1.2em;
+        color: #002140;
+    }
+    & .edit-form {
+        padding: 0 10px;
+        &-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__img {
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid gray;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+}

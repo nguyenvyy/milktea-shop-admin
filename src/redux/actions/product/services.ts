@@ -34,7 +34,7 @@ export const addProductAPI = async (product: IProduct) => {
 
     try {
         const newProduct = { ...product, id }
-        productDocRef.set(newProduct)
+        await productDocRef.set(newProduct)
         return newProduct
     } catch (error) {
         return [error, undefinedError]
@@ -45,7 +45,7 @@ export const updateProductAPI  = async (product: IProduct) => {
     const productDocRef = FirebaseServices.db.collection(collections.products).doc(product.id)
     try {
         const productClone: IProduct = {...product, updateAt: new Date()}
-        productDocRef.update(productClone)
+        await productDocRef.update(productClone)
         return {...product, ...productClone}
     } catch (error) {
         return [error, undefinedError]
@@ -55,7 +55,7 @@ export const updateProductAPI  = async (product: IProduct) => {
 export const deleteProductAPI  = async (id: string) => {
     const productDocRef = FirebaseServices.db.collection(collections.products).doc(id)
     try {
-        productDocRef.update({isDeleted: true})
+        await productDocRef.update({isDeleted: true})
         return id
     } catch (error) {
         return [error, undefinedError]

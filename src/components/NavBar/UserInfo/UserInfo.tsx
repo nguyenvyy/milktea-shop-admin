@@ -1,33 +1,30 @@
-import React, {memo} from 'react'
-// import { useDispatch } from 'react-redux'
-// import { useSelector } from 'react-redux'
-import { Icon, Tooltip, 
-    // message
- } from 'antd'
+import React, { memo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    Icon, Tooltip,
+    message
+} from 'antd'
 
 import './UserInfo.scss'
-// import { requestLogout } from '../../../redux/actions/auth-actions/actions'
+import { RootState } from '../../../redux/reducers/root-reducer'
+import { IEmployee } from '../../../model/IEmployee'
+import { signOut } from '../../../redux/actions/auth/actions'
 
 export const UserInfo = memo(
     function UserInfo({ collapsed }: any) {
-        // const dispatch = useDispatch();
-        // const username = useSelector(state => state.user.info &&  state.user.info.username) || "anonymous"
+        const dispatch: any = useDispatch();
+        const userInfo: IEmployee |  null = useSelector((state: RootState) => state.auth.user)
         const handleLogout = () => {
-            // const hiden = message.loading('Logout...', 0)
-            // dispatch(requestLogout()).then(res => {
-            //     switch (res && res.status) {
-            //         case 200:
-            //             message.success('Logout success',1)
-            //             break;
-            //         case 401: 
-            //             message.warning('Your login session has expired ',1)
-            //             break;
-            //         default:
-            //             message.error('Error', 1)
-            //             break;
-            //     }
-            //     setTimeout(hiden, 100)
-            // })
+            dispatch(signOut()).then((res: any) => {
+                switch (res.status) {
+                    case 200:
+                        message.success('Logout success',1)
+                        break;
+                    default:
+                        message.error('Error', 1)
+                        break;
+                }
+            })
         }
         return (
             <div className={`user-paner${collapsed ? '-collapsed' : ''}`}>
@@ -36,7 +33,7 @@ export const UserInfo = memo(
                         <>
                             <div className="user-name ">
                                 <span>
-                                    {'username'}
+                                    {userInfo !== null ? userInfo.name : 'loading...'}
                                 </span>
                             </div>
                             <span onClick={handleLogout} className="pointer">
@@ -44,8 +41,8 @@ export const UserInfo = memo(
                             </span>
                         </>
                     ) : (
-                            <Tooltip placement="right" title={'Logout! username'}>
-                                <span onClick={handleLogout}> 
+                            <Tooltip placement="right" title={`Logout! ${userInfo !== null ? userInfo.name : 'loading...'}`}>
+                                <span onClick={handleLogout}>
                                     <Icon style={{ fontSize: '20px' }} type="logout" />
                                 </span>
                             </Tooltip>

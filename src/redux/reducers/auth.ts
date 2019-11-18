@@ -1,30 +1,30 @@
-import { LOGIN, AUTHENTICATION_SUCCEEDED, STOP_LOGIN, LOGOUT } from "../actions/auth/types"
+import { REQUEST_AUTH, RECEIVE_INFO, STOP_REQUEST_AUTH, CLEAR_USER, AuthState, AuthActionTypes } from "../actions/auth/types"
 
-const initState = {
+const initState: AuthState = {
     user: null,
-    isLoggedIn: true,
-    isLoadingUser: false,
+    isLoggedIn: false,
+    isLoading: false,
 }
 
-export const authReducer = (state = initState, action: {type: string, user?: object}): any => {
+export const authReducer = (state = initState, action: AuthActionTypes): AuthState => {
     switch (action.type) {
-        case LOGIN:
+        case REQUEST_AUTH:
             return {
                 ...state,
-                isLoadingUser: true
+                isLoading: true
             }
-        case AUTHENTICATION_SUCCEEDED:
+        case RECEIVE_INFO:
             return {
                 ...state,
-                user: action.user,
+                user: action.payload,
                 isLoggedIn: true,
             }
-        case STOP_LOGIN:
+        case STOP_REQUEST_AUTH:
             return {
                 ...state,
-                isLoadingUser: false
+                isLoading: false
             }
-        case LOGOUT:
+        case CLEAR_USER:
             return initState
         default:
             return state

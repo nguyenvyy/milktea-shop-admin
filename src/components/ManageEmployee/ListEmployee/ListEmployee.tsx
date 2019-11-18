@@ -1,77 +1,84 @@
 import React from "react";
 
-import "./ListProduct.scss";
+import "./ListEmployee.scss";
 import { Table, Badge, Divider, message } from "antd";
-import { IProduct } from "../../../model/IProduct";
+import { IEmployee } from "../../../model/IEmployee";
 import { ColumnProps } from "antd/lib/table";
 import { NavLink } from "react-router-dom";
-import { productPath } from "../../../config/route-config";
+import { employeePath } from "../../../config/route-config";
+
 import { undefinedError, success, status } from "../../../constant";
-import { IProductCategory } from "../../../model/IProductCategory";
-import { formatVND } from "../../utils";
-export const ListProduct = ({
-    products = [],
-    categories,
+import { IRole } from "../../../model/constant-types-interface";
+export const ListEmployee = ({
+    employees = [],
+    roles,
     isFetching,
-    requestDeleteProduct,
-    requestEditProduct
+    requestDeleteEmployee,
+    requestEditEmployee
 }: any) => {
 
-    const handleActiveProduct = (product: IProduct) => {
-        const newProduct: IProduct = {
-            ...product,
+    const handleActiveEmployee = (employee: IEmployee) => {
+        const newEmployee: IEmployee = {
+            ...employee,
             isDeleted: false,
         }
-        requestEditProduct(newProduct).then((status: number) => {
+        requestEditEmployee(newEmployee).then((status: number) => {
             switch (status) {
                 case undefinedError:
                     message.error("Active fail", 1)
                     break;
                 case success:
-                    message.success(`${product.name} actived`, 1)
+                    message.success(`${employee.name} actived`, 1)
                     break;
                 default:
                     break;
             }
         })
     }
-    const handleDeleteProduct = (product: IProduct) => {
-        requestDeleteProduct(product.id).then((status: number) => {
+    const handleDeleteEmployee = (employee: IEmployee) => {
+        requestDeleteEmployee(employee.id).then((status: number) => {
             switch (status) {
                 case undefinedError:
                     message.error("Delete fail", 1)
                     break;
                 case success:
-                    message.success(`${product.name} deleted`, 1)
+                    message.success(`${employee.name} deleted`, 1)
                     break;
                 default:
                     break;
             }
         })
     }
-    const columns: ColumnProps<IProduct>[] = [
+    const columns: ColumnProps<IEmployee>[] = [
         {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Price',
-            dataIndex: 'price',
-            key: 'price',
-            render: price => formatVND(price),
-            sorter: (a: IProduct, b: IProduct) => a.price - b.price
+            title: 'Point',
+            dataIndex: 'point',
+            key: 'point',
+            align: 'center',
+            sorter: (a: IEmployee, b: IEmployee) => a.point - b.point
         },
         {
-            title: 'Category',
-            dataIndex: 'categoryId',
-            key: 'categoryId',
-            render: (categoryId: string) => {
-                const category: any = categories.find((item: any) => item.id === categoryId)
-                return category ? category.name : 'loading...'
+            title: 'Orders',
+            dataIndex: 'orderCount',
+            key: 'orderCount',
+            align: 'center',
+            sorter: (a: IEmployee, b: IEmployee) => a.orderCount - b.orderCount
+        },
+        {
+            title: 'Role',
+            dataIndex: 'idRole',
+            key: 'role',
+            render: (id: string) => {
+                const role: IRole = roles.find((item: IRole) => item.id === id)
+                return role ? role.name : 'loading...'
             },
-            filters: categories.map((item: IProductCategory) =>( {text: item.name, value: item.id})),
-            onFilter: (value, record) => value === record.categoryId,
+            filters: roles.map((item: IRole) => ({ text: item.name, value: item.id })),
+            onFilter: (value, record) => value === record.idRole,
         },
         {
             title: 'Status',
@@ -85,34 +92,29 @@ export const ListProduct = ({
                     }
                 </>
             ),
-            filters: [
-                { text: status.active, value: false },
-                { text: status.stop, value: true },
-            ],
-            onFilter: (value, record) => record.isDeleted === value,
         },
         {
             title: 'Action',
             key: 'action',
-            render: (_, record: IProduct) => {
+            render: (_, record: IEmployee) => {
 
                 return (
                     <div className="action">
                         {!record.isDeleted ? (
                             <>
                                 <span className="action-delete"
-                                    onClick={() => handleDeleteProduct(record)}
+                                    onClick={() => handleDeleteEmployee(record)}
                                 >stop</span>
                                 <Divider type="vertical" />
                                 <NavLink
                                     activeClassName="action--active"
-                                    to={`${productPath}/edit/${record.id}`}>edit</NavLink>
+                                    to={`${employeePath}/edit/${record.id}`}>edit</NavLink>
                                 <Divider type="vertical" />
                             </>
                         ) : (
                                 <>
                                     <span className="action-delete"
-                                        onClick={() => handleActiveProduct(record)}
+                                        onClick={() => handleActiveEmployee(record)}
                                     >active</span>
                                     <Divider type="vertical" />
                                 </>
@@ -120,21 +122,19 @@ export const ListProduct = ({
                         }
                         <NavLink
                             activeClassName="action--active"
-                            to={`${productPath}/detail/${record.id}`}>view</NavLink>
+                            to={`${employeePath}/detail/${record.id}`}>view</NavLink>
                     </div>
                 )
             }
         }
     ];
     return (
-        <div className="list-product">
+        <div className="list-employee">
             <Table
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
-                size="small"
-                pagination={{position: 'bottom', pageSize: 12}}
-                dataSource={products.length > 0 ? products : null}
+                dataSource={employees.length > 0 ? employees : null}
             />
         </div>
     )

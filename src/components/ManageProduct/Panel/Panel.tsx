@@ -9,8 +9,8 @@ const { Search } = Input;
 export const ProductPanel = ({
     handleSearchProducts
 }: any) => {
-    const onSearch = (e: any) => {
-        handleSearchProducts(e)
+    const onSearch = (e: string) => {
+        handleSearchProducts(e.trim());
     }
     return (
         <div className="product-panel">

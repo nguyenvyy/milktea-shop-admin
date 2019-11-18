@@ -11,13 +11,6 @@ export const navItems = [
         CollapsedIcon: LetterIcon,
     },
     {
-        title: 'Product',
-        shortHand: 'P',
-        Component: MenuItem,
-        to: '/a/product',
-        CollapsedIcon: LetterIcon,
-    },
-    {
         title: 'Order',
         shortHand: 'O',
         Component: SubMenu,
@@ -35,6 +28,13 @@ export const navItems = [
                 to: '/a/type/product-category'
             },
         ]
+    },
+    {
+        title: 'Product',
+        shortHand: 'P',
+        Component: MenuItem,
+        to: '/a/product',
+        CollapsedIcon: LetterIcon,
     },
     {
         title: 'Employee',

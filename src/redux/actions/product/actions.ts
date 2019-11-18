@@ -3,6 +3,7 @@ import { AddProductAction, ADD_PRODUCT, DeleteProductAction, DELETE_PRODUCT, Edi
 import { getProductsAPI, addProductAPI, updateProductAPI, deleteProductAPI } from "./services"
 import { success, undefinedError } from "../../../constant"
 
+import '../employee/services'
 
 export const addProduct = (product: IProduct): AddProductAction =>({
     type: ADD_PRODUCT,
