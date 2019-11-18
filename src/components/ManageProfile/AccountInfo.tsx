@@ -46,7 +46,6 @@ export const AccountInfo = () => {
                     message.success('change password success', 1)
                 }).catch(function (error) {
                     // An error happened.
-                    debugger
                     hiden()
                     message.error('change password failed', 1)
                 });

@@ -18,7 +18,6 @@ export const authAPI = async (email: string, password: string) => {
                 createAt: doc.data().createAt.toDate(),
                 updateAt: doc.data().updateAt.toDate()
             }
-            debugger
             if (employee.isDeleted === true)
                 
                 throw new UserException();
