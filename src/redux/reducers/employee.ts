@@ -32,6 +32,7 @@ export const employeeReducer = (
             }
         case EDIT_EMPLOYEE:
             const index = getEmployeeIndexById(state.items, action.payload.id)
+            if(index === -1) return state
             let newItems = [...state.items]
             newItems.splice(index, 1, action.payload)
             return {

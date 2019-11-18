@@ -4,12 +4,12 @@ import { PrivateRoute } from '../routes/PrivateRoute'
 //path
 export const productPath = '/a/product'
 export const employeePath = '/a/employee'
+export const profilePath = '/a/user-profile'
 export const productCategoryPath = '/a/type/product-category'
 export const vipPath = '/a/type/vip'
 export const discountPath = '/a/type/discount'
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
-const Test = lazy(() => import('../pages/TestFirebase/TestFirebase'))
 const ProductPage = lazy(() => import('../redux/container/Product'))
 const ProductCategoryPage = lazy(() => import('../redux/container/ProductCategory'))
 const VIPPage = lazy(() => import('../redux/container/VIP'))
@@ -17,6 +17,7 @@ const DiscountPage = lazy(() => import('../redux/container/Disccount'))
 const ConstantTypePage = lazy(() => import('../redux/container/ConstantType'))
 const EmployeePage = lazy(() => import('../redux/container/Employee'))
 const LoginPage = lazy(() => import('../pages/Login/Login'))
+const ProfilePage = lazy(() => import('../pages/Profile/Profile'))
 
 export const routes = [
     {
@@ -63,16 +64,16 @@ export const routes = [
                 component: ConstantTypePage
             },
             {
-                path: '/a/test',
-                component: Test,
-            },
-            {
                 path: '/a/product',
                 component: ProductPage
             },
             {
                 path: '/a/employee',
                 component: EmployeePage
+            },
+            {
+                path: '/a/user-profile',
+                component: ProfilePage
             }
         ]
     }

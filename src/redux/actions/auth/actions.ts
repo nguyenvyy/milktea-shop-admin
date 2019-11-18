@@ -4,7 +4,7 @@ import { authAPI, signOutAPI } from "./services";
 
 const requestAuth = (): RequestAuthAction => ({type: REQUEST_AUTH});
 const stopRequestAuth = (): StopRequestAuthAction => ({type: STOP_REQUEST_AUTH})
-const receiveInfo = (employee: IEmployee): ReceiveInfoAction => ({type: RECEIVE_INFO, payload: employee})
+export const receiveInfo = (employee: IEmployee): ReceiveInfoAction => ({type: RECEIVE_INFO, payload: employee})
 const clearUser = (): ClearUserAction => ({type: CLEAR_USER})
 
 export const authenticateUser = (email: string, password: string) => (dispatch: any) => {
