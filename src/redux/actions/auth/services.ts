@@ -3,8 +3,11 @@ import { collections } from "../../../constant/FirebaseEnum"
 import { IEmployee } from "../../../model/IEmployee";
 
 class UserException {
-        message =  "The user may have been stoped";
-        status = 401;
+    message = "Your account has been banned";
+    status = 401;
+}
+class ErrorException {
+    status = 400;
 }
 
 export const authAPI = async (email: string, password: string) => {
@@ -19,12 +22,14 @@ export const authAPI = async (email: string, password: string) => {
                 updateAt: doc.data().updateAt.toDate()
             }
             if (employee.isDeleted === true)
-                
                 throw new UserException();
             else
                 return {
                     status: 200,
-                    employee }
+                    employee
+                }
+        } else {
+            throw new ErrorException();
         }
     } catch (error) {
         return error
@@ -34,7 +39,7 @@ export const authAPI = async (email: string, password: string) => {
 export const signOutAPI = async () => {
     try {
         FirebaseServices.auth.signOut()
-        return {status: 200, message: "Sign out success"}
+        return { status: 200, message: "Sign out success" }
     } catch (error) {
         return error
     }
