@@ -16,11 +16,12 @@ export interface IOrderFromCusTomer {
         code : string
         value: number
     }
+    idEmployee?: string
     updateAt?: Date
 }
 
 export interface IOrderDetail {
-    idProduct: string,
+    id: string,
     count: number,
     foodPrice: number
 }

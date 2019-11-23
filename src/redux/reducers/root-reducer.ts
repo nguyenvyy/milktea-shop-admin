@@ -6,6 +6,7 @@ import { vipReducer } from './vip'
 import { discountReducer } from './discount'
 import { constantTypeReducer } from './constant-type'
 import { employeeReducer } from './employee'
+import { membershipReducer } from './membership'
 
 
 
@@ -16,7 +17,8 @@ export const rootReducer = combineReducers({
     vip: vipReducer,
     discount: discountReducer,
     constantType: constantTypeReducer,
-    employee: employeeReducer
+    employee: employeeReducer,
+    membership: membershipReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

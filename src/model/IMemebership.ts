@@ -12,11 +12,10 @@ export interface IMembership {
     createAt?: Date
     updateAt?: Date
     isDeleted: boolean // default false
-    cart: ICartDetail[]
 }
 
 export interface ICartDetail {
-    idProduct: string
+    id: string
     price: number
     count: number
 }

@@ -9,6 +9,7 @@ export const profilePath = '/a/user-profile'
 export const productCategoryPath = '/a/type/product-category'
 export const vipPath = '/a/type/vip'
 export const discountPath = '/a/type/discount'
+export const membershipPath = '/a/membership'
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
 const ProductPage = lazy(() => import('../redux/container/Product'))
@@ -19,7 +20,7 @@ const ConstantTypePage = lazy(() => import('../redux/container/ConstantType'))
 const EmployeePage = lazy(() => import('../redux/container/Employee'))
 const LoginPage = lazy(() => import('../pages/Login/Login'))
 const ProfilePage = lazy(() => import('../pages/Profile/Profile'))
-
+const MembershipPage = lazy(() => import('../redux/container/Membership'))
 export const routes = [
     {
         path: '/',
@@ -76,6 +77,10 @@ export const routes = [
             {
                 path: '/a/user-profile',
                 component: ProfilePage
+            },
+            {
+                path: '/a/membership',
+                component: MembershipPage
             }
         ]
     }

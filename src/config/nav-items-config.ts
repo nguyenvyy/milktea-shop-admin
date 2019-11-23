@@ -44,10 +44,10 @@ export const navItems = [
         CollapsedIcon: LetterIcon,
     },
     {
-        title: 'Customer',
-        shortHand: 'C',
+        title: 'Membership',
+        shortHand: 'M',
         Component: MenuItem,
-        to: '/a/customer',
+        to: '/a/membership',
         CollapsedIcon: LetterIcon,
     },
     {

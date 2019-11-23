@@ -4,7 +4,7 @@ export enum collections{
     feedbacks = 'feedbacks',
     orders = 'orders',
     employees = 'employees',
-    membership = 'membership',
+    memberships = 'memberships',
     types = 'types',
 }
 
