@@ -40,11 +40,16 @@ export const realtimeUpdateProcessingOrders = () => (dispatch: Dispatch) => {
 
             querySnap.docChanges().forEach(function (change) {
                 const data: any = change.doc.data()
-                const order: IOrder = {
+                let order: IOrder = {
                     ...data,
                     createAt: data.createAt.toDate(),
                     updateAt: data.updateAt.toDate(),
                 }
+
+                if(order.paidAt !== undefined) {
+                    order.paidAt = data.paidAt.toDate()
+                }
+
                 if (change.type === "added") {
                     newOrders.push(order)
                 }
