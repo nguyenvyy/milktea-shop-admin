@@ -25,12 +25,16 @@ export const getEmployeesAPI = async () => {
 
 export const addEmployeeAPI = async (employee: IEmployee) => {
     try {
-        await FirebaseServices.auth.createUserWithEmailAndPassword(employee.email, '123456')
-        const docRef = FirebaseServices.db.collection(collections.employees).doc(employee.email)
-        const id = docRef.id
-        const newemployee = { ...employee, id, createAt: new Date(), updateAt: new Date() }
-        await docRef.set(newemployee)
-        return newemployee
+        const resSignUp = await FirebaseServices.auth.createUserWithEmailAndPassword(employee.email, '123456')
+        if(resSignUp.user !== null) {
+            const docRef = FirebaseServices.db.collection(collections.employees).doc(resSignUp.user.uid)
+            const id = docRef.id
+            const newemployee = { ...employee, id, createAt: new Date(), updateAt: new Date() }
+            await docRef.set(newemployee)
+            return newemployee
+        } else {
+            throw new Error('dont create ')
+        }
     } catch (error) {
         return [error, undefinedError]
     }

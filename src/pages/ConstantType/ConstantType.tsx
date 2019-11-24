@@ -3,7 +3,7 @@ import './ConstantType.scss'
 import { Header } from "../../components/common/Header/Header";
 import Table, { ColumnProps } from "antd/lib/table";
 import { IRole, IPaymentMethod, IOrderState } from "../../model/constant-types-interface";
-import { Badge } from "antd";
+import { Badge, Icon } from "antd";
 const ConstantType = ({
     isFetching,
     roles,
@@ -51,7 +51,21 @@ const ConstantType = ({
             title: 'Can Feedback',
             dataIndex: 'canFeedback',
             key: 'canFeedback',
-            render: (canFeedback: boolean) => canFeedback ? 'Có thể' : 'Không',
+            render: (value: boolean) => value ? <Icon style={{color: '#64dd17'}} type="check" /> : <Icon style={{color: 'red'}}  type="close" /> ,
+            align: "center"
+        },
+        {
+            title: 'Can Cancel',
+            dataIndex: 'canCancel',
+            key: 'canCancel',
+            render: (value: boolean) => value ? <Icon style={{color: '#64dd17'}} type="check" /> : <Icon style={{color: 'red'}}  type="close" /> ,
+            align: "center"
+        },
+        {
+            title: 'Can Return',
+            dataIndex: 'canReturn',
+            key: 'canReturn',
+            render: (value: boolean) => value ? <Icon style={{color: '#64dd17'}} type="check" /> : <Icon style={{color: 'red'}}  type="close" /> ,
             align: "center"
         }
     ];

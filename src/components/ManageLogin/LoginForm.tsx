@@ -42,6 +42,9 @@ export const LoginForm = ({ isLoading }: any) => {
                         localStorage.setItem('user-olamilktea', JSON.stringify(user))
                     }
                     break;
+                case 401:
+                    message.error(res.message)
+                    break;
                 default:
                     message.error('Email or passowrd is incorrect')
                     break;

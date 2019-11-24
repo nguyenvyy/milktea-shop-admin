@@ -28,7 +28,7 @@ export const EmployeeDetail = ({
                                     <Descriptions.Item label="Name" span={3} >{employee.name}</Descriptions.Item>
                                     <Descriptions.Item label="Email" span={3} >{employee.email}</Descriptions.Item>
                                     <Descriptions.Item label="Point" span={1} >{formatVND(employee.point)} </Descriptions.Item>
-                                    <Descriptions.Item label="Orders" span={1} >{formatVND(employee.point)} </Descriptions.Item>
+                                    <Descriptions.Item label="Orders" span={1} >{formatVND(employee.orderCount)} </Descriptions.Item>
                                     <Descriptions.Item label="Role" span={1} >{role.name}</Descriptions.Item>
                                     <Descriptions.Item label="Birthday" span={3} >{moment(employee.birthday, formatDate).format(formatDate)}</Descriptions.Item>
                                     <Descriptions.Item label="Status" span={3}>
