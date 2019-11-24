@@ -6,7 +6,7 @@ import { Modal, Descriptions, Badge, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { IMembership } from '../../model/IMemebership';
-import { membershipPath } from '../../config/route-config';
+import { membershipPath, employeePath } from '../../config/route-config';
 import { formatDate, status } from '../../constant';
 import { RootState } from '../../redux/reducers/root-reducer';
 import { fetchConstantTypes } from '../../redux/actions/constant-type/actions';
@@ -94,6 +94,9 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
 
     // config table
     const [pagination, setPagination] = useState({ pageSize: 10, current: 0 });
+    const onChangePage = (pagination: any) => {
+        setPagination(pagination)
+    }
     const columns: ColumnProps<IOrder>[] = [
         {
             title: '#',
@@ -164,7 +167,9 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
             align: 'center',
             width: 240,
             dataIndex: 'idEmployee',
-            render: idEmployee => idEmployee !== undefined ? <Tag color="green"> {idEmployee} </Tag> : <Tag color="red"> Chưa có nhân viên xử lý</Tag>
+            render: idEmployee => idEmployee !== undefined ? 
+                <Tag style={{cursor: 'pointer'}} onClick={() => goEmployee(idEmployee)} className="pointer" color="green"> {idEmployee} </Tag> : 
+                <Tag color="red"> Chưa có nhân viên xử lý</Tag>
         },
         {
             title: 'Disscount',
@@ -175,11 +180,7 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
 
     ]
 
-
-    const onChangePage = (pagination: any) => {
-        setPagination(pagination)
-    }
-
+    // get vip detail by id
     const vip = useMemo(() => {
         if (membership !== undefined && store.vips.length !== 0) {
             const vipIncre = store.vips.sort((a, b) => b.point - a.point)
@@ -195,6 +196,11 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
 
     }, [membership, store.vips])
 
+    // go employee detail
+    const goEmployee = (employeeId: string) => {
+        history.push(`${employeePath}/detail/${employeeId}`)
+        
+    }
 
     return membership === undefined ? (
         <Redirect to={membershipPath} />
