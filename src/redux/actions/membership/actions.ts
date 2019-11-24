@@ -40,14 +40,10 @@ export const realtimeUpdateMemberships = () => (dispatch: Dispatch) => {
         if(updatedMemberships.length > 0) {
             dispatch(updateMemberships(updatedMemberships))
         }
+
         
     })
     return membersipListener
 }
-
-export type RealtimeUpdateMembershipsType = typeof realtimeUpdateMemberships
-
-export type ReceiveMembershipsType = typeof receiveMemberships
-
 
 

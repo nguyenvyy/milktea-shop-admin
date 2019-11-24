@@ -7,6 +7,7 @@ import { discountReducer } from './discount'
 import { constantTypeReducer } from './constant-type'
 import { employeeReducer } from './employee'
 import { membershipReducer } from './membership'
+import { processingOrderReducer } from './processing-order'
 
 
 
@@ -18,7 +19,7 @@ export const rootReducer = combineReducers({
     discount: discountReducer,
     constantType: constantTypeReducer,
     employee: employeeReducer,
-    membership: membershipReducer
+    membership: membershipReducer,
+    processingOrder: processingOrderReducer
 })
-
 export type RootState = ReturnType<typeof rootReducer>
