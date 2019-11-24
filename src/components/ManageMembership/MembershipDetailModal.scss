@@ -1,0 +1,9 @@
+.loading-center {
+    top: 50%;
+    position: absolute;
+    left: 60%;
+    .ant-spin-dot-item{
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
