@@ -11,7 +11,7 @@ import { fetchConstantTypes } from '../../redux/actions/constant-type/actions'
 import { fetchVIPs } from '../../redux/actions/vip/actions'
 import { IOrderState } from '../../model/constant-types-interface'
 import { formatVND } from '../utils'
-import { ProducListtInOrder } from './ProducListtInOrder'
+import { ProductListtInOrder } from './ProductListtInOrder'
 import { membershipPath, processingOrderPath } from '../../config/route-config'
 import { MembershipDetailModal } from '../ManageMembership/MembershipDetailModal'
 
@@ -89,7 +89,7 @@ export const ProcessingOrderList = () => {
     // end handle search by property
 
     // table config
-    const [pagination, setPagination] = useState({ pageSize: 10, current: 1 });
+    const [pagination, setPagination] = useState({ pageSize: 13, current: 1 });
     const onChangePage = (pagination: any) => {
         setPagination(pagination)
     }
@@ -163,7 +163,7 @@ export const ProcessingOrderList = () => {
     return (
         <div>
             <Table
-                expandedRowRender={ProducListtInOrder}
+                expandedRowRender={ProductListtInOrder}
                 pagination={pagination}
                 onChange={onChangePage}
                 size="small"

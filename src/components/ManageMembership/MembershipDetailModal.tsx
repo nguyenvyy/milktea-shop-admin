@@ -19,7 +19,7 @@ import { LoadingAdvance, Loading, LoadingFit } from '../common/Loading/Loading';
 import { ColumnProps } from 'antd/lib/table';
 import { formatVND } from '../utils';
 import { IOrderState, IPaymentMethod } from '../../model/constant-types-interface';
-import { ProducListtInOrder } from '../ManageProcessingOrder/ProducListtInOrder';
+import { ProductListtInOrder } from '../ManageProcessingOrder/ProductListtInOrder';
 const { Item } = Descriptions;
 
 export const MembershipDetailModal = ({ location: { state }, history, match }: RouteComponentProps) => {
@@ -240,7 +240,7 @@ export const MembershipDetailModal = ({ location: { state }, history, match }: R
                 <Item label="Orders" >
                     <LoadingAdvance loading={orders === null ? true : false}>
                         <Table
-                            expandedRowRender={ProducListtInOrder}
+                            expandedRowRender={ProductListtInOrder}
                             pagination={pagination}
                             onChange={onChangePage}
                             size="small"
