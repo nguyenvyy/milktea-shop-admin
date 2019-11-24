@@ -20,7 +20,7 @@ const ConstantTypePage = lazy(() => import('../redux/container/ConstantType'))
 const EmployeePage = lazy(() => import('../redux/container/Employee'))
 const LoginPage = lazy(() => import('../pages/Login/Login'))
 const ProfilePage = lazy(() => import('../pages/Profile/Profile'))
-const MembershipPage = lazy(() => import('../redux/container/Membership'))
+const MembershipPage = lazy(() => import('../pages/Membership/Membership'))
 export const routes = [
     {
         path: '/',
