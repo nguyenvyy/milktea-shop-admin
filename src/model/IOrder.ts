@@ -1,4 +1,4 @@
-export interface IOrderFromCusTomer {
+export interface IOrder {
     id: string
     idPaymentMethod: string
     idState: string
@@ -10,18 +10,19 @@ export interface IOrderFromCusTomer {
     detail: IOrderDetail[]
     priceTotal: number
     createAt: Date
-    paidAt: Date
-    idMembership?: string
+    updateAt: Date
+    paidAt?: Date
     disscount? : {
+        id: string
         code : string
         value: number
     }
+    idMembership?: string
     idEmployee?: string
-    updateAt?: Date
 }
 
 export interface IOrderDetail {
     id: string,
     count: number,
-    foodPrice: number
+    price: number
 }

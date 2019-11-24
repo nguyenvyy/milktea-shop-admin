@@ -9,8 +9,8 @@ export interface IMembership {
     point: number // default 0
     numberOfCancels: number // default 0
     numberOfReturns: number // default 0
-    createAt?: Date
-    updateAt?: Date
+    createAt: Date
+    updateAt: Date
     isDeleted: boolean // default false
 }
 

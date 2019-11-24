@@ -27,7 +27,7 @@ export const EditVIP = ({
 
     const formValid = useMemo(() => {
         const validName = name !== ''
-        const validPoint = point > 0
+        const validPoint = point >= 0
         return {
             name: validName,
             point: validPoint,

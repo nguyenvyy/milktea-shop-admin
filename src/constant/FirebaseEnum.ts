@@ -18,6 +18,11 @@ export enum types_docs {
     order_state = 'order_state',
     payment_method = 'payment_method',
 }
+
+export enum order_docs {
+    processing = 'processing',
+    processed = 'processed'
+}
 export enum sub_collections {
     types = 'all'
 }
