@@ -1,0 +1,18 @@
+.processing-order {
+    &__wrapper {
+        padding: 10px 10px;
+        display: flex;
+        & > * {
+            flex:1 100%;
+        }
+        &-left {
+            order: 1;
+        }
+        &-right {
+            order: 2;
+            flex-shrink: 2;
+        }
+        
+    }
+    
+}
