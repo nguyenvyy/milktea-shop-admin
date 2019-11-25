@@ -3,7 +3,7 @@ import './ConstantType.scss'
 import { Header } from "../../components/common/Header/Header";
 import Table, { ColumnProps } from "antd/lib/table";
 import { IRole, IPaymentMethod, IOrderState } from "../../model/constant-types-interface";
-import { Badge, Icon } from "antd";
+import { Badge, Icon, Tag } from "antd";
 const ConstantType = ({
     isFetching,
     roles,
@@ -40,6 +40,13 @@ const ConstantType = ({
         },
     ];
     const columnsorderStates: ColumnProps<IOrderState>[] = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+            align: 'center',
+            render: id => <Tag color="green">{id}</Tag>
+        },
         {
             title: 'Name',
             dataIndex: 'name',
