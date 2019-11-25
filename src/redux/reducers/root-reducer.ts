@@ -8,6 +8,7 @@ import { constantTypeReducer } from './constant-type'
 import { employeeReducer } from './employee'
 import { membershipReducer } from './membership'
 import { processingOrderReducer } from './processing-order'
+import { processedOrderReducer } from './processed-order'
 
 
 
@@ -20,6 +21,7 @@ export const rootReducer = combineReducers({
     constantType: constantTypeReducer,
     employee: employeeReducer,
     membership: membershipReducer,
-    processingOrder: processingOrderReducer
+    processingOrder: processingOrderReducer,
+    processedOrder: processedOrderReducer
 })
 export type RootState = ReturnType<typeof rootReducer>
