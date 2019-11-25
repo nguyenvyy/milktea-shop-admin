@@ -71,7 +71,7 @@ const Employee = ({
                         <Route path={`${employeePath}/detail/:id`} render={props => {
                             const id = props.match.params.id;
                             const employee: IEmployee = employees.find((item: any) => item.id === id)
-                            const role: IRole = roles.find((item: any) => item.id === employee.idRole)
+                            const role: IRole = employee ? roles.find((item: any) => item.id === employee.idRole) : undefined
                             return (
                                 <EmployeeDetail
                                     employee={employee}

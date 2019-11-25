@@ -1,35 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo } from 'react';
-import { RouteComponentProps, Redirect } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import moment from 'moment';
 import { Modal, Descriptions, Badge, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 
+import './MembershipDetailModal.scss'
 import { IMembership } from '../../model/IMemebership';
-import { membershipPath } from '../../config/route-config';
+import { employeePath } from '../../config/route-config';
 import { formatDate, status } from '../../constant';
 import { RootState } from '../../redux/reducers/root-reducer';
 import { fetchConstantTypes } from '../../redux/actions/constant-type/actions';
 import { fetchVIPs } from '../../redux/actions/vip/actions';
-import { IOrder, IOrderDetail } from '../../model/IOrder';
+import { IOrder } from '../../model/IOrder';
 import { FirebaseServices } from '../../services/firebase';
 import { collections, order_docs, sub_collections } from '../../constant/FirebaseEnum';
-import { LoadingAdvance } from '../common/Loading/Loading';
+import { LoadingAdvance, LoadingFit } from '../common/Loading/Loading';
 import { ColumnProps } from 'antd/lib/table';
 import { formatVND } from '../utils';
 import { IOrderState, IPaymentMethod } from '../../model/constant-types-interface';
+import { ProductListtInOrder } from '../ManageProcessingOrder/ProductListtInOrder';
 const { Item } = Descriptions;
 
-const OrderDetail = (order: IOrder) => (
-    <div className="d-flex-center">
-        <ul>
-            {order.detail.map((value: IOrderDetail, index) => <li key={index}>  FoodId: <Tag color="green"> {value.id} </Tag>{` - ${formatVND(value.price)} x ${value.count}`}</li>)}
-        </ul>
-    </div>
-)
-
-export const MembershipDetailModal = ({ location: { state }, history }: RouteComponentProps) => {
-    const membership: IMembership = state;
+export const MembershipDetailModal = ({ location: { state }, history, match }: RouteComponentProps) => {
     const dispatch = useDispatch()
     const store = useSelector((state: RootState) => (
         {
@@ -49,6 +42,27 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
             dispatch(fetchVIPs())
         }
         //
+    }, [])
+
+    // handle fetch membership when state = undefind
+    const [membership, setMembership] = useState<IMembership | undefined>(undefined)
+    useEffect(() => {
+        if (state !== undefined) {
+            setMembership(state)
+        } else {
+            const params: any = match.params
+            FirebaseServices.db.collection(collections.memberships).doc(params.id).get()
+                .then(doc => {
+                    const data: any = doc.data();
+                    const newMembership: IMembership = {
+                        ...data,
+                        birthday: data.birthday.toDate(),
+                        createAt: data.createAt.toDate(),
+                        updateAt: data.updateAt.toDate(),
+                    }
+                    setMembership(newMembership)
+                })
+        }
     }, [])
 
     const [orders, setOrders] = useState<IOrder[] | null>(null)
@@ -82,25 +96,28 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
             })
 
         }
-    }, [])
+    }, [membership])
     // handle open/close modal effect
     const [visible, setVisible] = useState(true);
     const close = () => {
         setVisible(false);
         setTimeout(() => {
-            history.push(membershipPath);
+            history.goBack();
         }, 200);
     };
 
     // config table
-    const [pagination, setPagination] = useState({ pageSize: 10, current: 0 });
+    const [pagination, setPagination] = useState({ pageSize: 10, current: 1 });
+    const onChangePage = (pagination: any) => {
+        setPagination(pagination)
+    }
     const columns: ColumnProps<IOrder>[] = [
         {
             title: '#',
             align: 'center',
             dataIndex: '#',
             width: 50,
-            render: (text, record, index) => index + pagination.current * pagination.pageSize
+            render: (text, record, index) => index + (pagination.current - 1) * pagination.pageSize
         },
         {
             title: 'ID',
@@ -164,7 +181,9 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
             align: 'center',
             width: 240,
             dataIndex: 'idEmployee',
-            render: idEmployee => idEmployee !== undefined ? <Tag color="green"> {idEmployee} </Tag> : <Tag color="red"> Chưa có nhân viên xử lý</Tag>
+            render: idEmployee => idEmployee !== undefined ?
+                <Tag style={{ cursor: 'pointer' }} onClick={() => goEmployee(idEmployee)} className="pointer" color="green"> {idEmployee} </Tag> :
+                <Tag color="red"> Chưa có nhân viên xử lý</Tag>
         },
         {
             title: 'Disscount',
@@ -175,11 +194,7 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
 
     ]
 
-
-    const onChangePage = (pagination: any) => {
-        setPagination(pagination)
-    }
-
+    // get vip detail by id
     const vip = useMemo(() => {
         if (membership !== undefined && store.vips.length !== 0) {
             const vipIncre = store.vips.sort((a, b) => b.point - a.point)
@@ -195,44 +210,47 @@ export const MembershipDetailModal = ({ location: { state }, history }: RouteCom
 
     }, [membership, store.vips])
 
+    // go employee detail
+    const goEmployee = (employeeId: string) => {
+        history.push(`${employeePath}/detail/${employeeId}`)
 
-    return membership === undefined ? (
-        <Redirect to={membershipPath} />
-    ) : (
-            <Modal width="98%" title={membership.name} visible={visible} onCancel={close} onOk={close}>
-                <Descriptions bordered>
-                    <Item label="Email">{membership.email}</Item>
-                    <Item label="Phone">{membership.phoneNumber}</Item>
-                    <Item label="Birthday">{moment(membership.birthday).format(formatDate)}</Item>
-                    <Item label="Point - Vip">{membership.point} - {vip}</Item>
-                    <Item label="Cancels">{membership.numberOfCancels}</Item>
-                    <Item label="Returns">{membership.numberOfReturns}</Item>
-                    <Item label="Address" span={3}>
-                        {membership.address}
-                    </Item>
-                    <Item label="Status">
-                        {!membership.isDeleted ? (
-                            <Badge status="success" text={status.active} />
-                        ) : (
-                                <Badge status="error" text={status.stop} />
-                            )}
-                    </Item>
-                    <Item label="Register at">{moment(membership.createAt).format(formatDate)}</Item>
-                    <Item label="Update at">{moment(membership.updateAt).format(formatDate)}</Item>
-                    <Item label="Orders" >
-                        <LoadingAdvance loading={orders === null ? true : false}>
-                            <Table
-                                expandedRowRender={OrderDetail}
-                                pagination={pagination}
-                                onChange={onChangePage}
-                                size="small"
-                                rowKey={record => record.id}
-                                columns={columns}
-                                dataSource={orders !== null ? orders : undefined}
-                            />
-                        </LoadingAdvance>
-                    </Item>
-                </Descriptions>
-            </Modal>
-        );
+    }
+
+    return <Modal width="98%" title={'Membership Detail'} visible={visible} onCancel={close} onOk={close}>
+        {membership !== undefined ? (
+            <Descriptions bordered title={membership.name}>
+                <Item label="Email">{membership.email}</Item>
+                <Item label="Phone">{membership.phoneNumber}</Item>
+                <Item label="Birthday">{moment(membership.birthday).format(formatDate)}</Item>
+                <Item label="Point - Vip">{membership.point} - {vip}</Item>
+                <Item label="Cancels">{membership.numberOfCancels}</Item>
+                <Item label="Returns">{membership.numberOfReturns}</Item>
+                <Item label="Address" span={3}>
+                    {membership.address}
+                </Item>
+                <Item label="Status">
+                    {!membership.isDeleted ? (
+                        <Badge status="success" text={status.active} />
+                    ) : (
+                            <Badge status="error" text={status.stop} />
+                        )}
+                </Item>
+                <Item label="Register at">{moment(membership.createAt).format(formatDate)}</Item>
+                <Item label="Update at">{moment(membership.updateAt).format(formatDate)}</Item>
+                <Item label="Orders" >
+                    <LoadingAdvance loading={orders === null ? true : false}>
+                        <Table
+                            expandedRowRender={ProductListtInOrder}
+                            pagination={pagination}
+                            onChange={onChangePage}
+                            size="small"
+                            rowKey={record => record.id}
+                            columns={columns}
+                            dataSource={orders !== null ? orders : undefined}
+                        />
+                    </LoadingAdvance>
+                </Item>
+            </Descriptions>
+        ) : <LoadingFit />}
+    </Modal>
 };

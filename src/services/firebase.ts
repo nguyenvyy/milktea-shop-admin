@@ -8,6 +8,7 @@ firebase.initializeApp(firebaseConfig)
 export class FirebaseServices {
     static readonly db = firebase.firestore()
     static readonly auth = firebase.auth()
+    static readonly firestore = firebase.firestore
     /**
      * general
      * @returns LV1 SubCollection Ref

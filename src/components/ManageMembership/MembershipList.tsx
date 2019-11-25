@@ -10,9 +10,9 @@ import { membershipPath } from '../../config/route-config'
 import { FirebaseServices } from '../../services/firebase';
 import { collections } from '../../constant/FirebaseEnum';
 type MembershipProps = {
-    memberships: IMembership[],
-    loading: boolean,
-    realtimeUpdateMemberships: any,
+    memberships: IMembership[]
+    loading: boolean
+    realtimeUpdateMemberships: any
 }
 
 export const MembershipList = ({

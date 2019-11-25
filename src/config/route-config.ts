@@ -10,6 +10,17 @@ export const productCategoryPath = '/a/type/product-category'
 export const vipPath = '/a/type/vip'
 export const discountPath = '/a/type/discount'
 export const membershipPath = '/a/membership'
+export const orderPath = '/a/order'
+export const processingOrderPath = '/a/order/processing'
+export const processedOrderPath = '/a/order/processed'
+interface MyRoute {
+    path: string
+    to?: string
+    customRoute?: React.ReactNode
+    component?: React.ReactNode
+    exact?: boolean
+    routes?: Array<MyRoute>
+}
 
 const Admin = lazy(() => import('../layout/Admin/Admin'))
 const ProductPage = lazy(() => import('../redux/container/Product'))
@@ -21,7 +32,9 @@ const EmployeePage = lazy(() => import('../redux/container/Employee'))
 const LoginPage = lazy(() => import('../pages/Login/Login'))
 const ProfilePage = lazy(() => import('../pages/Profile/Profile'))
 const MembershipPage = lazy(() => import('../pages/Membership/Membership'))
-export const routes = [
+const ProcessingOrderPage = lazy(() => import('../pages/ProcessingOrder/ProcessingOrder'))
+const ProcessedOrderPage = lazy(() => import('../pages/ProcessedOrder/ProcessedOrder'))
+export const routes: Array<MyRoute> = [
     {
         path: '/',
         customRoute: Redirect,
@@ -42,6 +55,20 @@ export const routes = [
                 exact: true,
                 customRoute: Redirect,
                 to: '/a/product'
+            },
+            {
+                path: '/a/order',
+                customRoute: Redirect,
+                to: '/a/order/processing',
+                exact: true
+            },
+            {
+                path: '/a/order/processing',
+                component: ProcessingOrderPage
+            },
+            {
+                path: '/a/order/processed',
+                component: ProcessedOrderPage
             },
             {
                 path: '/a/type',

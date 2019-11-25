@@ -20,12 +20,12 @@ export const navItems = [
             {
                 title: 'Processing',
                 Component: MenuItem,
-                to: '/a/type/discount'
+                to: '/a/order/processing'
             },
             {
                 title: 'Processed',
                 Component: MenuItem,
-                to: '/a/type/product-category'
+                to: '/a/order/processed'
             },
         ]
     },

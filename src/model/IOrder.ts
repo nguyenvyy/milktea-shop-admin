@@ -1,24 +1,25 @@
 export interface IOrder {
-    id: string
-    idPaymentMethod: string
-    idState: string
+    id: string //
+    idPaymentMethod: string //
+    idState: string //
     receiverInfo: {
         name: string,
         address: string,
-        numberPhone: string
+        phoneNumber: string
     }
-    detail: IOrderDetail[]
-    priceTotal: number
-    createAt: Date
-    updateAt: Date
-    paidAt?: Date
-    disscount? : {
+    detail: IOrderDetail[] 
+    priceTotal: number //
+    disscount? : { //
         id: string
         code : string
         value: number
     }
-    idMembership?: string
+    createAt: Date //
+    updateAt: Date
+    paidAt?: Date
+    idMembership?: string //
     idEmployee?: string
+    require? : string
 }
 
 export interface IOrderDetail {
