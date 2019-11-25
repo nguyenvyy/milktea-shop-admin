@@ -5,7 +5,7 @@ export interface IOrder {
     receiverInfo: {
         name: string,
         address: string,
-        numberPhone: string
+        phoneNumber: string
     }
     detail: IOrderDetail[] 
     priceTotal: number //
@@ -19,6 +19,7 @@ export interface IOrder {
     paidAt?: Date
     idMembership?: string //
     idEmployee?: string
+    require? : string
 }
 
 export interface IOrderDetail {

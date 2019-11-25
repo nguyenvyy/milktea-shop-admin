@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo } from 'react';
-import { RouteComponentProps, Redirect } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import moment from 'moment';
 import { Modal, Descriptions, Badge, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 
 import './MembershipDetailModal.scss'
 import { IMembership } from '../../model/IMemebership';
-import { membershipPath, employeePath } from '../../config/route-config';
+import { employeePath } from '../../config/route-config';
 import { formatDate, status } from '../../constant';
 import { RootState } from '../../redux/reducers/root-reducer';
 import { fetchConstantTypes } from '../../redux/actions/constant-type/actions';
@@ -15,7 +15,7 @@ import { fetchVIPs } from '../../redux/actions/vip/actions';
 import { IOrder } from '../../model/IOrder';
 import { FirebaseServices } from '../../services/firebase';
 import { collections, order_docs, sub_collections } from '../../constant/FirebaseEnum';
-import { LoadingAdvance, Loading, LoadingFit } from '../common/Loading/Loading';
+import { LoadingAdvance, LoadingFit } from '../common/Loading/Loading';
 import { ColumnProps } from 'antd/lib/table';
 import { formatVND } from '../utils';
 import { IOrderState, IPaymentMethod } from '../../model/constant-types-interface';

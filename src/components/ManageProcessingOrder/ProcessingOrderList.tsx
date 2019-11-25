@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/reducers/root-reducer'
 import { realtimeUpdateProcessingOrders } from '../../redux/actions/processing-order/actions'
 import { Input, Button, Icon, Tag, Badge } from 'antd'
-import { NavLink, Link, Route } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
 import Table, { ColumnProps } from 'antd/lib/table'
 import { fetchConstantTypes } from '../../redux/actions/constant-type/actions'
-import { fetchVIPs } from '../../redux/actions/vip/actions'
 import { IOrderState } from '../../model/constant-types-interface'
 import { formatVND } from '../utils'
 import { ProductListtInOrder } from './ProductListtInOrder'
-import { membershipPath, processingOrderPath } from '../../config/route-config'
+import { processingOrderPath } from '../../config/route-config'
 import { MembershipDetailModal } from '../ManageMembership/MembershipDetailModal'
+import moment from 'moment'
 
 
 export const ProcessingOrderList = () => {
@@ -133,17 +133,25 @@ export const ProcessingOrderList = () => {
             render: priceTotal => formatVND(priceTotal)
         },
         {
-            title: 'Disscount',
+            title: 'Payment',
             align: 'center',
-            dataIndex: 'disscount',
-            render: disscount => disscount !== undefined ? formatVND(disscount) : <Tag color="red">Không có</Tag>
+            dataIndex: 'idPaymentMethod',
+            render: idPaymentMethod => {
+                if (constantType.paymentMethods.length > 0) {
+                    const result = constantType.paymentMethods.find(item => item.id === idPaymentMethod)
+                    if (result !== undefined) {
+                        return result.name
+                    }
+                }
+                return <Tag color="blue"> ...loading</Tag>
+            }
         },
         {
-            title: 'Membership',
+            title: 'Create at',
             align: 'center',
-            dataIndex: 'idMembership',
+            dataIndex: 'createAt',
             width: 180,
-            render: id => id ? <Link to={`${processingOrderPath}/membership/${id}`}><Tag color="green">{id}</Tag></Link>  : <Tag color="red">Không có</Tag>
+            render: createAt => moment(createAt).format('H:m - DD/MM')
         },
         {
             title: 'Action',
