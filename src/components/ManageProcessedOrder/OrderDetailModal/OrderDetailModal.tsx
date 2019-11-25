@@ -10,7 +10,6 @@ import { processedOrderPath, membershipPath, employeePath } from '../../../confi
 import { RootState } from '../../../redux/reducers/root-reducer'
 import { fetchConstantTypes } from '../../../redux/actions/constant-type/actions'
 import { fetchProducts } from '../../../redux/actions/product/actions'
-import { Header } from '../../common/Header/Header'
 import { formatVND } from '../../utils'
 import moment from 'moment'
 const { Item } = Descriptions
