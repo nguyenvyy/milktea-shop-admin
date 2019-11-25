@@ -1,39 +1,46 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import { IOrder } from '../../model/IOrder'
+import { NavLink, Route, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../redux/reducers/root-reducer'
-import { realtimeUpdateProcessingOrders } from '../../redux/actions/processing-order/actions'
-import { Input, Button, Icon, Tag, Badge } from 'antd'
-import { NavLink, Route } from 'react-router-dom'
 import Table, { ColumnProps } from 'antd/lib/table'
-import { fetchConstantTypes } from '../../redux/actions/constant-type/actions'
-import { IOrderState } from '../../model/constant-types-interface'
-import { formatVND } from '../utils'
-import { ProductListtInOrder } from './ProductListtInOrder'
-import { processingOrderPath } from '../../config/route-config'
-import { MembershipDetailModal } from '../ManageMembership/MembershipDetailModal'
+import { Icon, Button, Input, Tag, Badge, Tooltip } from 'antd'
 import moment from 'moment'
 
+import './ProcessedOrderList.scss'
+import { RootState } from '../../../redux/reducers/root-reducer'
+import { realtimeUpdateProcessedOrders } from '../../../redux/actions/processed-order/actions'
+import { fetchConstantTypes } from '../../../redux/actions/constant-type/actions'
+import { IOrder } from '../../../model/IOrder'
+import { IOrderState } from '../../../model/constant-types-interface'
+import { formatVND } from '../../utils'
+import { processedOrderPath, employeePath } from '../../../config/route-config'
+import { ProductListtInOrder } from '../../ManageProcessingOrder/ProductListtInOrder'
+import { MembershipDetailModal } from '../../ManageMembership/MembershipDetailModal'
 
-export const ProcessingOrderList = () => {
-    const dispatch = useDispatch();
-
-    const orders = useSelector((state: RootState) => state.processingOrder.items)
-    //connect realtime with processing orders: 
+export const ProcessedOrderList = () => {
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const orders = useSelector((state: RootState) => state.processedOrder.items)
     useEffect(() => {
         if (orders.length === 0) {
-            dispatch(realtimeUpdateProcessingOrders())
+            dispatch(realtimeUpdateProcessedOrders())
         }
-    }, [])
-
+    }, [orders.length, dispatch])
     const constantType = useSelector((state: RootState) => ({ ...state.constantType }))
-    //fetch data init for order detail: 
     useEffect(() => {
         if (constantType.roles.length === 0 && constantType.isFetching === false) {
             dispatch(fetchConstantTypes())
         }
-    }, [])
+    }, [dispatch, constantType.roles.length, constantType.isFetching])
+
+    // link to membersip detail
+    const goMembershipDetail = (id: string) => {
+        history.push(`${processedOrderPath}/membership/${id}`)
+    }
+    // link to employee detail
+    const goEmployeeDetail = (id: string) => {
+        history.push(`${employeePath}/detail/${id}`)
+    }
+
     // start handle search by property 
     const [search, setSearch] = useState({});
     const handleSearch = (selectedKeys: string[], confirm: any) => {
@@ -65,10 +72,10 @@ export const ProcessingOrderList = () => {
                     style={{ width: 90, marginRight: 8 }}
                 >
                     Search
-            </Button>
+                </Button>
                 <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
                     Reset
-            </Button>
+                </Button>
             </div>
         ),
         filterIcon: (filtered: boolean) => (
@@ -87,7 +94,6 @@ export const ProcessingOrderList = () => {
         }
     });
     // end handle search by property
-
     // table config
     const [pagination, setPagination] = useState({ pageSize: 13, current: 1 });
     const onChangePage = (pagination: any) => {
@@ -109,6 +115,30 @@ export const ProcessingOrderList = () => {
             width: 180,
             render: id => <Tag color="green">{id}</Tag>,
             ...getColumnSearchProps('id')
+        },
+        {
+            title: 'MemebershipID',
+            align: 'center',
+            dataIndex: 'idMembership',
+            width: 140,
+            render: id => id ? (
+                <Tooltip placement="right" title={id}>
+                    <Tag onClick={() => goMembershipDetail(id)} color="green">{id.slice(0, 7)}...</Tag>
+                </Tooltip>
+            ) : <Tag color="red">Không có</Tag>,
+            ...getColumnSearchProps('idMembership')
+        },
+        {
+            title: 'EmployeeID',
+            align: 'center',
+            dataIndex: 'idEmployee',
+            width: 140,
+            render: (id: string) => (
+                <Tooltip placement="right" title={id}>
+                    <Tag onClick={() => goEmployeeDetail(id)} color="green">{id.slice(0, 7)}...</Tag>
+                </Tooltip>
+            ),
+            ...getColumnSearchProps('idEmployee')
         },
         {
             title: 'State',
@@ -151,20 +181,28 @@ export const ProcessingOrderList = () => {
             align: 'center',
             dataIndex: 'createAt',
             width: 180,
-            render: createAt => moment(createAt).format('H:m - DD/MM')
+            render: createAt => moment(createAt).format('H:m - DD/MM/YYYY')
+        },
+        {
+            title: 'Paid at',
+            align: 'center',
+            dataIndex: 'paidAt',
+            width: 180,
+            render: (paidAt) => moment(paidAt).format('H:m - DD/MM/YYYY')
         },
         {
             title: 'Action',
+            align: 'center',
             render: (record: IOrder) => (
-                    <NavLink
+                <NavLink
                     activeStyle={{
                         color: '#52c41a'
                     }}
-                        to={{
-                            pathname: `${processingOrderPath}/detail/${record.id}`,
-                            state: record
-                        }}
-                    >view</NavLink>
+                    to={{
+                        pathname: `${processedOrderPath}/detail/${record.id}`,
+                        state: record
+                    }}
+                >view</NavLink>
             )
         }
     ]
@@ -179,9 +217,9 @@ export const ProcessingOrderList = () => {
                 columns={columns}
                 loading={orders.length === 0 ? true : false}
                 dataSource={orders.length > 0 ? orders : undefined}
-                
             />
-            <Route path={`${processingOrderPath}/membership/:id`} exact component={MembershipDetailModal} />
+            <Route path={`${processedOrderPath}/membership/:id`} exact component={MembershipDetailModal} />
+
         </div>
     )
 }

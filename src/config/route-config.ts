@@ -12,6 +12,7 @@ export const discountPath = '/a/type/discount'
 export const membershipPath = '/a/membership'
 export const orderPath = '/a/order'
 export const processingOrderPath = '/a/order/processing'
+export const processedOrderPath = '/a/order/processed'
 interface MyRoute {
     path: string
     to?: string
@@ -32,6 +33,7 @@ const LoginPage = lazy(() => import('../pages/Login/Login'))
 const ProfilePage = lazy(() => import('../pages/Profile/Profile'))
 const MembershipPage = lazy(() => import('../pages/Membership/Membership'))
 const ProcessingOrderPage = lazy(() => import('../pages/ProcessingOrder/ProcessingOrder'))
+const ProcessedOrderPage = lazy(() => import('../pages/ProcessedOrder/ProcessedOrder'))
 export const routes: Array<MyRoute> = [
     {
         path: '/',
@@ -63,6 +65,10 @@ export const routes: Array<MyRoute> = [
             {
                 path: '/a/order/processing',
                 component: ProcessingOrderPage
+            },
+            {
+                path: '/a/order/processed',
+                component: ProcessedOrderPage
             },
             {
                 path: '/a/type',

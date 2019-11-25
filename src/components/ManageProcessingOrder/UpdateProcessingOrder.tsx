@@ -18,12 +18,11 @@ import { LoadingFit } from '../common/Loading/Loading'
 
 const { Item } = Descriptions
 const LoadingTag = <Tag color="blue"> ...loading</Tag>
-export const UpdateProcessingOrder = ({ location: { state, pathname }, history }: RouteComponentProps) => {
+export const UpdateProcessingOrder = ({ location: { state }, history }: RouteComponentProps) => {
     const [order, setOrder] = useState<IOrder | undefined>(undefined)
     useEffect(() => {
         if (state !== undefined) {
             setOrder({ ...state })
-            console.log(state)
         }
     }, [state])
     const dispatch = useDispatch()
@@ -98,6 +97,7 @@ export const UpdateProcessingOrder = ({ location: { state, pathname }, history }
             const newOrder = { ...order }
             newOrder.updateAt = new Date()
             newOrder.idEmployee = employee.id
+            newOrder.idState = idState
             if (newOrder.paidAt === undefined) {
                 newOrder.paidAt = new Date()
             }
@@ -107,7 +107,7 @@ export const UpdateProcessingOrder = ({ location: { state, pathname }, history }
             ])
                 .then(_ => {
                     setLoadingChangeProcessedOrder(false)
-                    history.goBack()
+                    history.push(processingOrderPath)
                     updateOrderCountForEmployee(employee.id)
                     if (newOrder.idMembership !== undefined) {
                         updatePointForMembership(newOrder.idMembership, calculateExtraPoint(newOrder.priceTotal))
@@ -140,28 +140,10 @@ export const UpdateProcessingOrder = ({ location: { state, pathname }, history }
                                 <Item label="Payment method">
                                     {paymentMethod}
                                 </Item>
-                                <Item label="State">
+                                <Item label="State" span={1}>
                                     {orderState !== undefined ? <Badge color={orderState.color} text={orderState.name} /> : LoadingTag}
                                 </Item>
-                                <Item label="Receiver name">
-                                    {order.receiverInfo.name}
-                                </Item>
-                                <Item label="Receiver address">
-                                    {order.receiverInfo.address}
-                                </Item>
-                                <Item label="Receiver phone">
-                                    {order.receiverInfo.phoneNumber}
-                                </Item>
-                                <Item label="Create at">
-                                    {moment(order.createAt).format('H:mm:ss - DD/MM/YYYY')}
-                                </Item>
-                                <Item label="Update at">
-                                    {moment(order.updateAt).format('H:mm:ss - DD/MM/YYYY')}
-                                </Item>
-                                <Item label="Paid at">
-                                    {order.paidAt ? moment(order.paidAt).format('H:mm:ss - DD/MM/YYYY') : <Tag color='red'>Chưa thanh toán</Tag>}
-                                </Item>
-                                <Item label={<span>
+                                <Item span={2} label={<span>
                                     Membership ID
                             {order.idMembership && <Link to={`${processingOrderPath}/membership/${order.idMembership}`}>
                                         <Icon className="pointer" style={{ color: '#1890ff', marginLeft: '5px' }} type="eye" />
@@ -169,7 +151,25 @@ export const UpdateProcessingOrder = ({ location: { state, pathname }, history }
                                 </span>}>
                                     {order.idMembership ? <Tag color="green">{order.idMembership}</Tag> : <Tag color='red'>Không có</Tag>}
                                 </Item>
-                                <Item label="Require">
+                                <Item label="Create at" span={3}>
+                                    {moment(order.createAt).format('H:mm:ss - DD/MM/YYYY')}
+                                </Item>
+                                <Item label="Update at" span={3}>
+                                    {moment(order.updateAt).format('H:mm:ss - DD/MM/YYYY')}
+                                </Item>
+                                <Item label="Paid at" span={3} >
+                                    {order.paidAt ? moment(order.paidAt).format('H:mm:ss - DD/MM/YYYY') : <Tag color='red'>Chưa thanh toán</Tag>}
+                                </Item>
+                                <Item label="Receiver name" span={1}>
+                                    {order.receiverInfo.name}
+                                </Item>
+                                <Item label="Receiver phone" span={2}>
+                                    {order.receiverInfo.phoneNumber}
+                                </Item>
+                                <Item label="Receiver address" span={3}>
+                                    {order.receiverInfo.address}
+                                </Item>
+                                <Item label="Require" span={3}>
                                     {order.require ? order.require : <Tag color='red'>Không có</Tag>}
                                 </Item>
                                 <Item label="Products" span={3}>

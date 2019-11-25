@@ -26,7 +26,7 @@ export const realtimeUpdateProcessedOrders = () => (dispatch: Dispatch) => {
         .collection(collections.orders)
         .doc(order_docs.processed)
         .collection(sub_collections.types)
-        .orderBy('createAt', 'asc')
+        .orderBy('createAt', 'desc')
         .onSnapshot(querySnap => {
             let newOrders: Array<IOrder> = []
             let updatedOrders: Array<IUpdatedProcessedOrder> = []
