@@ -5,7 +5,7 @@ import { Header } from "../../common/Header/Header";
 import { Form, Select, Button, message } from "antd";
 
 import { IDiscount, Reward } from "../../../model/IDiscount";
-import { undefinedError, success } from "../../../constant";
+import { undefinedError } from "../../../constant";
 import { LoadingAdvance } from "../../common/Loading/Loading";
 import { RootState } from "../../../redux/reducers/root-reducer";
 import { fetchVIPs } from "../../../redux/actions/vip/actions";
@@ -130,7 +130,7 @@ export const GiveDiscount = ({
                 let resEdit = await dispatch(requestEditGiveCountDiscount(discount, validMembershipIds.length))
                 setIsGiving(false)
                 if(resEdit === undefinedError) {
-                    throw "Error";
+                    throw new Error();
                 }
                 message.success(`discount is gived for ${validMembershipIds.length} membership`)
             }
