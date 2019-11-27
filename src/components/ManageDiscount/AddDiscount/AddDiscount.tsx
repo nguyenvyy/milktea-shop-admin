@@ -9,7 +9,7 @@ export const AddDiscount = ({
     isFetching,
     requestAddDiscount,
 }: any) => {
-
+   
     const [discount, setDiscount] = useState({
         name: '',
         value: 0,
