@@ -131,6 +131,7 @@ export const ListEmployee = ({
     return (
         <div className="list-employee">
             <Table
+                size="small"
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}

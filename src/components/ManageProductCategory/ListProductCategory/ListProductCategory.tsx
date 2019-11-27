@@ -115,6 +115,7 @@ export const ListProductCategory = ({
     return (
         <div className="list-product-category">
             <Table
+                size="small"
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
