@@ -8,26 +8,21 @@ import { undefinedError, success } from "../../../constant";
 export const AddDiscount = ({
     isFetching,
     requestAddDiscount,
-    discounts
 }: any) => {
 
     const [discount, setDiscount] = useState({
         name: '',
         value: 0,
-        code: '',
-        minPoint: 0,
+        duration: 0,
     })
 
     const onchangeDiscount = ({ target: { name, value } }: any) => {
         let newValue = value
         switch (name) {
-            case 'code':
-                newValue = value.toUpperCase()
-                break;
             case 'value':
                 newValue = +value
                 break;
-            case 'minPoint':
+            case 'duration':
                 newValue = +value
                 break;
             default:
@@ -43,14 +38,12 @@ export const AddDiscount = ({
     const formValid = useMemo(() => {
         const validName = discount.name !== ''
         const validValue = discount.value > 0
-        const validCode = discount.code !== ''
-        const validPoint = discount.minPoint > 0
+        const validPoint = discount.duration > 0
         return {
             name: validName,
-            minPoint: validPoint,
+            duration: validPoint,
             value: validValue,
-            code: validCode,
-            valid: validName && validValue && validCode && validPoint
+            valid: validName && validValue && validPoint
         }
     }, [discount])
 
@@ -58,26 +51,21 @@ export const AddDiscount = ({
         const newDiscount: IDiscount = {
             id: '',
             isDeleted: false,
+            givedCount: 0,
             ...discount
         }
-        const isExistName = discounts.find((item: any) => item.code === newDiscount.code)
-        if (isExistName) {
-            message.error("code existed", 1)
-        } else {
-            requestAddDiscount(newDiscount).then((status: number) => {
-                switch (status) {
-                    case undefinedError:
-                        message.error("add fail", 1)
-                        break;
-                    case success:
-                        message.success(`${newDiscount.name} added`, 1)
-                        break;
-                    default:
-                        break;
-                }
-            })
-        }
-
+        requestAddDiscount(newDiscount).then((status: number) => {
+            switch (status) {
+                case undefinedError:
+                    message.error("add fail", 1)
+                    break;
+                case success:
+                    message.success(`${newDiscount.name} added`, 1)
+                    break;
+                default:
+                    break;
+            }
+        })
     }
 
 
@@ -100,19 +88,12 @@ export const AddDiscount = ({
                     >
                         <Input type="number" value={discount.value} onChange={onchangeDiscount} name="value" />
                     </Form.Item>
-                    <Form.Item label="Point"
-                        help={!formValid.minPoint ? 'point is not valid' : ''}
+                    <Form.Item label="Duration (day)"
+                        help={!formValid.duration ? 'duration is not valid' : ''}
                         hasFeedback
-                        validateStatus={!formValid.minPoint ? 'error' : 'success'}
+                        validateStatus={!formValid.duration ? 'error' : 'success'}
                     >
-                        <Input type="number" value={discount.minPoint} onChange={onchangeDiscount} name="minPoint" />
-                    </Form.Item>
-                    <Form.Item label="Code"
-                        help={!formValid.code ? 'code is not valid' : ''}
-                        hasFeedback
-                        validateStatus={!formValid.code ? 'error' : 'success'}
-                    >
-                        <Input value={discount.code} onChange={onchangeDiscount} name="code" />
+                        <Input type="number" value={discount.duration} onChange={onchangeDiscount} name="duration" />
                     </Form.Item>
                     <Form.Item className="add-discount__form-button">
                         <Button

@@ -96,7 +96,18 @@ export const MembershipList = ({
     // end handle search by property 
 
     // start table config
+    const [pagination, setPagination] = useState({ pageSize: 10, current: 1 });
+    const onChangePage = (pagination: any) => {
+        setPagination(pagination)
+    }
     const columns: ColumnProps<IMembership>[] = [
+        {
+            title: '#',
+            align: 'center',
+            dataIndex: '#',
+            width: 50,
+            render: (text, record, index) => index + (pagination.current - 1) * pagination.pageSize
+        },
         {
             title: 'Name',
             dataIndex: 'name',
@@ -186,7 +197,9 @@ export const MembershipList = ({
     // end table config
     return (
         <Table
-            pagination={{ pageSize: 9 }}
+            size="small"
+            pagination={pagination}
+            onChange={onChangePage}
             rowKey={record => record.id}
             dataSource={memberships}
             columns={columns}

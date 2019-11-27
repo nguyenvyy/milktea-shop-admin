@@ -1,6 +1,6 @@
 import { IDiscount } from "../../../model/IDiscount";
 import { AddDiscountAction, ADD_DISCOUNT, DeleteDiscountAction, DELETE_DISCOUNT, EditDiscountAction, EDIT_DISCOUNT, RequestDiscountAction, REQUEST_DISCOUNT, STOP_REQUEST_DISCOUNT, StopRequestDiscountAction, ReceiveDiscountsAction, RECEIVE_DISCOUNTS } from "./types";
-import { getDiscountsAPI, addDiscountAPI, updateDiscountAPI, deleteDiscountAPI } from "./servives";
+import { getDiscountsAPI, addDiscountAPI, updateDiscountAPI, deleteDiscountAPI, updateGivedCountDiscountAPI } from "./servives";
 import { undefinedError, success } from "../../../constant";
 
 import '../constant-type/actions.ts'
@@ -62,6 +62,19 @@ export const requestAddDiscount = (discount: IDiscount) => (dispatch: any) => {
 export const requestEditDiscount = (discount: IDiscount) => (dispatch: any) => {
     dispatch(requestDiscount())
     return updateDiscountAPI(discount)
+        .then((newDiscount: any | IDiscount) => {
+            dispatch(stopRequestDiscount())
+            if(newDiscount[1] === undefinedError) {
+                return undefinedError
+            }
+            dispatch(editDiscount(newDiscount))
+            return success
+        })
+}
+
+export const requestEditGiveCountDiscount: any = (discount: IDiscount, increase: number) => (dispatch: any) => {
+    dispatch(requestDiscount())
+    return updateGivedCountDiscountAPI(discount, increase)
         .then((newDiscount: any | IDiscount) => {
             dispatch(stopRequestDiscount())
             if(newDiscount[1] === undefinedError) {

@@ -58,11 +58,6 @@ export const ListDiscount = ({
             key: 'name',
         },
         {
-            title: 'Code',
-            dataIndex: 'code',
-            key: 'code',
-        },
-        {
             title: 'Value',
             dataIndex: 'value',
             key: 'value',
@@ -70,11 +65,21 @@ export const ListDiscount = ({
             sorter: (a: IDiscount, b: IDiscount) => a.value - b.value
         },
         {
-            title: 'Point',
-            dataIndex: 'minPoint',
-            key: 'minPoint',
-            render: (point: number) => formatVND(point),
-            sorter: (a: IDiscount, b: IDiscount) => a.minPoint - b.minPoint
+            title: 'Gived',
+            dataIndex: 'givedCount',
+            key: 'givedCount',
+            render: (givedCount: number) => formatVND(givedCount),
+            sorter: (a: IDiscount, b: IDiscount) => a.givedCount - b.givedCount,
+            align: 'center'
+            
+        },
+        {
+            title: 'Duration',
+            dataIndex: 'duration',
+            key: 'duration',
+            render: (duration: number) => formatVND(duration),
+            sorter: (a: IDiscount, b: IDiscount) => a.duration - b.duration,
+            align: 'center'
         },
         {
             title: 'Status',
@@ -90,13 +95,13 @@ export const ListDiscount = ({
             )
         },
         {
-            title: 'Create date',
+            title: 'Create at',
             key: 'createAt',
             dataIndex: 'createAt',
             render: createAt => moment(createAt, formatDate).format(formatDate)
         },
         {
-            title: 'Last update',
+            title: 'Update at',
             key: 'updateAt',
             dataIndex: 'updateAt',
             render: updateAt => moment(updateAt, formatDate).format(formatDate)
@@ -112,6 +117,10 @@ export const ListDiscount = ({
                             <>
                                 <span className="action-delete"
                                     onClick={() => handleDeleteDiscount(record)}>stop</span>
+                                <Divider type="vertical" />
+                                <NavLink
+                                    activeClassName="action--active"
+                                    to={`${discountPath}/give/${record.id}`}>give</NavLink>
                                 <Divider type="vertical" />
                             </>
                         ) : (
@@ -134,6 +143,7 @@ export const ListDiscount = ({
     return (
         <div className="list-discount">
             <Table
+                size="small"
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}

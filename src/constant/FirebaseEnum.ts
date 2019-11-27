@@ -6,6 +6,7 @@ export enum collections{
     employees = 'employees',
     memberships = 'memberships',
     types = 'types',
+    rewards = 'rewards'
 }
 
 export enum types_docs {

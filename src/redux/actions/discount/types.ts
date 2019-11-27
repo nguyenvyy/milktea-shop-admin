@@ -46,5 +46,5 @@ export type DiscountActionTypes = (
 
 export interface DiscountState {
     items: IDiscount[],
-    isFetching: Boolean
+    isFetching: boolean
 }

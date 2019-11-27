@@ -8,6 +8,7 @@ import { DiscountPanel } from "../../components/ManageDiscount/Panel/Panel";
 import { AddDiscount } from "../../components/ManageDiscount/AddDiscount/AddDiscount";
 import { EditDiscount } from "../../components/ManageDiscount/EditDiscount/EditDiscount";
 import { ListDiscount } from "../../components/ManageDiscount/ListDiscount/ListDiscount";
+import { GiveDiscount } from "../../components/ManageDiscount/GiveDiscount/GiveDiscount";
 
 const Discount = ({
     discounts = [],
@@ -42,7 +43,6 @@ const Discount = ({
                                 {...props}
                                 isFetching={isFetching}
                                 requestAddDiscount={requestAddDiscount}
-                                discounts={discounts}
                             />
                         )} />
                         <Route path={`${discountPath}/edit/:id`} render={props => {
@@ -51,9 +51,17 @@ const Discount = ({
                             return (
                                 <EditDiscount
                                     {...props}
-                                    discounts={discounts}
                                     discount={discount ? discount : false}
                                     requestEditDiscount={requestEditDiscount}
+                                />)
+                        }} />
+                        <Route path={`${discountPath}/give/:id`} render={props => {
+                            const id = props.match.params.id;
+                            const discount = discounts.find((item: any) => item.id === id)
+                            return (
+                                <GiveDiscount
+                                    {...props}
+                                    discount={discount ? discount : null}
                                 />)
                         }} />
                     </Switch>
