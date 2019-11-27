@@ -16,5 +16,6 @@ export type Reward = {
     value: number,
     createAt: Date,
     expiryDate: Date,
-    used: boolean
+    used: boolean,
+    name: string
 }
