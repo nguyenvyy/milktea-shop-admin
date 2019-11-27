@@ -34,6 +34,7 @@ const ProfilePage = lazy(() => import('../pages/Profile/Profile'))
 const MembershipPage = lazy(() => import('../pages/Membership/Membership'))
 const ProcessingOrderPage = lazy(() => import('../pages/ProcessingOrder/ProcessingOrder'))
 const ProcessedOrderPage = lazy(() => import('../pages/ProcessedOrder/ProcessedOrder'))
+const ReportPage = lazy(() => import('../pages/Report/Report'))
 export const routes: Array<MyRoute> = [
     {
         path: '/',
@@ -108,6 +109,10 @@ export const routes: Array<MyRoute> = [
             {
                 path: '/a/membership',
                 component: MembershipPage
+            },
+            {
+                path: '/a/report',
+                component: ReportPage
             }
         ]
     }

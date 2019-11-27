@@ -45,3 +45,13 @@ export const updateOrderCountForEmployee = (idEmployee: string) => {
             orderCount: FirebaseServices.firestore.FieldValue.increment(1)
         })
 }
+
+export const addOrderToProcessedOrderMock = (order: IOrder) => {
+
+    const docRef = FirebaseServices.db
+        .collection(collections.orders)
+        .doc(order_docs.processed)
+        .collection(sub_collections.types)
+        .doc()
+    return docRef.set({ ...order, id: docRef.id })
+}

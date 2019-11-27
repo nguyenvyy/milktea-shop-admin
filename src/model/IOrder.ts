@@ -11,7 +11,6 @@ export interface IOrder {
     priceTotal: number //
     disscount? : { //
         id: string
-        code : string
         value: number
     }
     createAt: Date //

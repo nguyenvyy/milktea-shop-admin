@@ -58,6 +58,13 @@ export const navItems = [
         CollapsedIcon: LetterIcon,
     },
     {
+        title: 'Report',
+        shortHand: 'R',
+        Component: MenuItem,
+        to: '/a/report',
+        CollapsedIcon: LetterIcon,
+    },
+    {
         title: 'Type',
         shortHand: 'T',
         Component: SubMenu,
