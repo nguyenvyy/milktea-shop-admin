@@ -1,0 +1,8 @@
+.sales-report {
+    & .panel {
+        &__item {
+            margin: 0 10px;
+            width: 90px;
+        }
+    }
+}

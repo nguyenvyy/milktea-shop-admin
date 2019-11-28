@@ -2,7 +2,16 @@ import { SubMenu } from "../components/NavBar/SubMenu/SubMenu";
 import { MenuItem } from "../components/NavBar/MenuItem/MenuItem";
 import { LetterIcon } from '../components/NavBar/LetterIcon/LetterIcon';
 
-export const navItems = [
+type NavItem = {
+    title: string,
+    shortHand?: string,
+    Component: React.ReactNode,
+    to: string,
+    CollapsedIcon?: React.ReactNode,
+    items?: NavItem[]
+}
+
+export const navItems: NavItem[] = [
     {
         title: 'Profile',
         shortHand: 'P',
@@ -60,9 +69,22 @@ export const navItems = [
     {
         title: 'Report',
         shortHand: 'R',
-        Component: MenuItem,
+        Component: SubMenu,
         to: '/a/report',
         CollapsedIcon: LetterIcon,
+        items: [
+            {
+                title: 'Revenue Report',
+                Component: MenuItem,
+                to: '/a/report/revenue'
+            },
+            {
+                title: 'Sales Report',
+                Component: MenuItem,
+                to: '/a/report/sales'
+            },
+        ]
+        
     },
     {
         title: 'Type',
