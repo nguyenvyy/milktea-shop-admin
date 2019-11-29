@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { IOrder } from '../../../model/IOrder'
-import { RouteComponentProps } from 'react-router-dom'
 import moment from 'moment'
 import Table, { ColumnProps } from 'antd/lib/table'
 import { Button, Form, Select } from 'antd'
