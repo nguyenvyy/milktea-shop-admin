@@ -1,4 +1,4 @@
-.sales-report {
+.revenue-report {
     margin-bottom: 40px;
     & .panel {
         &__item {
@@ -6,7 +6,7 @@
             width: 90px;
         }
     }
-    & .daily-sales-report {
+    & .daily-revenue-report {
         &__panel {
             padding: 0 10px;
         }
@@ -17,7 +17,7 @@
             padding: 10px 12px;
         }
     }
-    & .monthly-sales-report {
+    & .monthly-revenue-report {
         &__panel {
             padding: 0 10px;
         }
@@ -28,7 +28,7 @@
             padding: 10px 12px;
         }
     }
-    & .yearly-sales-report {
+    & .yearly-revenue-report {
         &__panel {
             padding: 0 10px;
         }
