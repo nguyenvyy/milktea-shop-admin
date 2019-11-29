@@ -119,10 +119,8 @@ const YearlySalesReport = ({
                 acc[curr.id] = 0
                 return acc
             }, {})
-            // convert moment to date 
             const start = new Date(yearRange.start, 1, 1, 0, 0, 0)
             const end = new Date(yearRange.end, 12, 31, 23, 59, 59)
-            console.log(start, end)
             // filter valid orders (paidAt must be between start and end date, idState = "eoMaQTw9eQUykUJ78ifR")
             const validOrders = orders.filter(order => {
                 if (order.idState === 'eoMaQTw9eQUykUJ78ifR' && order.paidAt !== undefined) {

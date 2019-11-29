@@ -26,8 +26,8 @@ export const realtimeUpdateProcessedOrders = () => (dispatch: Dispatch) => {
         .collection(collections.orders)
         .doc(order_docs.processed)
         .collection(sub_collections.types)
-        .limit(100)
-        .where('paidAt', '>=', new Date(1,1,2019))
+        // .limit(100)
+        // .where('paidAt', '>=', new Date(1,1,2019))
         .orderBy('paidAt', 'desc')
         .onSnapshot(querySnap => {
             let newOrders: Array<IOrder> = []
