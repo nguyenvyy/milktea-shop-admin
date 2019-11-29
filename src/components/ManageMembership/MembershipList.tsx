@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { Table, Badge, Divider, Button, Input, Icon, message } from 'antd'
 
@@ -25,7 +26,7 @@ export const MembershipList = ({
         if (memberships.length === 0) {
             realtimeUpdateMemberships()
         }
-    }, [memberships.length, realtimeUpdateMemberships])
+    }, [])
 
     //handle update isDeleted of membership 
     const handleUpdateMembership = (membershipId: string, isDeleted: boolean) => {

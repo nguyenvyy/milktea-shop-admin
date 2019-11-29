@@ -7,7 +7,7 @@ export type SuccessType =  typeof success
 export const adminPermission = '72y6x8BpGphfRnKVWWEl'
 
 export const formatDate = 'DD/MM/YYYY'
-
+export const formatMonth = 'MM/YYYY'
 export const status = {
     active: 'Đang hoạt động',
     stop: 'Đã dừng'

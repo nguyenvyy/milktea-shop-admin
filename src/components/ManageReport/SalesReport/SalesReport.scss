@@ -1,8 +1,44 @@
 .sales-report {
+    // display: flex;
+    display: block;
+    // flex-direction: column;
     & .panel {
         &__item {
             margin: 0 10px;
             width: 90px;
+        }
+    }
+    & .daily-sales-report {
+        &__panel {
+            padding: 0 10px;
+        }
+        &__content {
+            padding: 5px 12px;
+        }
+        &__summary {
+            padding: 10px 12px;
+        }
+    }
+    & .monthly-sales-report {
+        &__panel {
+            padding: 0 10px;
+        }
+        &__content {
+            padding: 5px 12px;
+        }
+        &__summary {
+            padding: 10px 12px;
+        }
+    }
+    & .yearly-sales-report {
+        &__panel {
+            padding: 0 10px;
+        }
+        &__content {
+            padding: 5px 12px;
+        }
+        &__summary {
+            padding: 10px 12px;
         }
     }
 }

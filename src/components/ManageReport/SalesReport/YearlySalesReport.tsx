@@ -15,7 +15,7 @@ const YearlySalesReport = ({
 
     return (
         <div>
-            YearlySalesReport
+            
         </div>
     )
 }
