@@ -71,24 +71,28 @@ const YearlyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
                     title: 'Orders',
                     dataIndex: 'orders',
                     key: 'orders',
-                    align: 'center'
+                    align: 'center',
+                    sorter: (a: RevenueReportType, b: RevenueReportType) => a.orders - b.orders,
                 },
                 {
                     title: 'Successed Orders',
                     dataIndex: 'success',
                     key: 'success',
+                    sorter: (a: RevenueReportType, b: RevenueReportType) => a.success - b.success,
                     align: 'center'
                 },
                 {
                     title: 'Cancled Orders',
                     dataIndex: 'cancels',
                     key: 'cancels',
+                    sorter: (a: RevenueReportType, b: RevenueReportType) => a.cancels - b.cancels,
                     align: 'center'
                 },
                 {
                     title: 'Returned Orders',
                     dataIndex: 'returns',
                     key: 'returns',
+                    sorter: (a: RevenueReportType, b: RevenueReportType) => a.returns - b.returns,
                     align: 'center'
                 }
             ]
@@ -97,6 +101,7 @@ const YearlyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
             title: 'Total Revenue',
             dataIndex: 'total',
             render: total => formatVND(total),
+            sorter: (a: RevenueReportType, b: RevenueReportType) => a.total - b.total,
             align: 'center'
         }
     ]
