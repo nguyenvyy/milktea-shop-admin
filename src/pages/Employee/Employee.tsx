@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import './Employee.scss'
@@ -29,7 +30,7 @@ const Employee = ({
         }
         if (roles.length === 0)
             fetchConstantTypes()
-    })
+    }, [])
     return (
         <div className="employee">
             <Header title="Employee" />

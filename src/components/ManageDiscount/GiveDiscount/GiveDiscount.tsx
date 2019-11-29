@@ -119,6 +119,7 @@ export const GiveDiscount = ({
                 const reward: Reward = {
                     idDiscount: discount.id,
                     value: discount.value,
+                    name: discount.name,
                     createAt,
                     used: false,
                     expiryDate

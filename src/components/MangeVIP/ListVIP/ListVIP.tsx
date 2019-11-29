@@ -122,6 +122,7 @@ export const ListVIP = ({
     return (
         <div className="list-vip">
             <Table
+                size="small"
                 loading={isFetching}
                 rowKey={record => record.id}
                 columns={columns}
