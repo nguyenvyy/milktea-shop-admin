@@ -103,7 +103,6 @@ const DailySalesReport = ({
 
     const handleCreateReport = () => {
         if (orders.length > 0 && products.length > 0 && dateRange[0] !== undefined && dateRange[1] !== undefined) {
-            console.log('start')
             // flag: is created
             setIsCreated(true)
             // create default row of product list
@@ -149,7 +148,6 @@ const DailySalesReport = ({
 
             setContent(records)
             setSummary([summary])
-            console.log('end')
         }
     }
 

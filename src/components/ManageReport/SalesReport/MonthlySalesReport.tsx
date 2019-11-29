@@ -30,17 +30,17 @@ const MonthlySalesReport = ({
     const [isCreated, setIsCreated] = useState(false)
     // reverse position when start > end
     useEffect(() => {
-        if(monthRange.start !== undefined && monthRange.end !== undefined && monthRange.start > monthRange.end) {
+        if (monthRange.start !== undefined && monthRange.end !== undefined && monthRange.start > monthRange.end) {
             setMonthRange({
                 start: monthRange.end,
                 end: monthRange.start
             })
-        } 
+        }
     }, [monthRange])
     // handle change month range
     const onChangeMonthRange = (value: null | Moment, name: string) => {
         let realValue: null | Moment | undefined = value
-        if(realValue === null ) {
+        if (realValue === null) {
             realValue = undefined
         }
         setMonthRange({
@@ -171,14 +171,16 @@ const MonthlySalesReport = ({
                 <Form layout="inline"  >
                     <Form.Item
                         label="Start month"
+
                         help={monthRange.start !== undefined ? '' : 'month are not valid'}
                         hasFeedback
                         validateStatus={monthRange.start !== undefined ? 'success' : 'error'}
-                    > 
+                    >
                         <DatePicker.MonthPicker
-                        value={monthRange.start}
-                        format={formatMonth}
-                        onChange={value => onChangeMonthRange(value, 'start')}
+                            placeholder="Select start month"
+                            value={monthRange.start}
+                            format={formatMonth}
+                            onChange={value => onChangeMonthRange(value, 'start')}
                         />
                     </Form.Item>
                     <Form.Item
@@ -186,18 +188,19 @@ const MonthlySalesReport = ({
                         help={monthRange.end !== undefined ? '' : 'month are not valid'}
                         hasFeedback
                         validateStatus={monthRange.end !== undefined ? 'success' : 'error'}
-                    > 
+                    >
                         <DatePicker.MonthPicker
-                        value={monthRange.end}
-                        format={formatMonth}
-                        onChange={value => onChangeMonthRange(value, 'end')}
+                            placeholder="Select end month"
+                            value={monthRange.end}
+                            format={formatMonth}
+                            onChange={value => onChangeMonthRange(value, 'end')}
                         />
                     </Form.Item>
                     <Form.Item
                     >
-                        <Button disabled={monthRangeValid ? false : true} onClick={isCreated ?  handleClearReport : handleCreateReport}>
-                            {isCreated ?  'Clear' : 'Create'}
-                            </Button>
+                        <Button disabled={monthRangeValid ? false : true} onClick={isCreated ? handleClearReport : handleCreateReport}>
+                            {isCreated ? 'Clear' : 'Create'}
+                        </Button>
                     </Form.Item>
                 </Form>
             </div>

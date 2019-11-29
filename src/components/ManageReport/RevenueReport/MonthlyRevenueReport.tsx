@@ -1,34 +1,54 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { IOrder } from '../../../model/IOrder'
-import { RangePickerValue } from 'antd/lib/date-picker/interface'
-import Table, { ColumnProps } from 'antd/lib/table'
+import moment, { Moment } from 'moment'
 import { formatVND } from '../../utils'
 import { RevenueReportType } from '../../../model/RevenueReportType'
-import { Form, DatePicker, Button } from 'antd'
-import { formatDate } from '../../../constant'
-import moment from 'moment'
-
-
-const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
+import Table, { ColumnProps } from 'antd/lib/table'
+import { formatMonth } from '../../../constant'
+import { Button, Form, DatePicker } from 'antd'
+type MonthRangeType = {
+    start: Moment | undefined,
+    end: Moment | undefined
+}
+const MonthyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
+    // month range
+    const [monthRange, setMonthRange] = useState<MonthRangeType>({
+        start: undefined,
+        end: undefined
+    })
     // clear report
     const [isCreated, setIsCreated] = useState(false)
-    // store start date and end date
-    const [dateRange, setDateRange] = useState<RangePickerValue>([])
-    // handle change dates
-    const onChangeDateRange = (dates: RangePickerValue) => {
-        setDateRange(dates)
+    // reverse position when start > end
+    useEffect(() => {
+        if (monthRange.start !== undefined && monthRange.end !== undefined && monthRange.start > monthRange.end) {
+            setMonthRange({
+                start: monthRange.end,
+                end: monthRange.start
+            })
+        }
+    }, [monthRange])
+    // handle change month range
+    const onChangeMonthRange = (value: null | Moment, name: string) => {
+        let realValue: null | Moment | undefined = value
+        if (realValue === null) {
+            realValue = undefined
+        }
+        setMonthRange({
+            ...monthRange,
+            [name]: realValue
+        })
     }
-    // validate 
-    const dateRangeValid = useMemo(() => {
+    // validate month range
+    const monthRangeValid = useMemo(() => {
         if (orders.length === 0) {
             return false
         }
-        return dateRange.length === 2
-    }, [dateRange, orders.length])
-    // report content
+        return monthRange.end !== undefined && monthRange.start !== undefined
+    }, [monthRange, orders.length])
+
+
     const [content, setContent] = useState<any[] | undefined>(undefined)
     const [summary, setSummary] = useState<any[] | undefined>(undefined)
-
     // config table
     // pagination
     const [pagination, setPagination] = useState({ pageSize: 20, current: 1 })
@@ -45,7 +65,7 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
             key: 'index',
         },
         {
-            title: 'Date',
+            title: 'Month',
             align: 'center',
             dataIndex: 'date',
             key: 'date',
@@ -87,7 +107,6 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
             align: 'center'
         }
     ]
-
     const summaryColumns: ColumnProps<RevenueReportType>[] = [
         {
             title: 'Orders',
@@ -116,24 +135,30 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
             align: 'center'
         }
     ]
+
     const handleClearReport = () => {
         setIsCreated(false)
-        setDateRange([])
+        setMonthRange({
+            start: undefined,
+            end: undefined
+        })
         setSummary(undefined)
         setContent(undefined)
     }
 
     const handleCreateReport = () => {
-        if (orders.length > 0 && dateRange[0] !== undefined && dateRange[1] !== undefined) {
+        if (orders.length > 0 && monthRange.start !== undefined && monthRange.end !== undefined) {
             // flag: is created
             setIsCreated(true)
             // create default row of product list
 
-            // convert moment to date
-            const start = dateRange[0].toDate()
+            // convert moment to date 
+            const start = monthRange.start.toDate()
+            start.setDate(1)
             start.setHours(0, 0, 0)
-            const end = dateRange[1].toDate()
-            end.setHours(23, 59, 59)
+            const end = monthRange.end.clone().add(1, 'months').toDate()
+            end.setDate(1)
+            end.setHours(0, 0, 0)
             // filter valid orders (paidAt must be between start and end date, idState = "eoMaQTw9eQUykUJ78ifR")
             const validOrders = orders.filter(order => {
                 if (order.paidAt !== undefined) {
@@ -166,7 +191,7 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
             // merge date same
             const mergedOder = validOrders.reduce((acc: any, curr) => {
                 if (curr.paidAt !== undefined) {
-                    const date = moment(curr.paidAt).format(formatDate)
+                    const date = moment(curr.paidAt).format(formatMonth)
                     if (acc[date] === undefined) {
                         acc[date] = { ...record, date, timestamp: moment(curr.paidAt).valueOf() }
                     }
@@ -205,34 +230,49 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
             setSummary([summary])
         }
     }
+
     return (
-        <div className="daily-revenue-report">
-            <div className="daily-revenue-report__panel">
+        <div className="monthly-revenue-report">
+            <div className="monthly-revenue-report__panel">
                 <Form layout="inline"  >
                     <Form.Item
-                        label="Select start date and end date"
-                        help={dateRangeValid ? '' : 'Dates are not valid'}
+                        label="Start month"
+                        help={monthRange.start !== undefined ? '' : 'month are not valid'}
                         hasFeedback
-                        validateStatus={dateRangeValid ? 'success' : 'error'}
+                        validateStatus={monthRange.start !== undefined ? 'success' : 'error'}
                     >
-                        <DatePicker.RangePicker
-                            value={dateRange}
-                            onChange={onChangeDateRange}
-                            format={formatDate}
+                        <DatePicker.MonthPicker
+                            placeholder="Select start month"
+                            value={monthRange.start}
+                            format={formatMonth}
+                            onChange={value => onChangeMonthRange(value, 'start')}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        label="End month"
+                        help={monthRange.end !== undefined ? '' : 'month are not valid'}
+                        hasFeedback
+                        validateStatus={monthRange.end !== undefined ? 'success' : 'error'}
+                    >
+                        <DatePicker.MonthPicker
+                            placeholder="Select end month"
+                            value={monthRange.end}
+                            format={formatMonth}
+                            onChange={value => onChangeMonthRange(value, 'end')}
                         />
                     </Form.Item>
                     <Form.Item
                     >
-                        <Button disabled={dateRangeValid ? false : true} onClick={isCreated ? handleClearReport : handleCreateReport}>
+                        <Button disabled={monthRangeValid ? false : true} onClick={isCreated ? handleClearReport : handleCreateReport}>
                             {isCreated ? 'Clear' : 'Create'}
                         </Button>
                     </Form.Item>
                 </Form>
             </div>
-            <div className="daily-revenue-report__content"
+            <div className="monthly-revenue-report__content"
             >
                 <Table
-                    title={() => <b>Daily Revenue Report</b>}
+                    title={() => <b>Monthly Revenue Report</b>}
                     loading={(orders.length === 0 ? true : false)}
                     bordered
                     dataSource={content}
@@ -244,7 +284,7 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
                     columns={columns}
                 />
             </div>
-            <div className="daily-revenue-report__summary"
+            <div className="monthly-revenue-report__summary"
             >
                 <Table
                     loading={(orders.length === 0 ? true : false)}
@@ -260,4 +300,4 @@ const DailyRevenueReport = ({ orders }: { orders: IOrder[] }) => {
     )
 }
 
-export default DailyRevenueReport
+export default MonthyRevenueReport

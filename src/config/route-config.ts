@@ -14,6 +14,7 @@ export const orderPath = '/a/order'
 export const processingOrderPath = '/a/order/processing'
 export const processedOrderPath = '/a/order/processed'
 export const salesReportPath = '/a/report/sales'
+export const revenueReportPath = '/a/report/revenue'
 interface MyRoute {
     path: string
     to?: string
@@ -37,6 +38,7 @@ const ProcessingOrderPage = lazy(() => import('../pages/ProcessingOrder/Processi
 const ProcessedOrderPage = lazy(() => import('../pages/ProcessedOrder/ProcessedOrder'))
 const ReportPage = lazy(() => import('../pages/Report/Report'))
 const SalesReportPage = lazy(() => import('../components/ManageReport/SalesReport/SalesReport'))
+const RevenueReportPage = lazy(() => import('../components/ManageReport/RevenueReport/RevenueReport'))
 export const routes: Array<MyRoute> = [
     {
         path: '/',
@@ -126,6 +128,10 @@ export const routes: Array<MyRoute> = [
                     {
                         path: '/a/report/sales',
                         component: SalesReportPage
+                    },
+                    {
+                        path: '/a/report/revenue',
+                        component:RevenueReportPage
                     }
                 ]
             }
