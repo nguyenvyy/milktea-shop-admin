@@ -204,7 +204,7 @@ const MonthlySalesReport = ({
             <div className="monthly-sales-report__content"
             >
                 <Table
-                    title={() => <b>monthly Sales Report</b>}
+                    title={() => <b>Monthly Sales Report</b>}
                     loading={(orders.length === 0 || products.length === 0 ? true : false)}
                     bordered
                     dataSource={content}

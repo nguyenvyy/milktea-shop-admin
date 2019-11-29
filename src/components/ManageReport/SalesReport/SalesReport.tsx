@@ -21,12 +21,12 @@ const SalesReport = () => {
     const orders = useSelector((state: RootState) => state.processedOrder.items)
     const products = useSelector((state: RootState) => state.product.items)
     useEffect(() => {
-        // if (orders.length === 0) {
-        //     dispatch(realtimeUpdateProcessedOrders())
-        // }
-        // if (products.length === 0) {
-        //     dispatch(fetchProducts())
-        // }
+        if (orders.length === 0) {
+            dispatch(realtimeUpdateProcessedOrders())
+        }
+        if (products.length === 0) {
+            dispatch(fetchProducts())
+        }
     }, [])
     return (
         <div className="sales-report">

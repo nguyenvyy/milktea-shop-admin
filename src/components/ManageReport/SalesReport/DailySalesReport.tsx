@@ -42,6 +42,12 @@ const DailySalesReport = ({
         return 0
     }, [summary])
     // config table
+    // pagination
+    const [pagination, setPagination] = useState({pageSize: 20, current: 1})
+    const onChangePage = (pagination: any) => {
+        setPagination(pagination)
+    }
+    // columns
     const productColumns = useMemo(() => {
         return products.map(product => {
             const column: ColumnProps<any> = {
@@ -55,6 +61,13 @@ const DailySalesReport = ({
         })
     }, [products])
     const columns: ColumnProps<any>[] = [
+        {
+            title: '#',
+            align: 'center',
+            render: (text, recoed, index) => index + (pagination.current - 1) * pagination.pageSize,
+            width: 50,
+            fixed: 'left'
+        },
         {
             title: 'Date',
             align: 'center',
@@ -90,6 +103,7 @@ const DailySalesReport = ({
 
     const handleCreateReport = () => {
         if (orders.length > 0 && products.length > 0 && dateRange[0] !== undefined && dateRange[1] !== undefined) {
+            console.log('start')
             // flag: is created
             setIsCreated(true)
             // create default row of product list
@@ -135,6 +149,7 @@ const DailySalesReport = ({
 
             setContent(records)
             setSummary([summary])
+            console.log('end')
         }
     }
 
@@ -172,7 +187,8 @@ const DailySalesReport = ({
                     size='small'
                     rowKey={(record, index) => index.toString()}
                     scroll={{ x: `calc(${productColumns.length * 200}px + 50%)`, y: 500 }}
-                    pagination={false}
+                    pagination={pagination}
+                    onChange={onChangePage}
                     columns={columns}
                 />
             </div>
