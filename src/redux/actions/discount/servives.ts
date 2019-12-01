@@ -88,7 +88,7 @@ export const giveDiscountAPI = (idMembership: string, reward: Reward) => {
     const rewardDoc = FirebaseServices.db
         .collection(collections.rewards)
         .doc(idMembership)
-        .collection(sub_collections.types)
+        .collection(sub_collections.reward)
         .doc()
 
     return rewardDoc.set({ ...reward, id: rewardDoc.id })
