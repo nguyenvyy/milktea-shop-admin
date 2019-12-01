@@ -114,15 +114,16 @@ export const GiveDiscount = ({
                     validMembershipIds = filterValidMembersipIds(validVipIds, activeMemberships)
                 }
                 // create reward for membership
-                const createAt = new Date()
-                const expiryDate = moment(createAt).add(discount.duration, 'days').toDate();
+                const createAt = Date.now()
+                let expiryDate = moment(createAt).add(discount.duration, 'days').toDate();
+                expiryDate.setHours(23,59,59)
                 const reward: Reward = {
                     idDiscount: discount.id,
                     value: discount.value,
                     name: discount.name,
                     createAt,
                     used: false,
-                    expiryDate
+                    expiryDate: expiryDate.getTime()
                 }
                 // request add reward for membership
                 await Promise.all([

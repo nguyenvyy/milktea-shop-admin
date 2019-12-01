@@ -14,8 +14,8 @@ export type Reward = {
     id?: string,
     idDiscount: string,
     value: number,
-    createAt: Date,
-    expiryDate: Date,
+    createAt: number,
+    expiryDate: number,
     used: boolean,
     name: string
 }

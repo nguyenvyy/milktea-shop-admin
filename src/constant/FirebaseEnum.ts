@@ -25,5 +25,6 @@ export enum order_docs {
     processed = 'processed'
 }
 export enum sub_collections {
-    types = 'all'
+    types = 'all',
+    reward = 'my_rewards' 
 }
