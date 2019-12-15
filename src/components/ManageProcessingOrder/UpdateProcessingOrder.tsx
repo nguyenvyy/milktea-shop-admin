@@ -135,8 +135,8 @@ export const UpdateProcessingOrder = ({ location: { state }, history }: RouteCom
                                     {formatVND(order.priceTotal)}
                                 </Item>
                                 <Item label={<span>Discount <Icon className="pointer" style={{ color: '#1890ff' }} type="eye" /></span>}>
-                                    {order.disscount !== undefined ? formatVND(order.disscount.value) : <Tag color="red">Không có</Tag>}
-                                </Item>
+                                    {order.discount !== undefined ? formatVND(order.discount.value) : <Tag color="red">Không có</Tag>}
+                                </Item> 
                                 <Item label="Payment method">
                                     {paymentMethod}
                                 </Item>

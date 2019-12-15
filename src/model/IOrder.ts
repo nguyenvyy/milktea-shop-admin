@@ -9,7 +9,7 @@ export interface IOrder {
     }
     detail: IOrderDetail[] 
     priceTotal: number //
-    disscount? : { //
+    discount? : { //
         id: string
         value: number
     }
