@@ -6,12 +6,14 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authenticateUser } from '../../redux/actions/auth/actions';
 import { FirebaseServices } from '../../services/firebase';
-
-export const LoginForm = ({ isLoading }: any) => {
+type LoginFormProps = {
+    isLoading: boolean
+}
+export const LoginForm = ({ isLoading }: LoginFormProps) => {
     const dispatch: any = useDispatch();
     const [user, setUser] = useState({
-        email: '',
-        password: ''
+        email: 'admin@gmail.com',
+        password: '123456'
     })
 
     const [visible, setVisible] = useState(false)
