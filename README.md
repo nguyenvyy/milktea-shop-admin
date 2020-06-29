@@ -1,15 +1,34 @@
 # Milk Tea Shop (Admin)
 Description: This website is used to manage a e-commerce website (Oal milktea)
 
-Using:
+## Requirements
+
+- Install Node
+
+## Using
 - Typescript
 - ReactJS
 - Redux
 - React-router
-- ant
+- Antd
 - Clound Firestore
-- Authentication - firebase
+- Authentication - Firebase
+## Installation
 
-Link demo: [admin](https://admin-oalmilktea.web.app)
+Use the package manager [npm](https://www.npmjs.com/) to install dependencies.
 
-Link client: [Source](https://github.com/anhhungcusa/milktea-shop-client)
+``` cmd
+npm i
+```
+
+## Run
+
+``` cmd
+npm start
+```
+## Demo
+[link](https://admin-oalmilktea.web.app)
+
+## Relation
+ - [client page](https://oalmilktea.web.app)
+ - [client source](https://github.com/anhhungcusa/milktea-shop-client)
