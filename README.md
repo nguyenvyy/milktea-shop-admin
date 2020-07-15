@@ -1,6 +1,6 @@
 # Milk Tea Shop (Admin)
 
-Clock app with different timezone
+This app is used to manage the milk tea shop system 
 
 ## Using
 
